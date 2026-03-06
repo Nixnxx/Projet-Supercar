@@ -1,0 +1,71 @@
+/*CAROUSEL XN*/
+
+.carousel-item img {
+    height: 400px;
+    object-fit: cover;
+}
+
+/* Améliore la lisibilité du texte */
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.45);
+    padding: 20px;
+    border-radius: 10px;
+    bottom: 20%;
+}
+
+.carousel-caption h5 {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.carousel-caption p {
+    font-size: 16px;
+}
+
+
+/* Animation des textes du carousel */
+.carousel-caption {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: all 0.8s ease;
+}
+
+/* Quand la slide est active */
+.carousel-item.active .carousel-caption {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animation progressive */
+.carousel-caption h5 {
+    transition-delay: 0.2s;
+}
+
+.carousel-caption p {
+    transition-delay: 0.4s;
+}
+
+.carousel-caption a {
+    transition-delay: 0.6s;
+}
+
+
+#accueil {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('Images-Index/accueil/hero-bg.jpg') center/cover no-repeat; /* optionnel : fond subtil */
+}
+
+.bi-check-circle-fill {
+    font-size: 1.5rem;
+}
+
+.btn-warning {
+    transition: all 0.3s;
+}
+
+.btn-warning:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255, 193, 7, 0.4);
+}
+
+/*CAROUSEL XN*/
+

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Démo Tableau Fun</title>
+    <style>
+       /* Style général sombre */
+        body { font-family: 'Courier New', monospace; padding: 20px; background-color: #1c1c1c; color: #e0e0e0; }
+        h1 { color: #ff0000; text-shadow: 2px 2px #000; }
+
+        /* Tableau style noir et rouge */
+        table { border-collapse: collapse; width: 80%; margin-bottom: 20px; box-shadow: 0 0 20px #ff0000; }
+        th, td { border: 2px solid #ffffff; padding: 12px; text-align: center; transition: transform 0.4s, background-color 0.4s; }
+        th { background-color: #330000; color: #ff6666; }
+        td { background-color: #2a2a2a; }
+
+        /* Animation au survol */
+        td:hover { transform: rotate(-5deg) scale(1.15); background-color: #660000; color: #ffff00; cursor: pointer; text-shadow: 1px 1px #000; }
+
+        /* Animation du titre */
+        h1 { animation: flicker 1.5s infinite; }
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Tableau</h1>
+
+    <!-- Tableau de base -->
+    <table>
+        <tr>
+            <!-- En-têtes du tableau -->
+            <th>Nom</th>
+            <th>Surnom</th>
+            <th>spécialité</th>
+        </tr>
+        <tr>
+            <td>Mobutu</td>
+            <td>Vilain</td>
+            <td>Corruption</td>
+        </tr>
+        <tr>
+            <td>H</td>
+            <td>Der Fuhrer</td>
+            <td>Racisme</td>
+        </tr>
+        <tr>
+            <td>NIX</td>
+            <td>Rocketman</td>
+            <td>Rocket cycle</td>
+        </tr>
+        <tr>
+            <td>JULIEN</td>
+            <td>Boom Boom</td>
+            <td>Explosion</td>
+        </tr>
+        <tr>
+            <td>Bokassa</td>
+            <td>La malice</td>
+            <td>Vol</td>
+        </tr>
+    </table>
+
+    <!-- Commentaire : Pour créer d'autres lignes, dupliquez le <tr> et remplissez les <td> -->
+
+</body>
+</html>

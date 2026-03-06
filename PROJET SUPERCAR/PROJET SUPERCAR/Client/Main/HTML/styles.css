@@ -1,0 +1,1144 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-orange: #ff6b35;
+    --secondary-orange: #f7931e;
+    --dark-grey: #1a1a1a;
+    --medium-grey: #2d2d2d;
+    --light-grey: #3a3a3a;
+    --text-grey: #cccccc;
+    --white: #ffffff;
+    --accent-grey: #4a4a4a;
+}
+
+body {
+    font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+    line-height: 1.6;
+    color: var(--text-grey);
+    background: linear-gradient(135deg, var(--dark-grey) 0%, var(--medium-grey) 100%);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+header h1::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 150px;
+    height: 150px;
+    background: url('Images-Index/LOGO\ CHOISI.png') no-repeat center;
+    background-size: contain;
+    margin-left: -140px;
+}
+
+header h2 {
+    font-size: 0.9rem;
+    color: var(--text-grey);
+    font-weight: 300;
+    width: 100%;
+    margin-top: 5px;
+    margin-left: 60px;
+}
+
+header {
+    background: linear-gradient(to right, var(--dark-grey), var(--medium-grey));
+    border-bottom: 3px solid var(--primary-orange);
+    padding: 1.2rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+
+.nav-list a,
+.dropdown-item {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-list a:hover,
+.dropdown-item:hover {
+    color: var(--primary-orange) !important;
+}
+
+.dropdown-menu {
+    background: rgba(30, 30, 30, 0.98);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 140, 0, 0.3);
+    border-radius: 8px;
+}
+
+.dropdown-menu.show {
+    animation: dropdownFade 0.3s ease-out;
+}
+
+@keyframes dropdownFade {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Amélioration visuelle du sous-menu */
+.dropdown-menu .dropdown-menu {
+    margin-top: -8px;          /* rapproche un peu du parent */
+    min-width: 200px;
+}
+
+/* Effet hover + active plus visible */
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: rgba(255, 140, 0, 0.15) !important;
+    color: var(--primary-orange) !important;
+}
+
+/* Flèche du sous-menu plus élégante */
+.dropend .dropdown-toggle::after {
+    display: none;  /* on cache la flèche par défaut de Bootstrap */
+}
+
+/* Animation ouverture sous-menu */
+.dropdown-menu.show {
+    animation: dropdownFade 0.25s ease-out;
+}
+/*accueil*/
+
+section {
+    padding: 80px 0;
+    position: relative;
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--accent-grey), transparent);
+}
+
+section:nth-child(even) {
+    background: var(--dark-grey);
+}
+
+section:nth-child(odd) {
+    background: var(--medium-grey);
+}
+
+section h2 {
+    font-size: 2.5rem;
+    color: var(--white);
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(to right, var(--primary-orange), var(--secondary-orange));
+}
+
+section p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: var(--text-grey);
+    line-height: 1.8;
+}
+
+#accueil {
+    background: linear-gradient(135deg, var(--dark-grey) 0%, var(--medium-grey) 50%, var(--light-grey) 100%);
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+#accueil::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -100px;
+    transform: translateY(-50%);
+    width: 400px;
+    height: 400px;
+    background: url('Images-Index/LOGO\ CHOISI.png') no-repeat center;
+    background-size: contain;
+    opacity: 0.05;
+}
+
+#accueil h2 {
+    font-size: 3rem;
+}
+
+.photo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.photo img {
+    width: 85%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid var(--accent-grey);
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.photo img:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--primary-orange);
+    box-shadow: 0 8px 30px rgba(255, 107, 53, 0.3);
+}
+
+.service, .essai {
+    background: var(--light-grey);
+    padding: 30px;
+    margin: 20px 0;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-orange);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.service:hover, .essai:hover {
+    transform: translateX(10px);
+    border-left-width: 8px;
+    box-shadow: 0 4px 20px rgba(255, 107, 53, 0.2);
+}
+
+.service h3, .essai h3 {
+    color: var(--primary-orange);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+form {
+    background: var(--light-grey);
+    padding: 40px;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 30px auto;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--accent-grey);
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--white);
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    border: 2px solid var(--accent-grey);
+    border-radius: 4px;
+    background: var(--medium-grey);
+    color: var(--white);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+form input:focus,
+form textarea:focus {
+    outline: none;
+    border-color: var(--primary-orange);
+    background: var(--dark-grey);
+    box-shadow: 0 0 15px rgba(255, 107, 53, 0.2);
+}
+
+form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+form button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+    color: var(--white);
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(255, 107, 53, 0.5);
+}
+
+form button:active {
+    transform: translateY(0);
+}
+
+/*
+footer {
+    background: var(--dark-grey);
+    color: var(--text-grey);
+    text-align: center;
+    padding: 30px 0;
+    border-top: 3px solid var(--primary-orange);
+    position: relative;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 80px;
+    background: url('Images-Index/LOGO\ CHOISI.png') no-repeat center;
+    background-size: contain;
+    opacity: 0.8;
+}
+
+footer p {
+    margin-top: 50px;
+    font-size: 0.95rem;
+}
+*/
+
+
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    header h1::before {
+        left: 50%;
+        transform: translateX(-50%);
+        top: -60px;
+    }
+
+    header h2 {
+        margin-left: 0;
+    }
+
+    nav ul {
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    nav ul li a {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+    }
+
+    section h2 {
+        font-size: 2rem;
+    }
+
+    #accueil h2 {
+        font-size: 2.2rem;
+    }
+
+    .photo {
+        grid-template-columns: 1fr;
+    }
+
+    form {
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    section {
+        padding: 60px 0;
+    }
+
+    section h2 {
+        font-size: 1.8rem;
+    }
+
+    .service, .essai {
+        padding: 20px;
+    }
+}
+
+/* Cars Grid & Cards */
+.cars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 30px;
+    margin: 50px 0;
+}
+
+.car-card {
+    background: var(--light-grey);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--accent-grey);
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.car-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--primary-orange);
+    box-shadow: 0 12px 40px rgba(255, 107, 53, 0.2);
+}
+
+.car-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background: var(--medium-grey);
+}
+
+.car-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.car-card:hover .car-image-wrapper img {
+    transform: scale(1.05);
+}
+
+.car-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+    color: var(--white);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.car-content {
+    padding: 25px;
+}
+
+.car-content h3 {
+    font-size: 1.3rem;
+    color: var(--white);
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.car-description {
+    font-size: 0.9rem;
+    color: #999;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.car-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--accent-grey);
+}
+
+.car-price {
+    font-size: 1.4rem;
+    color: var(--primary-orange);
+    font-weight: 700;
+}
+
+.btn-commander {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+    white-space: nowrap;
+}
+
+.btn-commander:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(255, 107, 53, 0.5);
+}
+
+.btn-commander:active {
+    transform: translateY(0);
+}
+
+
+
+/*CAROUSEL XN*/
+
+.carousel-item img {
+    height: 400px;
+    object-fit: cover;
+}
+
+/* Améliore la lisibilité du texte */
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.45);
+    padding: 20px;
+    border-radius: 10px;
+    bottom: 20%;
+}
+
+.carousel-caption h5 {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.carousel-caption p {
+    font-size: 16px;
+}
+
+
+/* Animation des textes du carousel */
+.carousel-caption {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: all 0.8s ease;
+}
+
+/* Quand la slide est active */
+.carousel-item.active .carousel-caption {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animation progressive */
+.carousel-caption h5 {
+    transition-delay: 0.2s;
+}
+
+.carousel-caption p {
+    transition-delay: 0.4s;
+}
+
+.carousel-caption a {
+    transition-delay: 0.6s;
+}
+
+
+#accueil {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('Images-Index/accueil/hero-bg.jpg') center/cover no-repeat; /* optionnel : fond subtil */
+}
+
+.bi-check-circle-fill {
+    font-size: 1.5rem;
+}
+
+.btn-warning {
+    transition: all 0.3s;
+}
+
+.btn-warning:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255, 193, 7, 0.4);
+}
+
+/*CAROUSEL XN*/
+
+
+
+
+/* FOOTER XN */
+
+footer {
+    background: var(--dark-grey);
+    color: var(--text-grey);
+    text-align: center;
+    padding: 30px 0;
+    border-top: 3px solid var(--primary-orange);
+    position: relative;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 80px;
+    background: url('Images-Index/LOGO\ CHOISI.png') no-repeat center;
+    background-size: contain;
+    opacity: 0.8;
+}
+
+footer p {
+    margin-top: 50px;
+    font-size: 0.95rem;
+}
+
+footer a {
+    color: var(--text-grey);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover,
+footer a:focus {
+    color: var(--primary-orange);
+}
+
+footer .bi {
+    transition: color 0.3s ease;
+}
+
+footer h6 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+/* Footer social icons */
+.footer-social .bi {
+    font-size: 1.8rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.footer-social a:hover .bi {
+    transform: translateY(-4px) scale(1.15);
+    color: var(--primary-orange);
+}
+
+/* Footer bottom / divider */
+.footer-divider {
+    height: 1px;
+    background: rgba(255, 140, 0, 0.15);
+    margin: 25px 0;
+}
+
+.footer-bottom {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    border-top: 1px solid rgba(255, 140, 0, 0.1);
+    padding-top: 15px;
+}
+
+/* Background image + overlay */
+.footer-bg {
+    position: absolute;
+    inset: 0;
+    background: url('Images-Index/back.jpeg') center/cover no-repeat;
+    z-index: 0;
+}
+
+.footer-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 0;
+}
+
+/* Content above background */
+footer .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    footer {
+        min-height: 600px;
+    }
+    .footer-overlay {
+        background: rgba(0, 0, 0, 0.75);
+    }
+}
+
+/* Large screens adjustments */
+@media (min-width: 768px) {
+    footer {
+        padding: 60px 0 40px;
+        text-align: left;
+    }
+
+    footer p {
+        margin-top: 0;
+    }
+
+    footer .row > div {
+        text-align: center;
+    }
+}
+
+/* Modals z-index fixes */
+.modal {
+    z-index: 2000 !important;
+}
+
+.modal-backdrop {
+    z-index: 1990 !important;
+}
+
+/* Prevent overlay/background from blocking clicks */
+.footer-bg,
+.footer-overlay {
+    pointer-events: none;
+}
+
+/*FOOTER NIX */
+
+
+
+
+/*MODE SURBRILLANCE QUAND LE CLIENT EST SUR LA PAGE HEADER XN */
+a.active {
+    color: var(--primary-orange) !important;
+    font-weight: 700;
+    text-decoration: underline;
+}
+/*MODE SURBRILLANCE QUAND LE CLIENT EST SUR LA PAGE HEADER XN */
+
+
+
+
+
+
+
+
+
+/* Contact */
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 40px;
+    align-items: start;
+}
+
+/* Mini map */
+.mini-map-wrapper {
+    background: var(--light-grey);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--accent-grey);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+}
+
+.mini-map-wrapper:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-orange);
+}
+
+.map-header {
+    padding: 20px;
+    background: linear-gradient(135deg, var(--medium-grey), var(--dark-grey));
+    border-bottom: 3px solid var(--primary-orange);
+    text-align: center;
+}
+
+.map-header h3 {
+    color: var(--white);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.map-header p {
+    font-size: 0.95rem;
+}
+
+.mini-map {
+    height: 455px;
+}
+
+.mini-map iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.map-link {
+    display: block;
+    padding: 15px;
+    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+    color: var(--white);
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.map-link:hover {
+    opacity: 0.9;
+}
+
+/* Formulaire */
+.contact-container form {
+    background: var(--light-grey);
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--accent-grey);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    margin: 0;
+}
+
+.contact-container label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--white);
+}
+
+.contact-container input,
+.contact-container textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 2px solid var(--accent-grey);
+    background: var(--medium-grey);
+    color: var(--white);
+}
+
+.contact-container textarea {
+    min-height: 140px;
+}
+
+.contact-container button {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+    border: none;
+    border-radius: 4px;
+    color: var(--white);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .mini-map {
+        height: 200px;
+    }
+}
+
+/* Barre de recherche voiture */
+
+.search-bar {
+    margin: 30px auto 50px;
+    max-width: 500px;
+    text-align: center;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: 30px;
+    border: 2px solid var(--accent-grey);
+    background: var(--medium-grey);
+    color: var(--white);
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.search-bar input::placeholder {
+    color: #aaa;
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: var(--primary-orange);
+    box-shadow: 0 0 15px rgba(255, 107, 53, 0.3);
+}
+
+/* Separateur marque voture */
+.brand-separator {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin: 50px 0 30px;
+}
+
+.brand-separator p {
+    font-size: 1.2rem;
+    color: var(--text-grey);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.brand-separator p::before,
+.brand-separator p::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 120px;
+    height: 1px;
+    background: var(--accent-grey);
+}
+
+.brand-separator p::before {
+    left: -140px;
+}
+
+.brand-separator p::after {
+    right: -140px;
+}
+
+
+
+
+
+
+/*SERVICE JULIEN*/
+.diagnostic-card {
+    display: flex;
+    align-items: center;
+    background: var(--light-grey);
+    border: 1px solid var(--accent-grey);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 30px 0;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animation fluide */
+    cursor: pointer;
+}
+ 
+/* Partie Image (Le petit rectangle) */
+.diag-image {
+    flex: 0 0 250px; /* Largeur fixe pour le rectangle de l'image */
+    height: 180px;
+    overflow: hidden;
+    border-right: 3px solid var(--primary-orange);
+}
+ 
+.diag-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+ 
+/* Partie Texte */
+.diag-text {
+    padding: 25px;
+    flex: 1;
+}
+ 
+.diag-text h3 {
+    color: var(--primary-orange);
+    margin-bottom: 10px;
+    font-size: 1.6rem;
+}
+ 
+.diag-text p {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--text-grey);
+}
+ 
+.diag-text span {
+    display: block;
+    margin-top: 10px;
+    font-style: italic;
+    color: var(--secondary-orange);
+}
+ 
+/* --- ANIMATIONS AU SURVOL --- */
+ 
+.diagnostic-card:hover {
+    transform: translateY(-5px) scale(1.01); /* La carte monte un peu */
+    border-color: var(--primary-orange);
+    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.2);
+}
+ 
+.diagnostic-card:hover .diag-image img {
+    transform: scale(1.1); /* Zoom léger sur l'image */
+}
+ 
+/* Responsive : On empile sur mobile */
+@media (max-width: 600px) {
+    .diagnostic-card {
+        flex-direction: column;
+    }
+    .diag-image {
+        flex: none;
+        width: 100%;
+        border-right: none;
+        border-bottom: 3px solid var(--primary-orange);
+    }
+}
+ 
+/* --- ACCORDÉON / MENU DÉROULANT --- */
+ 
+.accordion-item {
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background: var(--light-grey);
+    border: 1px solid var(--accent-grey);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+ 
+/* On cache la checkbox */
+.accordion-item input[type="checkbox"] {
+    display: none;
+}
+ 
+/* En-tête du menu */
+.accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    background: var(--medium-grey);
+    color: var(--white);
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+ 
+.accordion-header:hover {
+    color: var(--primary-orange);
+    background: var(--light-grey);
+}
+ 
+.accordion-header .icon {
+    color: var(--primary-orange);
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+ 
+/* Contenu déroulant (caché par défaut) */
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+    background: var(--light-grey);
+}
+ 
+/* Logique d'ouverture au clic */
+.accordion-item input:checked ~ .accordion-content {
+    max-height: 1000px; /* Large valeur pour laisser dérouler */
+    transition: max-height 0.6s cubic-bezier(1, 0, 1, 0);
+    border-top: 2px solid var(--primary-orange);
+}
+ 
+.accordion-item input:checked ~ .accordion-header .icon {
+    transform: rotate(45deg); /* Le + devient un x */
+    color: var(--white);
+}
+ 
+/* --- STYLE INTERNE (Image + Texte) --- */
+ 
+.diagnostic-card {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    gap: 25px;
+    animation: fadeIn 0.5s ease;
+}
+ 
+.diag-image {
+    flex: 0 0 400px; /* Taille du rectangle d'image */
+    height: 130px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid var(--primary-orange);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+ 
+.diag-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+ 
+.diag-text {
+    flex: 1;
+}
+ 
+.diag-text p {
+    color: var(--text-grey);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+ 
+/* Petite animation d'apparition du contenu */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+ 
+/* Adaptabilité mobile */
+@media (max-width: 600px) {
+    .diagnostic-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    .diag-image {
+        width: 100%;
+        flex: none;
+    }
+}
+ 
+/*SERVICE JULIEN*/

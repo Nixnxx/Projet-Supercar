@@ -1,0 +1,116 @@
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+header h1::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 150px;
+    height: 150px;
+    background: url('Images-Index/LOGO\ CHOISI.png') no-repeat center;
+    background-size: contain;
+    margin-left: -140px;
+}
+
+header h2 {
+    font-size: 0.9rem;
+    color: var(--text-grey);
+    font-weight: 300;
+    width: 100%;
+    margin-top: 5px;
+    margin-left: 60px;
+}
+
+header {
+    background: linear-gradient(to right, var(--dark-grey), var(--medium-grey));
+    border-bottom: 3px solid var(--primary-orange);
+    padding: 1.2rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+
+.nav-list a,
+.dropdown-item {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-list a:hover,
+.dropdown-item:hover {
+    color: var(--primary-orange) !important;
+}
+
+.dropdown-menu {
+    background: rgba(30, 30, 30, 0.98);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 140, 0, 0.3);
+    border-radius: 8px;
+}
+
+.dropdown-menu.show {
+    animation: dropdownFade 0.3s ease-out;
+}
+
+@keyframes dropdownFade {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Amélioration visuelle du sous-menu */
+.dropdown-menu .dropdown-menu {
+    margin-top: -8px;          /* rapproche un peu du parent */
+    min-width: 200px;
+}
+
+/* Effet hover + active plus visible */
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: rgba(255, 140, 0, 0.15) !important;
+    color: var(--primary-orange) !important;
+}
+
+/* Flèche du sous-menu plus élégante */
+.dropend .dropdown-toggle::after {
+    display: none;  /* on cache la flèche par défaut de Bootstrap */
+}
+
+/* Animation ouverture sous-menu */
+.dropdown-menu.show {
+    animation: dropdownFade 0.25s ease-out;
+}
+
+
+
+/*MODE SURBRILLANCE QUAND LE CLIENT EST SUR LA PAGE HEADER XN */
+a.active {
+    color: var(--primary-orange) !important;
+    font-weight: 700;
+    text-decoration: underline;
+}
+/*MODE SURBRILLANCE QUAND LE CLIENT EST SUR LA PAGE HEADER XN */
+
+
+
