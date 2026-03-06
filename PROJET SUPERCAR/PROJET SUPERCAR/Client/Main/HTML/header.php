@@ -39,7 +39,7 @@
         </button>
 
         <ul class="dropdown-menu dropdown-menu-end bg-dark text-white border-0 shadow-lg mt-2" style="min-width: 200px;">
-          <li><a class="dropdown-item text-white py-3" href="compte.html">Mon compte</a></li>
+          <li><a class="dropdown-item text-white py-3" href="connexion.html">Mon compte</a></li>
         </ul>
       </div>
 
