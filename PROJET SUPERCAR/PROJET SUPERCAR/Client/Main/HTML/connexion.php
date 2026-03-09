@@ -9,7 +9,11 @@ if(isset($_POST['utilisateur']) && isset($_POST['motdepasse'])){
 if(!empty($utilisateur) &&(!empty($password))){
 //lien avec la Base de donnée
 
-        $bd= "SELECT * FROM client WHERE email= ?";
+        $bd= "SELECT * 
+       FROM client 
+       JOIN login ON client.id_client = login.id_login
+       WHERE client.email = ?";
+
         //Mise en relation de la B.D et la requete
         $statement = mysqli_prepare($lienbd, $bd);
         //Lier la variable dans la requete
@@ -19,16 +23,17 @@ if(!empty($utilisateur) &&(!empty($password))){
         $resultat =  mysqli_stmt_get_result($statement);
 
         if($resultat ->num_rows===0){
-        $erreur="email inconnue";
+        $erreur="identifiant incorrect";
 }
     else{
         $user=$resultat ->fetch_assoc();
-        if(password_verify($password, $user['motdepasse'])){
+        if(password_verify($password, $user['mot_de_passe'])){
             session_start();
             $_SESSION['connecte'] = 1;
             header('Location:index.php');
             exit();
-    }else {
+    }
+    else {
         $erreur="identifiant incorrect";
     }
 }
