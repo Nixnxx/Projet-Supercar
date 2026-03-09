@@ -20,12 +20,14 @@ if(isset($_POST['nom'])
     //requete
     $bd="INSERT INTO client(nom,prenom,email,telephone,adresse,date_inscription,id_contact)
             VALUES (?,?,?,?,?,NOW(),1)";
-        //Mise en relation de la B.D et la requete
 
+        //Mise en relation de la B.D et la requete
     $statement=mysqli_prepare($lienbd,$bd);
+
     //liaison de la variable 
     mysqli_stmt_bind_param($statement, "sssss", $nom,$prenom,$email,$telephone,$adresse);
-        //execution de la requete
+        
+    //execution de la requete
         if (mysqli_stmt_execute($statement)) {
 
                 $id_client = mysqli_insert_id($lienbd);
