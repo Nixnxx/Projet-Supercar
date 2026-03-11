@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SuperCar – Voitures d'occasion</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="accueil.css">
+     <link rel="stylesheet" href="footer.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
@@ -40,7 +43,12 @@
 
         <ul class="dropdown-menu dropdown-menu-end bg-dark text-white border-0 shadow-lg mt-2" style="min-width: 200px;">
           <li><a class="dropdown-item text-white py-3" href="connexion.html">Mon compte</a></li>
-        </ul>
+            <?php if(isset($_SESSION['connecte'])):?> 
+
+            <li><a class="dropdown-item text-white py-3" href="logout.php">Se déconnecter</a></li>
+      
+            <!-- <?php endif; ?> -->
+          </ul>
       </div>
 
     </div>

@@ -1,6 +1,6 @@
-
-
-/* FOOTER XN */
+/* =========================
+   FOOTER
+========================= */
 
 footer {
     background: var(--dark-grey);
@@ -95,7 +95,22 @@ footer .container {
     z-index: 1;
 }
 
-/* Mobile adjustments */
+/* Prevent overlay/background from blocking clicks */
+.footer-bg,
+.footer-overlay {
+    pointer-events: none;
+}
+
+/* Modals z-index fixes */
+.modal {
+    z-index: 2000 !important;
+}
+
+.modal-backdrop {
+    z-index: 1990 !important;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
     footer {
         min-height: 600px;
@@ -105,7 +120,6 @@ footer .container {
     }
 }
 
-/* Large screens adjustments */
 @media (min-width: 768px) {
     footer {
         padding: 60px 0 40px;
@@ -120,20 +134,3 @@ footer .container {
         text-align: center;
     }
 }
-
-/* Modals z-index fixes */
-.modal {
-    z-index: 2000 !important;
-}
-
-.modal-backdrop {
-    z-index: 1990 !important;
-}
-
-/* Prevent overlay/background from blocking clicks */
-.footer-bg,
-.footer-overlay {
-    pointer-events: none;
-}
-
-/*FOOTER NIX */
