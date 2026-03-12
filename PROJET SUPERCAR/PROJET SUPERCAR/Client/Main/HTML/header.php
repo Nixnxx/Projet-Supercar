@@ -1,3 +1,7 @@
+<?php
+require ("fonction.php");
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -21,16 +25,23 @@
        <?php $pageactuelle = basename($_SERVER['SCRIPT_NAME']); ?>
 
       <nav class="d-flex align-items-center gap-4">
-        <a href="index.php" class="text-white text-decoration-none fw-semibold <?= ($pageactuelle ==='index.php') ? 'active' : '' ?>">Accueil</a>
-    <a href="voitures.php" class="text-white text-decoration-none fw-semibold <?= ($pageactuelle==='voitures.php') ? 'active' : '' ?>">Voitures</a>
-    <a href="services.php" class="text-white text-decoration-none fw-semibold <?= ($pageactuelle==='services.php') ? 'active' : '' ?>">Services</a>
-        <a href="essai.php" class="text-white text-decoration-none fw-semibold <?= ($pageactuelle=== 'essai.php') ? 'active' : '' ?>">Demande d'essai</a>
-        
-        <a href="contact.php" class="text-white text-decoration-none fw-semibold <?= ($pageactuelle==='contact.php') ? 'active' : '' ?>">Contactez-nous</a>
+            <a href="index.php" class="text-white text-decoration-none fw-semibold <?= ($pageactuelle ==='index.php') ? 'active' : '' ?>">Accueil</a>
+            <a href="voitures.php" class="text-white text-decoration-none fw-semibold <?= ($pageactuelle==='voitures.php') ? 'active' : '' ?>">Voitures</a>
+            <a href="services.php" class="text-white text-decoration-none fw-semibold <?= ($pageactuelle==='services.php') ? 'active' : '' ?>">Services</a>
+            <a href="essai.php" class="text-white text-decoration-none fw-semibold <?= ($pageactuelle=== 'essai.php') ? 'active' : '' ?>">Demande d'essai</a>
+            <a href="contact.php" class="text-white text-decoration-none fw-semibold <?= ($pageactuelle==='contact.php') ? 'active' : '' ?>">Contactez-nous</a>
       </nav>
 
-      <!-- Dropdown (Contact + Compte) -->
-      <div class="dropdown">
+<?php if(est_connecte()) : ?> 
+  <div>
+          <a href="logout.php" class="btn btn-outline-light btn-sm d-flex align-items-center gap-2">
+              <i class="bi bi-box-arrow-right"></i>
+          Se déconnecter
+          </a>
+  </div>
+
+<?php else  :?>
+   <div class="dropdown">
         <button class="btn btn-link text-white p-0 border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
             <path fill-rule="evenodd"
@@ -39,11 +50,18 @@
         </button>
 
         <ul class="dropdown-menu dropdown-menu-end bg-dark text-white border-0 shadow-lg mt-2" style="min-width: 200px;">
-          <li><a class="dropdown-item text-white py-3" href="connexion.html">Mon compte</a></li>
+          <li><a class="dropdown-item text-white py-3" href="connexion.html">Se connecter</a></li>
+                    <li><a class="dropdown-item text-white py-3" href="inscription.html">S'inscrire</a></li>
+
         </ul>
       </div>
 
     </div>
   </div>
+
+
+<?php endif; ?>
+ 
+
 </header>
 

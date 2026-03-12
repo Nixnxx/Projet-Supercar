@@ -53,3 +53,12 @@ if(isset($_POST['nom'])
         echo "Erreur de préparation de la requête : " . mysqli_error($lienbd);
     }
 ?>
+
+
+<?php
+    if(est_connecte()){
+        header('Location: index.php');
+        exit();
+    }
+
+    ?>

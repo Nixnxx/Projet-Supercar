@@ -1,5 +1,6 @@
 <?php
 require('lienbd.php');
+require ('fonction.php');
 $erreur=null;
 
 if(isset($_POST['utilisateur']) && isset($_POST['motdepasse'])){
@@ -41,7 +42,15 @@ if(!empty($utilisateur) &&(!empty($password))){
 }
 ?>
 
+<?php
+    if(est_connecte()){
+        header('Location: index.php');
+        exit();
+    }
 
+    ?>
+
+    
 <?php
 if($erreur){
     echo $erreur;
