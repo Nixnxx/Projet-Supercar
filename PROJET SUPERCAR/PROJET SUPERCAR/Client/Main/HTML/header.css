@@ -1,3 +1,16 @@
+/* =========================
+   HEADER
+========================= */
+
+header {
+    background: linear-gradient(to right, var(--dark-grey), var(--medium-grey));
+    border-bottom: 3px solid var(--primary-orange);
+    padding: 1.2rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
 
 header .container {
     display: flex;
@@ -25,7 +38,7 @@ header h1::before {
     transform: translateY(-50%);
     width: 150px;
     height: 150px;
-    background: url('Images-Index/LOGO\ CHOISI.png') no-repeat center;
+    background: url('Images-Index/LOGO CHOISI.png') no-repeat center;
     background-size: contain;
     margin-left: -140px;
 }
@@ -39,16 +52,7 @@ header h2 {
     margin-left: 60px;
 }
 
-header {
-    background: linear-gradient(to right, var(--dark-grey), var(--medium-grey));
-    border-bottom: 3px solid var(--primary-orange);
-    padding: 1.2rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-}
-
+/* Navigation */
 
 .nav-list a,
 .dropdown-item {
@@ -62,6 +66,8 @@ header {
     color: var(--primary-orange) !important;
 }
 
+/* Dropdown */
+
 .dropdown-menu {
     background: rgba(30, 30, 30, 0.98);
     backdrop-filter: blur(8px);
@@ -73,44 +79,70 @@ header {
     animation: dropdownFade 0.3s ease-out;
 }
 
-@keyframes dropdownFade {
-    from { opacity: 0; transform: translateY(-10px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-
-/* Amélioration visuelle du sous-menu */
 .dropdown-menu .dropdown-menu {
-    margin-top: -8px;          /* rapproche un peu du parent */
+    margin-top: -8px;
     min-width: 200px;
 }
 
-/* Effet hover + active plus visible */
 .dropdown-item:hover,
 .dropdown-item:focus {
     background-color: rgba(255, 140, 0, 0.15) !important;
     color: var(--primary-orange) !important;
 }
 
-/* Flèche du sous-menu plus élégante */
 .dropend .dropdown-toggle::after {
-    display: none;  /* on cache la flèche par défaut de Bootstrap */
+    display: none;
 }
 
-/* Animation ouverture sous-menu */
-.dropdown-menu.show {
-    animation: dropdownFade 0.25s ease-out;
+@keyframes dropdownFade {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
+/* Lien actif dans le menu */
 
-
-/*MODE SURBRILLANCE QUAND LE CLIENT EST SUR LA PAGE HEADER XN */
 a.active {
     color: var(--primary-orange) !important;
     font-weight: 700;
     text-decoration: underline;
 }
-/*MODE SURBRILLANCE QUAND LE CLIENT EST SUR LA PAGE HEADER XN */
 
+/* Responsive */
 
+@media (max-width: 768px) {
 
+    header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    header h1::before {
+        left: 50%;
+        transform: translateX(-50%);
+        top: -60px;
+    }
+
+    header h2 {
+        margin-left: 0;
+    }
+
+    nav ul {
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    nav ul li a {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+}
