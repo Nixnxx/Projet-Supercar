@@ -4,19 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Inscription-connexion</title>
 </head>
 <body>
-    <form method="POST" action="connexion.php"> 
-    
-       <p> avez-vous déjà un compte ?identifiez-vous </p>
-       <input type="email" name="utilisateur" placeholder="Saisissez votre email">
-       <br>
-       <input type="password" name="motdepasse"placeholder="Saisissez votre mot de passe">
-       <button type="submit">Se connecter</button> 
-    <p>vous etes nouveau client ?cliquez-<a href="inscription.html">ici</a> pour creer votre compte</p>
-
-
+  <form class="connexion-form" method="POST" action="connexion.php"> 
+    <h2>Connexion</h2>
+    <p>Avez-vous déjà un compte ? Identifiez-vous</p>
+    <input type="email" name="utilisateur" placeholder="Saisissez votre email" required>
+    <input type="password" name="motdepasse" placeholder="Saisissez votre mot de passe" required>
+    <button type="submit">Se connecter</button> 
+    <p>Vous êtes nouveau client ? Cliquez <a href="inscription.html">ici</a> pour créer votre compte</p>
 </form>
 </body>
 </html>
