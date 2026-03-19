@@ -13,7 +13,7 @@ require ("fonction.php");
     <link rel="stylesheet" href="css/accueil.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/contact.css">
-    <link rel="stylesheet" href="css/services.css">
+    <link rel="stylesheet" href="css/service.css">
     <link rel="stylesheet" href="css/voiture.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">

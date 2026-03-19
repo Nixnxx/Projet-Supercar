@@ -1,40 +1,4 @@
-/* =========================
-   VARIABLES & BASE
-========================= */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-:root {
-    --primary-orange: #ff6b35;
-    --secondary-orange: #f7931e;
-    --dark-grey: #1a1a1a;
-    --medium-grey: #2d2d2d;
-    --light-grey: #3a3a3a;
-    --text-grey: #cccccc;
-    --white: #ffffff;
-    --accent-grey: #4a4a4a;
-}
-
-body {
-    font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
-    line-height: 1.6;
-    color: var(--text-grey);
-    background: linear-gradient(135deg, var(--dark-grey) 0%, var(--medium-grey) 100%);
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-
-/* =========================
-   CARTE DIAGNOSTIC
-========================= */
+/*SERVICE JULIEN*/
 .diagnostic-card {
     display: flex;
     align-items: center;
@@ -43,68 +7,77 @@ body {
     border-radius: 12px;
     overflow: hidden;
     margin: 30px 0;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animation fluide */
     cursor: pointer;
 }
-
+ 
 /* Partie Image (Le petit rectangle) */
 .diag-image {
-    flex: 0 0 250px;
+    flex: 0 0 250px; /* Largeur fixe pour le rectangle de l'image */
     height: 180px;
     overflow: hidden;
     border-right: 3px solid var(--primary-orange);
 }
-
+ 
 .diag-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
 }
-
+ 
 /* Partie Texte */
 .diag-text {
     padding: 25px;
     flex: 1;
 }
-
+ 
 .diag-text h3 {
     color: var(--primary-orange);
     margin-bottom: 10px;
     font-size: 1.6rem;
 }
-
+ 
 .diag-text p {
     margin: 0;
     font-size: 1rem;
     color: var(--text-grey);
 }
-
+ 
 .diag-text span {
     display: block;
     margin-top: 10px;
     font-style: italic;
     color: var(--secondary-orange);
 }
-
-
-/* =========================
-   ANIMATIONS AU SURVOL
-========================= */
+ 
+/* --- ANIMATIONS AU SURVOL --- */
+ 
 .diagnostic-card:hover {
     transform: translateY(-5px) scale(1.01);
     border-color: var(--primary-orange);
     box-shadow: 0 10px 30px rgba(255, 107, 53, 0.2);
 }
-
+ 
 .diagnostic-card:hover .diag-image img {
     transform: scale(1.1);
 }
-
-
-/* =========================
-   ACCORDÉON
-========================= */
+ 
+/* Responsive : On empile sur mobile */
+@media (max-width: 600px) {
+    .diagnostic-card {
+        flex-direction: column;
+    }
+    .diag-image {
+        flex: none;
+        width: 100%;
+        border-right: none;
+        border-bottom: 3px solid var(--primary-orange);
+    }
+}
+ 
+/* --- ACCORDÉON / MENU DÉROULANT --- */
+ 
 .accordion-item {
     margin-bottom: 20px;
     border-radius: 8px;
@@ -113,13 +86,13 @@ body {
     overflow: hidden;
     transition: all 0.3s ease;
 }
-
-/* Cacher la checkbox */
+ 
+/* On cache la checkbox */
 .accordion-item input[type="checkbox"] {
     display: none;
 }
-
-/* En-tête */
+ 
+/* En-tête du menu */
 .accordion-header {
     display: flex;
     justify-content: space-between;
@@ -132,18 +105,18 @@ body {
     cursor: pointer;
     transition: background 0.3s ease, color 0.3s ease;
 }
-
+ 
 .accordion-header:hover {
     color: var(--primary-orange);
     background: var(--light-grey);
 }
-
+ 
 .accordion-header .icon {
     color: var(--primary-orange);
     font-size: 1.5rem;
     transition: transform 0.3s ease;
 }
-
+ 
 /* Contenu déroulant (caché par défaut) */
 .accordion-content {
     max-height: 0;
@@ -151,23 +124,21 @@ body {
     transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
     background: var(--light-grey);
 }
-
-/* Ouverture au clic */
+ 
+/* Logique d'ouverture au clic */
 .accordion-item input:checked ~ .accordion-content {
     max-height: 1000px;
     transition: max-height 0.6s cubic-bezier(1, 0, 1, 0);
     border-top: 2px solid var(--primary-orange);
 }
-
+ 
 .accordion-item input:checked ~ .accordion-header .icon {
     transform: rotate(45deg);
     color: var(--white);
 }
-
-
-/* =========================
-   STYLE INTERNE (Image + Texte)
-========================= */
+ 
+/* --- STYLE INTERNE (Image + Texte) --- */
+ 
 .diagnostic-card {
     display: flex;
     align-items: center;
@@ -175,53 +146,49 @@ body {
     gap: 25px;
     animation: fadeIn 0.5s ease;
 }
-
+ 
 .diag-image {
     flex: 0 0 400px;
     height: 130px;
     border-radius: 8px;
     overflow: hidden;
     border: 2px solid var(--primary-orange);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
-
+ 
 .diag-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-
+ 
 .diag-text {
     flex: 1;
 }
-
+ 
 .diag-text p {
     color: var(--text-grey);
     font-size: 1rem;
     line-height: 1.6;
     margin: 0;
 }
-
-/* Animation d'apparition */
+ 
+/* Petite animation d'apparition du contenu */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
+    to { opacity: 1; transform: translateY(0); }
 }
-
-
-/* =========================
-   RESPONSIVE
-========================= */
+ 
+/* Adaptabilité mobile */
 @media (max-width: 600px) {
     .diagnostic-card {
         flex-direction: column;
         text-align: center;
     }
-
     .diag-image {
-        flex: none;
         width: 100%;
-        border-right: none;
-        border-bottom: 3px solid var(--primary-orange);
+        flex: none;
     }
 }
+ 
+/*SERVICE JULIEN*/
