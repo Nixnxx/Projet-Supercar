@@ -1,0 +1,71 @@
+/* =========================
+   RESET
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   VARIABLES GLOBALES
+========================= */
+:root {
+    --primary-orange: #ff6b35;
+    --secondary-orange: #f7931e;
+    --dark-grey: #1a1a1a;
+    --medium-grey: #2d2d2d;
+    --light-grey: #3a3a3a;
+    --text-grey: #cccccc;
+    --white: #ffffff;
+    --accent-grey: #4a4a4a;
+}
+
+
+/* =========================
+   BASE
+========================= */
+body {
+    font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+    line-height: 1.6;
+    color: var(--text-grey);
+    background: linear-gradient(135deg, var(--dark-grey) 0%, var(--medium-grey) 100%);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+
+/* =========================
+   LIEN ACTIF (HEADER)
+========================= */
+a.active {
+    color: var(--primary-orange) !important;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+
+/* =========================
+   HEADER → voir header.css
+========================= */
+
+/* =========================
+   FOOTER → voir footer.css
+========================= */
+
+/* =========================
+   VOITURES → voir voiture.css
+========================= */
+
+/* =========================
+   SERVICES → voir service.css
+========================= */
+
+/* =========================
+   CONTACT → voir contact.css
+========================= */

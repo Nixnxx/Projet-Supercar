@@ -19,7 +19,7 @@ footer::before {
     transform: translateX(-50%);
     width: 80px;
     height: 80px;
-    background: url('Images-Index/LOGO\ CHOISI.png') no-repeat center;
+    background: url('../Images-Index/LOGO\ CHOISI.png') no-repeat center;
     background-size: contain;
     opacity: 0.8;
 }
@@ -78,7 +78,7 @@ footer h6 {
 .footer-bg {
     position: absolute;
     inset: 0;
-    background: url('Images-Index/back.jpeg') center/cover no-repeat;
+    background: url('../Images-Index/back.jpeg') center/cover no-repeat;
     z-index: 0;
 }
 

@@ -1,0 +1,77 @@
+/* =========================
+   FORMULAIRE INSCRIPTION
+========================= */
+.inscription-form {
+    max-width: 500px;
+    margin: 50px auto;
+    background: var(--light-grey);
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--accent-grey);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+}
+
+.inscription-form h2 {
+    color: var(--primary-orange);
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.inscription-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--white);
+    font-weight: 500;
+}
+
+.inscription-form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    border: 2px solid var(--accent-grey);
+    background: var(--medium-grey);
+    color: var(--white);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.inscription-form input:focus {
+    outline: none;
+    border-color: var(--primary-orange);
+    box-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
+}
+
+.inscription-form button {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+    border: none;
+    border-radius: 6px;
+    color: var(--white);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255,107,53,0.3);
+}
+
+.inscription-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(255,107,53,0.5);
+}
+
+.inscription-form button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(255,107,53,0.3);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .inscription-form {
+        padding: 30px 20px;
+        margin: 30px 10px;
+    }
+}

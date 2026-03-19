@@ -1,0 +1,135 @@
+/* =========================
+   VARIABLES & BASE
+========================= */
+
+
+
+/* =========================
+   CONTACT CONTAINER
+========================= */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 40px;
+    align-items: start;
+}
+
+
+/* =========================
+   MINI MAP
+========================= */
+.mini-map-wrapper {
+    background: var(--light-grey);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--accent-grey);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+}
+
+.mini-map-wrapper:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-orange);
+}
+
+.map-header {
+    padding: 20px;
+    background: linear-gradient(135deg, var(--medium-grey), var(--dark-grey));
+    border-bottom: 3px solid var(--primary-orange);
+    text-align: center;
+}
+
+.map-header h3 {
+    color: var(--white);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.map-header p {
+    font-size: 0.95rem;
+}
+
+.mini-map {
+    height: 455px;
+}
+
+.mini-map iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.map-link {
+    display: block;
+    padding: 15px;
+    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+    color: var(--white);
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.map-link:hover {
+    opacity: 0.9;
+}
+
+
+/* =========================
+   FORMULAIRE CONTACT
+========================= */
+.contact-container form {
+    background: var(--light-grey);
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--accent-grey);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    margin: 0;
+}
+
+.contact-container label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--white);
+}
+
+.contact-container input,
+.contact-container textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 2px solid var(--accent-grey);
+    background: var(--medium-grey);
+    color: var(--white);
+}
+
+.contact-container textarea {
+    min-height: 140px;
+}
+
+.contact-container button {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+    border: none;
+    border-radius: 4px;
+    color: var(--white);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .mini-map {
+        height: 200px;
+    }
+}
