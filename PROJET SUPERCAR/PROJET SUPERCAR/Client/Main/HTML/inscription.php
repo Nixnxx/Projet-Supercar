@@ -1,5 +1,6 @@
 <?php
 require('lienbd.php');
+require ('fonction.php');
 
 
 if(isset($_POST['nom'])
