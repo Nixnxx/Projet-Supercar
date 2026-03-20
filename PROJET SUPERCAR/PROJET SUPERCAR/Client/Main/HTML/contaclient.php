@@ -1,10 +1,17 @@
 <?php
 require ('lienbd.php');
 require ('fonction.php');
-if (isset($_POST['nom']
-        && $_POST['numéro']
-        && $_POST['email']
-        && $_POST['message'])) {
+
+    
+    if (!est_connecte()) {
+        header('Location: connexion.php');
+        exit();
+    }
+
+if (        isset($_POST['nom'])
+        &&  isset($_POST['numéro'])
+        &&  isset($_POST['email'])
+        &&  isset($_POST['message'])) {
 
     $nom = htmlspecialchars($_POST['nom']);
     $numéro = htmlspecialchars($_POST['numéro']);
@@ -27,9 +34,4 @@ if (isset($_POST['nom']
         }
 
 ?>
-<?php
-    if (!est_connecte()) {
-        header('Location: connexion.php');
-        exit();
-    }
-    ?>
+    
