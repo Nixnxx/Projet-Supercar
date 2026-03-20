@@ -36,7 +36,7 @@
             </div>
 
             <!-- FORMULAIRE -->
-            <form>
+            <form method="POST" action="contactclient.php">
                 <label for="nom">Nom</label>
                 <input type="text" id="nom" name="nom" required>
 
