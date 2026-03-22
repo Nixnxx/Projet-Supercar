@@ -44,7 +44,7 @@ require_once ("fonction.php");
             <a href="voitures.php" class="text-white text-decoration-none fw-semibold <?= ($pageactuelle==='voitures.php') ? 'active' : '' ?>">Voitures</a>
             <a href="services.php" class="text-white text-decoration-none fw-semibold <?= ($pageactuelle==='services.php') ? 'active' : '' ?>">Services</a>
             <a href="essai.php" class="text-white text-decoration-none fw-semibold <?= ($pageactuelle=== 'essai.php') ? 'active' : '' ?>">Demande d'essai</a>
-            <a href="contact.php" class="text-white text-decoration-none fw-semibold <?= ($pageactuelle==='contact.php') ? 'active' : '' ?>">Contactez-nous</a>
+            <a href="contactclient.php" class="text-white text-decoration-none fw-semibold <?= ($pageactuelle==='contactclient.php') ? 'active' : '' ?>">Contactez-nous</a>
       </nav>
 
 <?php if(est_connecte()) : ?> 

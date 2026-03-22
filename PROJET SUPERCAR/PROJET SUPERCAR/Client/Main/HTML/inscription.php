@@ -3,6 +3,16 @@ require('lienbd.php');
 require ('fonction.php');
 
 
+
+
+    if(est_connecte()){
+        header('Location: index.php');
+        exit();
+    }
+
+
+$succes=false ;
+
 if(isset($_POST['nom'])
     &&    isset($_POST['prenom'])
     &&    isset($_POST['email'])
@@ -39,14 +49,8 @@ if(isset($_POST['nom'])
 
         mysqli_stmt_bind_param($statement2,"sssi",$email,$mdp,$niveau,$id_client);
 
-        mysqli_stmt_execute($statement2);
-
-
-            session_start();
-            $_SESSION['connecte'] = 1;
-
-            header('Location: index.php');
-            exit();
+        if(mysqli_stmt_execute($statement2)){
+            $succes=true;
 
         } else {
             echo "Erreur lors de l'inscription : " . mysqli_error($lienbd);
@@ -55,13 +59,53 @@ if(isset($_POST['nom'])
     } else {
         echo "Erreur de préparation de la requête : " . mysqli_error($lienbd);
     }
+}
 ?>
 
+    
 
-<?php
-    if(est_connecte()){
-        header('Location: index.php');
-        exit();
-    }
-
-    ?>
+<?php include 'header.php'; ?>
+ 
+<!-- Bouton caché pour déclencher le modal -->
+<?php if ($succes): ?>
+<button
+    data-bs-toggle="modal"
+    data-bs-target="#modalSucces"
+    style="display:none"
+    id="btnModalSucces">
+</button>
+<?php endif; ?>
+ 
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="modalSucces" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-center">
+ 
+            <div class="modal-body py-4">
+                <div style="font-size:50px">✅</div>
+                <h5 class="mt-3 mb-2">Compte créé avec succès !</h5>
+                <p class="text-muted">Votre compte a bien été créé. Vous pouvez maintenant vous connecter.</p>
+            </div>
+ 
+            <div class="modal-footer justify-content-center border-0 pb-4">
+                <!-- Bouton qui redirige vers connexion après fermeture -->
+                <a href="connexion.html" class="btn btn-dark">Se connecter</a>
+            </div>
+ 
+        </div>
+    </div>
+</div>
+ 
+ 
+<?php include 'footer.php'; ?>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+ 
+<!-- Ouvrir le modal si succès -->
+<?php if ($succes): ?>
+<script>
+    document.getElementById('btnModalSucces').click();
+</script>
+<?php endif; ?>
+ 
+</body>
+</html>
