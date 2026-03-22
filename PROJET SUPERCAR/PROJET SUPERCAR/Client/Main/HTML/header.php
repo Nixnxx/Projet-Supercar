@@ -15,6 +15,14 @@ require_once ("fonction.php");
     <link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="css/service.css">
     <link rel="stylesheet" href="css/voiture.css">
+    <link rel="stylesheet" href="css/connexion.css">
+    <link rel="stylesheet" href="css/inscription.css">
+    <link rel="stylesheet" href="css/logout.css">
+    <link rel="stylesheet" href="css/contactclient.css">
+
+
+
+
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
