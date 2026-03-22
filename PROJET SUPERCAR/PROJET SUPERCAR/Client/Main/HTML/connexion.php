@@ -33,7 +33,13 @@ if(!empty($utilisateur) &&(!empty($password))){
         if(password_verify($password, $user['mot_de_passe'])){
             session_start();
             $_SESSION['connecte'] = 1;
-            header('Location:index.php');
+            $_SESSION['id_client'] = $user['id_client'];
+
+            if (isset($_SESSION['contact_en_attente'])){
+                header('Location: contactclient.php');
+            }else{
+                header('Location:index.php');
+            }
             exit();
     }
     else {
@@ -59,4 +65,6 @@ if($erreur){
 }
 
 ?> 
+
+
 
