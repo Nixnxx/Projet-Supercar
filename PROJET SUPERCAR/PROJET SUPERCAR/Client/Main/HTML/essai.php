@@ -1,4 +1,10 @@
    <?php
+   require_once 'fonction.php';
+if (!est_connecte()) {
+    header('Location: nonconnecte.php');
+    exit();
+}
+
   include 'header.php';
   ?>
 
