@@ -18,11 +18,11 @@
 
     <!-- Aston Martin -->
     <div class="carousel-item active">
-      <img src="Images-Index/accueil/am6.jpg" class="d-block w-100" alt="Aston Martin">
+      <img src="bmw4.jpg" class="d-block w-100" alt="Aston Martin">
       <div class="carousel-caption d-none d-md-block text-start">
-        <h5>Aston Martin</h5>
+        <h5>BMW</h5>
         <p>
-          Le luxe britannique au service de la performance.<br>
+          Le luxe allemand au service de la performance.<br>
           Raffinement, puissance et élégance intemporelle.
         </p>
         <a href="essai.html" class="btn btn-outline-light">Demander un essai</a>
@@ -31,9 +31,9 @@
 
     <!-- McLaren -->
     <div class="carousel-item">
-      <img src="Images-Index/accueil/mc2.webp" class="d-block w-100" alt="McLaren">
+      <img src="mercedes2.jpg" class="d-block w-100" alt="McLaren">
       <div class="carousel-caption d-none d-md-block text-start">
-        <h5>McLaren</h5>
+        <h5>MERCEDES</h5>
         <p>
           Une supercar d’exception, née pour la vitesse.<br>
           Sensations fortes garanties.
@@ -44,9 +44,9 @@
 
     <!-- Porsche -->
     <div class="carousel-item">
-      <img src="Images-Index/accueil/pr1.webp" class="d-block w-100" alt="Porsche">
+      <img src="audi1.jpg" class="d-block w-100" alt="Porsche">
       <div class="carousel-caption d-none d-md-block text-start">
-        <h5>Porsche</h5>
+        <h5>AUDI</h5>
         <p>
           L’alliance parfaite entre sport et élégance.<br>
           Une conduite précise et dynamique.
@@ -98,17 +98,17 @@
                 <div class="row g-4">
                     <div class="col-6">
                         <!-- Image showroom luxe -->
-                        <img src="Images-Index/amc.jpg" 
+                        <img src="mercedes3.jpg" 
                              class="img-fluid rounded shadow-lg" alt="Showroom SuperCar luxe" style="height: 280px; object-fit: cover;">
                     </div>
                     <div class="col-6">
                         <!-- Image lineup supercars -->
-                        <img src="Images-Index/pr2.jpg" 
+                        <img src="audi4.jpg" 
                              class="img-fluid rounded shadow-lg" alt="Supercars alignées" style="height: 280px; object-fit: cover;">
                     </div>
                     <div class="col-12">
                         <!-- Image essai sur route (scenic) -->
-                        <img src="Images-Index/mc1.jpg"  
+                        <img src="bmw1.jpg"  
                              class="img-fluid rounded shadow-lg" alt="Essai supercar sur route" style="height: 300px; object-fit: cover;">
                     </div>
                 </div>
