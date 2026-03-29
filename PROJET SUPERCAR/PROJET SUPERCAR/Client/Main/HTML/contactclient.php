@@ -23,7 +23,10 @@ mysqli_stmt_bind_param($statement,"sssii",
 if(mysqli_stmt_execute($statement)){
         // Supprime le message de la session après insertion réussie
     unset($_SESSION['contact_en_attente']);
-    $succes= true;
+    // $succes= true;
+    //QUAND LE CLIENT RAFRAICHIT LA PAGE,LE MESSAGE NE SE REENGISTRE PLUS
+     header('Location: contactclient.php?succes=1');
+    exit();
     } else {
         echo "Erreur lors de l'envoi du message : " . mysqli_error($lienbd);
     }
@@ -77,7 +80,9 @@ if (        isset($_POST['nom'])
     //execution de la requete
     if (mysqli_stmt_execute($statement)) {
         unset($_SESSION['contact_en_attente']);
-        $succes = true;
+        // $succes = true;
+         header('Location: contactclient.php?succes=1');
+    exit();
     } else {
         echo "Erreur lors de l'envoi du message : " . mysqli_error($lienbd);
     }

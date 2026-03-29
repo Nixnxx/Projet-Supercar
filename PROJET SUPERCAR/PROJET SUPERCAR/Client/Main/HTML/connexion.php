@@ -11,7 +11,7 @@ if (isset($_POST['utilisateur']) && isset($_POST['motdepasse'])) {
 
         $bd = "SELECT * 
                FROM client 
-               JOIN login ON client.id_client = login.id_login
+               JOIN login ON client.id_client = login.id_client
                WHERE client.email = ?";
 
         // Préparation de la requête

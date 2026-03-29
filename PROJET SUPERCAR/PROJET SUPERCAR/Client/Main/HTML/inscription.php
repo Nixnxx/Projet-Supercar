@@ -29,8 +29,8 @@ if(isset($_POST['nom'])
     $mdp    =password_hash($_POST['motdepasse'],PASSWORD_DEFAULT);;
 
     //requete
-    $bd="INSERT INTO client(nom,prenom,email,telephone,adresse,date_inscription,id_contact)
-            VALUES (?,?,?,?,?,NOW(),1)";
+    $bd="INSERT INTO client(nom,prenom,email,telephone,adresse,date_inscription)
+            VALUES (?,?,?,?,?,NOW())";
 
     //preparation de la requete
     $statement=mysqli_prepare($lienbd,$bd);
