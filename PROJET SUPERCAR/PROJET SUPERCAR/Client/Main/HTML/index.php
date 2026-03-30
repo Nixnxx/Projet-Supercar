@@ -25,7 +25,7 @@
           Le luxe allemand au service de la performance.<br>
           Raffinement, puissance et élégance intemporelle.
         </p>
-        <a href="essai.html" class="btn btn-outline-light">Demander un essai</a>
+        <a href="essai.php" class="btn btn-outline-light">Demander un essai</a>
       </div>
     </div>
 
@@ -38,7 +38,7 @@
           Une supercar d’exception, née pour la vitesse.<br>
           Sensations fortes garanties.
         </p>
-        <a href="essai.html" class="btn btn-outline-light">Demander un essai</a>
+        <a href="essai.php" class="btn btn-outline-light">Demander un essai</a>
       </div>
     </div>
 
@@ -51,7 +51,7 @@
           L’alliance parfaite entre sport et élégance.<br>
           Une conduite précise et dynamique.
         </p>
-        <a href="essai.html" class="btn btn-outline-light">Demander un essai</a>
+        <a href="essai.php" class="btn btn-outline-light">Demander un essai</a>
       </div>
     </div>
 
@@ -88,7 +88,7 @@
                 </ul>
 
                 <!-- CTA principal -->
-                <a href="essai.html" class="btn btn-warning btn-lg px-5 py-3 fw-bold rounded-pill shadow-lg">
+                <a href="essai.php" class="btn btn-warning btn-lg px-5 py-3 fw-bold rounded-pill shadow-lg">
                     Réserver mon essai exclusif maintenant →
                 </a>
             </div>
