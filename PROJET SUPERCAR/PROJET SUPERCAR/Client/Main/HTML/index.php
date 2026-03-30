@@ -99,17 +99,17 @@
                     <div class="col-6">
                         <!-- Image showroom luxe -->
                         <img src="mercedes3.jpg" 
-                             class="img-fluid rounded shadow-lg" alt="Showroom SuperCar luxe" style="height: 280px; object-fit: cover;">
+                             class="img-fluid rounded shadow-lg anime" alt="Showroom SuperCar luxe" style="height: 280px; object-fit: cover;">
                     </div>
                     <div class="col-6">
                         <!-- Image lineup supercars -->
                         <img src="audi4.jpg" 
-                             class="img-fluid rounded shadow-lg" alt="Supercars alignées" style="height: 280px; object-fit: cover;">
+                             class="img-fluid rounded shadow-lg anime" alt="Supercars alignées" style="height: 280px; object-fit: cover;">
                     </div>
                     <div class="col-12">
                         <!-- Image essai sur route (scenic) -->
                         <img src="bmw1.jpg"  
-                             class="img-fluid rounded shadow-lg" alt="Essai supercar sur route" style="height: 300px; object-fit: cover;">
+                             class="img-fluid rounded shadow-lg anime" alt="Essai supercar sur route" style="height: 300px; object-fit: cover;">
                     </div>
                 </div>
             </div>
