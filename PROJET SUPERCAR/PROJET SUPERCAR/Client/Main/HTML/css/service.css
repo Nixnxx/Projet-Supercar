@@ -1,194 +1,214 @@
-/*SERVICE JULIEN*/
-.diagnostic-card {
-    display: flex;
-    align-items: center;
-    background: var(--light-grey);
-    border: 1px solid var(--accent-grey);
-    border-radius: 12px;
-    overflow: hidden;
-    margin: 30px 0;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animation fluide */
-    cursor: pointer;
+#services {
+    background: #0a0a0a;
+    padding-bottom: 80px;
 }
- 
-/* Partie Image (Le petit rectangle) */
-.diag-image {
-    flex: 0 0 250px; /* Largeur fixe pour le rectangle de l'image */
-    height: 180px;
-    overflow: hidden;
-    border-right: 3px solid var(--primary-orange);
+
+/* ── Hero ── */
+.services-hero {
+    padding: 90px 20px 60px;
+    text-align: center;
+    background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(255,120,0,0.1) 0%, transparent 70%);
 }
- 
-.diag-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
- 
-/* Partie Texte */
-.diag-text {
-    padding: 25px;
-    flex: 1;
-}
- 
-.diag-text h3 {
-    color: var(--primary-orange);
-    margin-bottom: 10px;
-    font-size: 1.6rem;
-}
- 
-.diag-text p {
-    margin: 0;
-    font-size: 1rem;
-    color: var(--text-grey);
-}
- 
-.diag-text span {
-    display: block;
-    margin-top: 10px;
-    font-style: italic;
-    color: var(--secondary-orange);
-}
- 
-/* --- ANIMATIONS AU SURVOL --- */
- 
-.diagnostic-card:hover {
-    transform: translateY(-5px) scale(1.01);
-    border-color: var(--primary-orange);
-    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.2);
-}
- 
-.diagnostic-card:hover .diag-image img {
-    transform: scale(1.1);
-}
- 
-/* Responsive : On empile sur mobile */
-@media (max-width: 600px) {
-    .diagnostic-card {
-        flex-direction: column;
-    }
-    .diag-image {
-        flex: none;
-        width: 100%;
-        border-right: none;
-        border-bottom: 3px solid var(--primary-orange);
-    }
-}
- 
-/* --- ACCORDÉON / MENU DÉROULANT --- */
- 
-.accordion-item {
+
+.hero-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #ff8c00;
+    border: 1px solid rgba(255,140,0,0.35);
+    padding: 5px 16px;
+    border-radius: 50px;
     margin-bottom: 20px;
-    border-radius: 8px;
-    background: var(--light-grey);
-    border: 1px solid var(--accent-grey);
-    overflow: hidden;
-    transition: all 0.3s ease;
+    background: rgba(255,140,0,0.06);
 }
- 
-/* On cache la checkbox */
-.accordion-item input[type="checkbox"] {
-    display: none;
+
+.hero-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
 }
- 
-/* En-tête du menu */
-.accordion-header {
+
+.hero-title .highlight {
+    background: linear-gradient(135deg, #ff8c00, #ffd700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.45);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* ── Grid ── */
+.services-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 28px;
+}
+
+/* ── Glass Card ── */
+.service-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 18px;
+    padding: 28px 24px 24px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 140, 0, 0.35);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 60px rgba(255,100,0,0.06);
+}
+
+/* ── Icon ── */
+.card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(255,140,0,0.1);
+    border: 1px solid rgba(255,140,0,0.2);
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 20px 25px;
-    background: var(--medium-grey);
-    color: var(--white);
+    justify-content: center;
+    font-size: 1.3rem;
+    color: #ff8c00;
+    margin-bottom: 16px;
+    transition: background 0.3s;
+}
+
+.service-card:hover .card-icon {
+    background: rgba(255,140,0,0.2);
+}
+
+/* ── Number ── */
+.card-number {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: rgba(255,140,0,0.4);
+    font-weight: 700;
+    margin-bottom: 6px;
+    font-family: monospace;
+}
+
+/* ── Title ── */
+.card-title {
     font-size: 1.2rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.3s ease, color 0.3s ease;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 14px;
+    transition: color 0.3s;
 }
- 
-.accordion-header:hover {
-    color: var(--primary-orange);
-    background: var(--light-grey);
+
+.service-card:hover .card-title {
+    color: #ffa940;
 }
- 
-.accordion-header .icon {
-    color: var(--primary-orange);
-    font-size: 1.5rem;
-    transition: transform 0.3s ease;
-}
- 
-/* Contenu déroulant (caché par défaut) */
-.accordion-content {
-    max-height: 0;
+
+/* ── Image ── */
+.card-image-wrap {
+    border-radius: 10px;
     overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
-    background: var(--light-grey);
+    height: 150px;
+    margin-bottom: 16px;
 }
- 
-/* Logique d'ouverture au clic */
-.accordion-item input:checked ~ .accordion-content {
-    max-height: 1000px;
-    transition: max-height 0.6s cubic-bezier(1, 0, 1, 0);
-    border-top: 2px solid var(--primary-orange);
-}
- 
-.accordion-item input:checked ~ .accordion-header .icon {
-    transform: rotate(45deg);
-    color: var(--white);
-}
- 
-/* --- STYLE INTERNE (Image + Texte) --- */
- 
-.diagnostic-card {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    gap: 25px;
-    animation: fadeIn 0.5s ease;
-}
- 
-.diag-image {
-    flex: 0 0 400px;
-    height: 130px;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 2px solid var(--primary-orange);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
- 
-.diag-image img {
+
+.card-image-wrap img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    filter: brightness(0.6) saturate(0.8);
+    transition: transform 0.4s ease, filter 0.4s ease;
 }
- 
-.diag-text {
-    flex: 1;
+
+.service-card:hover .card-image-wrap img {
+    transform: scale(1.05);
+    filter: brightness(0.8) saturate(1);
 }
- 
-.diag-text p {
-    color: var(--text-grey);
-    font-size: 1rem;
-    line-height: 1.6;
+
+/* ── Description ── */
+.card-desc {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+/* ── Tag ── */
+.card-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #ffd700;
+    background: rgba(255,215,0,0.07);
+    border: 1px solid rgba(255,215,0,0.2);
+    border-radius: 50px;
+    padding: 4px 12px;
+}
+
+/* ── CTA ── */
+.services-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    max-width: 680px;
+    margin: 52px auto 0;
+    padding: 32px 36px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,140,0,0.2);
+    border-radius: 18px;
+    text-align: center;
+}
+
+.services-cta p {
+    color: rgba(255,255,255,0.55);
     margin: 0;
+    font-size: 0.95rem;
 }
- 
-/* Petite animation d'apparition du contenu */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+
+.cta-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #ff8c00, #ff5500);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(255,100,0,0.3);
 }
- 
-/* Adaptabilité mobile */
-@media (max-width: 600px) {
-    .diagnostic-card {
+
+.cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(255,100,0,0.45);
+    color: #fff;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .services-wrapper {
+        grid-template-columns: 1fr;
+        padding: 0 16px;
+    }
+    .services-hero {
+        padding: 60px 16px 40px;
+    }
+    .services-cta {
+        margin: 36px 16px 0;
         flex-direction: column;
-        text-align: center;
-    }
-    .diag-image {
-        width: 100%;
-        flex: none;
+        gap: 14px;
     }
 }
- 
-/*SERVICE JULIEN*/
