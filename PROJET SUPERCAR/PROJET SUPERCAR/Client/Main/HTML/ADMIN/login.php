@@ -24,7 +24,7 @@ if(isset($_POST['utilisateur']) && isset($_POST['motdepasse'])){
                 session_start();
                 $_SESSION['connecte']  = 1;
                 $_SESSION['id_login']  = $user['id_login'];
-                header('Location:inscription.html');
+                header('Location:accueil.php');
                 exit();
             } else {
                 $erreur = "Identifiant incorrect";

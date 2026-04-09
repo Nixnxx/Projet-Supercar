@@ -1,14 +1,52 @@
+<?php
+// ============================================================
+//  index.php  -  Page Accueil (partie client)
+//  On va chercher toutes les données dans la base de données
+// ============================================================
 
+// Connexion à la base de données
+$conn = mysqli_connect("localhost", "root", "", "supercar");
+if (!$conn) {
+    die("Erreur de connexion : " . mysqli_connect_error());
+}
 
+// ---- On récupère les données depuis la BD ------------------
+
+// Les slides du carrousel (seulement celles qui sont actives, dans l'ordre)
+$req_carousel = mysqli_query($conn, "SELECT * FROM accueil_carousel WHERE actif = 1 ORDER BY ordre");
+
+// Le texte hero (1 seule ligne)
+$req_hero = mysqli_query($conn, "SELECT * FROM accueil_bienvenue LIMIT 1");
+$hero     = mysqli_fetch_assoc($req_hero);
+
+// Les images de droite du hero (actives uniquement)
+$req_images = mysqli_query($conn, "SELECT * FROM accueil_bienvenue_images WHERE actif = 1 ORDER BY ordre");
+
+// Les points forts (actifs uniquement)
+$req_points = mysqli_query($conn, "SELECT * FROM accueil_points WHERE actif = 1 ORDER BY ordre");
+
+// Les statistiques (actives uniquement)
+$req_stats = mysqli_query($conn, "SELECT * FROM accueil_stats WHERE actif = 1 ORDER BY ordre");
+
+?>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SuperCar – Accueil</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
 <body>
 
-  <?php
-  include 'header.php';
-  ?>
+<?php include 'header.php'; ?>
 
 
-
-
+<!-- ============================================================
+     CARROUSEL
+     On boucle sur les slides récupérées dans la BD
+============================================================ -->
 <div id="carouselExampleSlidesOnly" class="carousel slide"
      data-bs-ride="carousel"
      data-bs-interval="3500"
@@ -16,133 +54,133 @@
 
   <div class="carousel-inner">
 
-    <!-- Aston Martin -->
-    <div class="carousel-item active">
-      <img src="bmw4.jpg" class="d-block w-100" alt="Aston Martin">
-      <div class="carousel-caption d-none d-md-block text-start">
-        <h5>BMW</h5>
-        <p>
-          Le luxe allemand au service de la performance.<br>
-          Raffinement, puissance et élégance intemporelle.
-        </p>
-        <a href="essai.php" class="btn btn-outline-light">Demander un essai</a>
+    <?php
+    $premier = true; // La première slide doit avoir la classe "active"
+    while ($slide = mysqli_fetch_assoc($req_carousel)) :
+    ?>
+      <div class="carousel-item <?= $premier ? 'active' : '' ?>">
+        <img src="<?= htmlspecialchars($slide['image']) ?>" class="d-block w-100" alt="<?= htmlspecialchars($slide['titre']) ?>">
+        <div class="carousel-caption d-none d-md-block text-start">
+          <h5><?= htmlspecialchars($slide['titre']) ?></h5>
+          <p><?= nl2br(htmlspecialchars($slide['description'])) ?></p>
+          <a href="<?= htmlspecialchars($slide['lien']) ?>" class="btn btn-outline-light">
+            <?= htmlspecialchars($slide['texte_lien']) ?>
+          </a>
+        </div>
       </div>
-    </div>
-
-    <!-- McLaren -->
-    <div class="carousel-item">
-      <img src="mercedes2.jpg" class="d-block w-100" alt="McLaren">
-      <div class="carousel-caption d-none d-md-block text-start">
-        <h5>MERCEDES</h5>
-        <p>
-          Une supercar d’exception, née pour la vitesse.<br>
-          Sensations fortes garanties.
-        </p>
-        <a href="essai.php" class="btn btn-outline-light">Demander un essai</a>
-      </div>
-    </div>
-
-    <!-- Porsche -->
-    <div class="carousel-item">
-      <img src="audi1.jpg" class="d-block w-100" alt="Porsche">
-      <div class="carousel-caption d-none d-md-block text-start">
-        <h5>AUDI</h5>
-        <p>
-          L’alliance parfaite entre sport et élégance.<br>
-          Une conduite précise et dynamique.
-        </p>
-        <a href="essai.php" class="btn btn-outline-light">Demander un essai</a>
-      </div>
-    </div>
+    <?php
+    $premier = false; // Les slides suivantes n'ont pas "active"
+    endwhile;
+    ?>
 
   </div>
 </div>
 
 
-
-
-
-
-   <!-- ACCUEIL - Hero amélioré -->
+<!-- ============================================================
+     SECTION HERO
+     On affiche les données qui viennent de la BD
+============================================================ -->
 <section id="accueil" class="py-5 bg-dark text-white">
-    <div class="container">
-        <div class="row align-items-center">
-            <!-- Texte à gauche + images à droite (ou stack sur mobile) -->
-            <div class="col-lg-6 mb-5 mb-lg-0">
-                <h2 class="display-4 fw-bold mb-4" style="background: linear-gradient(135deg, var(--primary-orange), #ff8c00); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                    Bienvenue chez SuperCar
-                </h2>
-                <p class="lead fs-4 mb-4">
-                    Votre porte d'entrée vers l'excellence automobile à Maurice.
-                </p>
-                <p class="fs-5 mb-4">
-                    SuperCar importe et propose une sélection exclusive de voitures d'occasion haut de gamme, contrôlées et certifiées, venues du Japon, Singapour, Afrique du Sud, États-Unis, Chine, Allemagne, France et plus encore.
-                </p>
+  <div class="container">
+    <div class="row align-items-center">
 
-                <!-- Points forts en liste icônée -->
-                <ul class="list-unstyled fs-5 mb-5">
-                    <li class="mb-3"><i class="bi bi-check-circle-fill text-warning me-3"></i>Modèles immédiatement disponibles – Pas d'attente</li>
-                    <li class="mb-3"><i class="bi bi-check-circle-fill text-warning me-3"></i>Inspection complète + préparation professionnelle</li>
-                    <li class="mb-3"><i class="bi bi-check-circle-fill text-warning me-3"></i>Essai routier gratuit sur rendez-vous</li>
-                    <li class="mb-3"><i class="bi bi-check-circle-fill text-warning me-3"></i>Livraison directe à domicile ou bureau</li>
-                </ul>
+      <!-- Texte à gauche -->
+      <div class="col-lg-6 mb-5 mb-lg-0">
 
-                <!-- CTA principal -->
-                <a href="essai.php" class="btn btn-warning btn-lg px-5 py-3 fw-bold rounded-pill shadow-lg">
-                    Réserver mon essai exclusif maintenant →
-                </a>
-            </div>
+        <!-- Titre vient de la BD -->
+        <h2 class="display-4 fw-bold mb-4"
+            style="background: linear-gradient(135deg, var(--primary-orange), #ff8c00);
+                   -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          <?= htmlspecialchars($hero['titre']) ?>
+        </h2>
 
-            <!-- Images / Galerie à droite -->
-            <div class="col-lg-6">
-                <div class="row g-4">
-                    <div class="col-6">
-                        <!-- Image showroom luxe -->
-                        <img src="mercedes3.jpg" 
-                             class="img-fluid rounded shadow-lg anime" alt="Showroom SuperCar luxe" style="height: 280px; object-fit: cover;">
-                    </div>
-                    <div class="col-6">
-                        <!-- Image lineup supercars -->
-                        <img src="audi4.jpg" 
-                             class="img-fluid rounded shadow-lg anime" alt="Supercars alignées" style="height: 280px; object-fit: cover;">
-                    </div>
-                    <div class="col-12">
-                        <!-- Image essai sur route (scenic) -->
-                        <img src="bmw1.jpg"  
-                             class="img-fluid rounded shadow-lg anime" alt="Essai supercar sur route" style="height: 300px; object-fit: cover;">
-                    </div>
-                </div>
-            </div>
+        <!-- Sous-titre vient de la BD -->
+        <p class="lead fs-4 mb-4">
+          <?= htmlspecialchars($hero['sous_titre']) ?>
+        </p>
+
+        <!-- Description vient de la BD -->
+        <p class="fs-5 mb-4">
+          <?= htmlspecialchars($hero['description']) ?>
+        </p>
+
+        <!-- Points forts : on boucle sur la BD -->
+        <ul class="list-unstyled fs-5 mb-5">
+          <?php while ($point = mysqli_fetch_assoc($req_points)) : ?>
+            <li class="mb-3">
+              <i class="bi bi-check-circle-fill text-warning me-3"></i>
+              <?= htmlspecialchars($point['texte']) ?>
+            </li>
+          <?php endwhile; ?>
+        </ul>
+
+        <!-- Bouton CTA vient de la BD -->
+        <a href="<?= htmlspecialchars($hero['lien']) ?>"
+           class="btn btn-warning btn-lg px-5 py-3 fw-bold rounded-pill shadow-lg">
+          <?= htmlspecialchars($hero['texte']) ?>
+        </a>
+
+      </div>
+
+      <!-- Images à droite : on boucle sur la BD -->
+      <div class="col-lg-6">
+        <div class="row g-4">
+
+          <?php
+          $compteur = 0;
+          while ($img = mysqli_fetch_assoc($req_images)) :
+            $compteur++;
+          ?>
+
+            <?php if ($compteur <= 2) : ?>
+              <!-- Les 2 premières images sont côte à côte (col-6) -->
+              <div class="col-6">
+                <img src="<?= htmlspecialchars($img['image']) ?>"
+                     class="img-fluid rounded shadow-lg"
+                     alt="<?= htmlspecialchars($img['alt']) ?>"
+                     style="height: 280px; object-fit: cover;">
+              </div>
+            <?php else : ?>
+              <!-- La 3ème image prend toute la largeur (col-12) -->
+              <div class="col-12">
+                <img src="<?= htmlspecialchars($img['image']) ?>"
+                     class="img-fluid rounded shadow-lg"
+                     alt="<?= htmlspecialchars($img['alt']) ?>"
+                     style="height: 300px; object-fit: cover;">
+              </div>
+            <?php endif; ?>
+
+          <?php endwhile; ?>
+
         </div>
+      </div>
 
-        <!-- Petit bloc confiance en bas -->
-        <div class="text-center mt-5 pt-4 border-top border-secondary">
-            <p class="fs-5 mb-3">Pourquoi choisir SuperCar ?</p>
-            <div class="d-flex justify-content-center gap-5 flex-wrap">
-                <div>
-                    <h5 class="text-warning">+120</h5>
-                    <p>Véhicules vendus</p>
-                </div>
-                <div>
-                    <h5 class="text-warning">98%</h5>
-                    <p>Satisfaction client</p>
-                </div>
-                <div>
-                    <h5 class="text-warning">Île entière</h5>
-                    <p>Livraison gratuite</p>
-                </div>
-            </div>
-        </div>
+    </div><!-- fin row -->
+
+
+    <!-- Bloc statistiques : on boucle sur la BD -->
+    <div class="text-center mt-5 pt-4 border-top border-secondary">
+      <p class="fs-5 mb-3">Pourquoi choisir SuperCar ?</p>
+      <div class="d-flex justify-content-center gap-5 flex-wrap">
+
+        <?php while ($stat = mysqli_fetch_assoc($req_stats)) : ?>
+          <div>
+            <h5 class="text-warning"><?= htmlspecialchars($stat['valeur']) ?></h5>
+            <p><?= htmlspecialchars($stat['label']) ?></p>
+          </div>
+        <?php endwhile; ?>
+
+      </div>
     </div>
+
+  </div>
 </section>
-
- 
-
-
 
 
 <?php include 'footer.php'; ?>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<?php mysqli_close($conn); ?>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
