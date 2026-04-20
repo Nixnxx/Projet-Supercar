@@ -1,101 +1,71 @@
- * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
- 
-        body {
-            background-color: #0f0f1a;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: 'Segoe UI', sans-serif;
-        }
- 
-        .carte {
-            text-align: center;
-            animation: apparaitre 0.6s ease forwards;
-        }
- 
-        /* Icône cadenas animé */
-        .cadenas {
-            font-size: 80px;
-            display: inline-block;
-            animation: secousse 0.8s ease 0.6s both, flotter 2s ease-in-out 1.4s infinite;
-        }
- 
-        .titre {
-            color: #ffffff;
-            font-size: 26px;
-            font-weight: 700;
-            margin-top: 20px;
-            animation: glisser-bas 0.5s ease 0.3s both;
-        }
- 
-        .sous-titre {
-            color: #a0a0c0;
-            font-size: 15px;
-            margin-top: 10px;
-            animation: glisser-bas 0.5s ease 0.5s both;
-        }
- 
-        /* Barre de progression */
-        .barre-conteneur {
-            width: 280px;
-            height: 6px;
-            background: #2a2a3d;
-            border-radius: 10px;
-            margin: 30px auto 0;
-            overflow: hidden;
-            animation: glisser-bas 0.5s ease 0.7s both;
-        }
- 
-        .barre {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #6c63ff, #ff6584);
-            border-radius: 10px;
-            animation: remplir 3s linear 0.9s forwards;
-        }
- 
-        .texte-redirection {
-            color: #6c63ff;
-            font-size: 13px;
-            margin-top: 12px;
-            animation: glisser-bas 0.5s ease 0.9s both, clignoter 1s ease 1.5s infinite;
-        }
- 
-        /* ── Keyframes ── */
-        @keyframes apparaitre {
-            from { opacity: 0; transform: scale(0.85); }
-            to   { opacity: 1; transform: scale(1); }
-        }
- 
-        @keyframes glisser-bas {
-            from { opacity: 0; transform: translateY(-15px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
- 
-        @keyframes secousse {
-            0%, 100% { transform: rotate(0deg); }
-            20%       { transform: rotate(-15deg); }
-            40%       { transform: rotate(15deg); }
-            60%       { transform: rotate(-10deg); }
-            80%       { transform: rotate(10deg); }
-        }
- 
-        @keyframes flotter {
-            0%, 100% { transform: translateY(0px); }
-            50%       { transform: translateY(-8px); }
-        }
- 
-        @keyframes remplir {
-            from { width: 0%; }
-            to   { width: 100%; }
-        }
- 
-        @keyframes clignoter {
-            0%, 100% { opacity: 1; }
-            50%       { opacity: 0.3; }
-        }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0f0f0f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: sans-serif;
+}
+
+.carte {
+  max-width: 300px;
+  width: 100%;
+  text-align: center;
+}
+
+.cadenas {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #f97316;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+  font-size: 16px;
+}
+
+.titre {
+  font-size: 15px;
+  font-weight: 500;
+  color: #f5f5f5;
+  margin-bottom: 0.4rem;
+}
+
+.sous-titre {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.barre-conteneur {
+  height: 2px;
+  background: #222;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.barre {
+  height: 100%;
+  width: 0%;
+  background: #f97316;
+  border-radius: 2px;
+  animation: progress 3s linear forwards;
+}
+
+@keyframes progress {
+  to { width: 100%; }
+}
+
+.texte-redirection {
+  font-size: 11px;
+  color: #444;
+}
