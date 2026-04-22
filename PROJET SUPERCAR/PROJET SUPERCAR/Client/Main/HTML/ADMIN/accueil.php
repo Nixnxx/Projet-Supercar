@@ -71,16 +71,10 @@ if (!est_connecte()) {
 
   <!-- ===== MENU GAUCHE ===== -->
   <div class="sidebar">
-    <h4><i class="bi bi-speedometer2"></i> SuperCar</h4>
     <nav class="nav flex-column p-2 mt-2">
-      <a class="nav-link" href="#carrousel"><i class="bi bi-images me-2"></i>Carrousel</a>
-      <a class="nav-link" href="#hero"><i class="bi bi-type-h1 me-2"></i>Texte Hero</a>
-      <a class="nav-link" href="#images"><i class="bi bi-card-image me-2"></i>Images Hero</a>
-      <a class="nav-link" href="#points"><i class="bi bi-list-check me-2"></i>Points Forts</a>
-      <a class="nav-link" href="#stats"><i class="bi bi-bar-chart me-2"></i>Statistiques</a>
-      <hr style="border-color:#333">
-      <a class="nav-link" href="../index.php" target="_blank"><i class="bi bi-eye me-2"></i>Voir le site</a>
-    </nav>
+       <?php include 'admin_style.php'; ?>
+  <?php include 'admin_nav.php'; ?>
+
   </div>
 
   <!-- ===== CONTENU PRINCIPAL ===== -->

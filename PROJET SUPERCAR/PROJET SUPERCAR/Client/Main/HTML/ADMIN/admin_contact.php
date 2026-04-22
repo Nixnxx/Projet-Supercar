@@ -1,6 +1,5 @@
 <?php
-require('config.php');
-if (!est_admin()) { header('Location: connexion.php'); exit(); }
+require('lienbd.php');
 
 $action  = $_GET['action'] ?? '';
 $id      = intval($_GET['id'] ?? 0);
@@ -77,6 +76,15 @@ if ($action === 'voir' && $id > 0) {
     mysqli_stmt_execute($su);
 }
 ?>
+
+<?php
+require('fonction.php');
+if (!est_connecte()) {
+    header('Location: login.html');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

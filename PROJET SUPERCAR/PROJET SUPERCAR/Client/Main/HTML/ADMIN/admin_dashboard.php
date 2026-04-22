@@ -1,7 +1,5 @@
 <?php
-require('config.php');
-if (!est_admin()) { header('Location: connexion.php'); exit(); }
-
+require('lienbd.php');
 // Stats globales
 $stats = [];
 $stats['messages']   = mysqli_fetch_assoc(mysqli_query($lienbd, "SELECT COUNT(*) total, SUM(lu=0) non_lus FROM contact"));;
@@ -20,6 +18,15 @@ $derniers_essais = mysqli_fetch_all(mysqli_query($lienbd,
      JOIN client c ON c.id_client = d.id_client
      ORDER BY d.id_demande DESC LIMIT 5"), MYSQLI_ASSOC);
 ?>
+
+<?php
+require('fonction.php');
+if (!est_connecte()) {
+    header('Location: login.html');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

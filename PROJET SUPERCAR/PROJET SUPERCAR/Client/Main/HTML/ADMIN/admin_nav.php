@@ -1,4 +1,5 @@
 <?php
+require('lienbd.php');
 // Détecter la page active
 $current = basename($_SERVER['PHP_SELF']);
 
@@ -32,12 +33,14 @@ $_essai_count = intval($_essai_att['n']);
         <?php if ($_essai_count > 0): ?><span class="nav-badge"><?= $_essai_count ?></span><?php endif; ?>
     </a>
 
-    <div class="nav-section">Catalogue</div>
-
-    <a href="accueil.php" class="nav-link <?= $current==='accueil.php'?'active':'' ?>">
+     <a href="accueil.php" class="nav-link <?= $current==='accueil.php'?'active':'' ?>">
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1"/></svg>
         Accueil
     </a>
+
+    <div class="nav-section">Catalogue</div>
+
+   
     <a href="admin_voitures.php" class="nav-link <?= $current==='admin_voitures.php'?'active':'' ?>">
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1"/></svg>
         Voitures
@@ -45,11 +48,11 @@ $_essai_count = intval($_essai_att['n']);
 
     <a href="admin_clients.php" class="nav-link <?= $current==='admin_clients.php'?'active':'' ?>">
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-        Clients
+        Service
     </a>
 
     <div class="nav-bottom">
-        <a href="connexion.php?logout=1" class="nav-link">
+        <a href="login.html?logout=1" class="nav-link">
             <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
             Déconnexion
         </a>

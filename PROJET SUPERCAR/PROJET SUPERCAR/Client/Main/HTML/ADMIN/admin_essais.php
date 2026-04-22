@@ -1,6 +1,10 @@
 <?php
-require('config.php');
-if (!est_admin()) { header('Location: connexion.php'); exit(); }
+require('lienbd.php');
+require('fonction.php');
+if (!est_connecte()) {
+    header('Location: login.html');
+    exit();
+}
 
 $action = $_GET['action'] ?? '';
 $id     = intval($_GET['id'] ?? 0);
