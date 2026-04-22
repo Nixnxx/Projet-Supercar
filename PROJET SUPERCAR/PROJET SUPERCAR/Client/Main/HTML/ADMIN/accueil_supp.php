@@ -20,7 +20,7 @@ $id    = isset($_GET['id'])    ? intval($_GET['id']) : 0;
 
 // Vérification : l'id doit être valide
 if ($id <= 0) {
-    header("Location: admin_accueil.php?msg=erreur");
+    header("Location: accueil.php?msg=erreur");
     exit();
 }
 
@@ -30,32 +30,32 @@ if ($table == 'carousel') {
     $req = mysqli_prepare($conn, "DELETE FROM accueil_carousel WHERE id = ?");
     mysqli_stmt_bind_param($req, "i", $id);
     mysqli_stmt_execute($req);
-    header("Location: admin_accueil.php?msg=supprime#carrousel");
+    header("Location: accueil.php?msg=supprime#carrousel");
 
 } elseif ($table == 'hero_image') {
 
     $req = mysqli_prepare($conn, "DELETE FROM accueil_hero_images WHERE id = ?");
     mysqli_stmt_bind_param($req, "i", $id);
     mysqli_stmt_execute($req);
-    header("Location: admin_accueil.php?msg=supprime#images");
+    header("Location: accueil.php?msg=supprime#images");
 
 } elseif ($table == 'point') {
 
     $req = mysqli_prepare($conn, "DELETE FROM accueil_points WHERE id = ?");
     mysqli_stmt_bind_param($req, "i", $id);
     mysqli_stmt_execute($req);
-    header("Location: admin_accueil.php?msg=supprime#points");
+    header("Location: accueil.php?msg=supprime#points");
 
 } elseif ($table == 'stat') {
 
     $req = mysqli_prepare($conn, "DELETE FROM accueil_stats WHERE id = ?");
     mysqli_stmt_bind_param($req, "i", $id);
     mysqli_stmt_execute($req);
-    header("Location: admin_accueil.php?msg=supprime#stats");
+    header("Location: accueil.php?msg=supprime#stats");
 
 } else {
     // Table non reconnue
-    header("Location: admin_accueil.php?msg=erreur");
+    header("Location: accueil.php?msg=erreur");
 }
 
 mysqli_close($conn);

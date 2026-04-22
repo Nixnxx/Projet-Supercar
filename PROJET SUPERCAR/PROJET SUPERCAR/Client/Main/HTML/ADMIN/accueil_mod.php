@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $lien_cta    = $_POST['lien_cta'];
 
         // Le hero a toujours 1 seule ligne donc c'est toujours un UPDATE
-        $req = mysqli_prepare($conn, "UPDATE accueil_bienvenue SET titre=?, sous_titre=?, description=?, texte_cta=?, lien_cta=? WHERE id=?");
+        $req = mysqli_prepare($conn, "UPDATE accueil_bienvenue SET titre=?, sous_titre=?, description=?, texte=?, lien=? WHERE id=?");
         mysqli_stmt_bind_param($req, "sssssi", $titre, $sous_titre, $description, $texte_cta, $lien_cta, $id);
         mysqli_stmt_execute($req);
         header("Location: accueil.php?msg=ok#hero");
@@ -323,12 +323,12 @@ if (!est_connecte()) {
 
         <div class="row g-3 mb-3">
           <div class="col-8">
-            <label>Texte du bouton CTA</label>
+            <label>Texte du bouton</label>
             <input type="text" name="texte_cta" class="form-control"
                    value="<?= htmlspecialchars($donnees['texte_cta'] ?? '') ?>">
           </div>
           <div class="col-4">
-            <label>Lien CTA</label>
+            <label>Lien </label>
             <input type="text" name="lien_cta" class="form-control"
                    value="<?= htmlspecialchars($donnees['lien_cta'] ?? 'essai.php') ?>">
           </div>
@@ -406,9 +406,9 @@ if (!est_connecte()) {
       <?php endif; ?>
 
 
-      <?php /* ==============================
+      <?php?> /* ==============================
                FORMULAIRE STATISTIQUE
-             ============================== */ ?>
+             ============================== */
       <?php if ($table == 'stat') : ?>
 
         <div class="mb-3">
@@ -447,7 +447,7 @@ if (!est_connecte()) {
         <button type="submit" class="btn btn-orange px-4">
           💾 <?= $id > 0 ? 'Enregistrer les modifications' : 'Ajouter' ?>
         </button>
-        <a href="admin_accueil.php" class="btn btn-outline-secondary">Annuler</a>
+        <a href="accueil.php" class="btn btn-outline-secondary">Annuler</a>
       </div>
 
     </form>
