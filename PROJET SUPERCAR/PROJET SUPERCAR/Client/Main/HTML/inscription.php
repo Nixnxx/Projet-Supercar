@@ -28,6 +28,19 @@ if(isset($_POST['nom'])
     $adresse    =$_POST['adresse'];
     $mdp    =password_hash($_POST['motdepasse'],PASSWORD_DEFAULT);;
 
+    $bd3="SELECT * FROM client WHERE email = ?";
+$statement3=mysqli_prepare($lienbd,$bd3);
+mysqli_stmt_bind_param($statement3,"s",$email);
+mysqli_stmt_execute($statement3);
+$result=mysqli_stmt_get_result($statement3);
+
+if (mysqli_num_rows($result) > 0) {
+    echo "L'adresse e-mail est déjà utilisée. Veuillez en choisir une autre.";
+    exit();
+}
+
+
+
     //requete
     $bd="INSERT INTO client(nom,prenom,email,telephone,adresse,date_inscription)
             VALUES (?,?,?,?,?,NOW())";
@@ -60,9 +73,9 @@ if(isset($_POST['nom'])
         echo "Erreur de préparation de la requête : " . mysqli_error($lienbd);
     }
 }
-?>
 
-    
+
+   ?>  
 
 <?php include 'header.php'; ?>
  
@@ -77,25 +90,40 @@ if(isset($_POST['nom'])
 <?php endif; ?>
  
 <!-- Bootstrap Modal -->
+<!-- Bootstrap Modal - Thème SuperCar (orange / noir) -->
 <div class="modal fade" id="modalSucces" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content text-center">
- 
-            <div class="modal-body py-4">
-                <div style="font-size:50px">✅</div>
-                <h5 class="mt-3 mb-2">Compte créé avec succès !</h5>
-                <p class="text-muted">Votre compte a bien été créé. Vous pouvez maintenant vous connecter.</p>
+        <div class="modal-content border-0" style="background: #1c1c1c; border-radius: 14px; box-shadow: 0 0 30px rgba(255, 107, 0, 0.3);">
+
+            <!-- Barre orange en haut -->
+            <div style="height: 5px; background: linear-gradient(90deg, #f37e2b, #eb9429); border-radius: 14px 14px 0 0;"></div>
+
+            <div class="modal-body py-4 text-center" style="color: #fff;">
+
+               
+
+                <!-- Titre -->
+                <h5 class="mt-3 mb-2 fw-bold" style="color: #ff6b00; font-size: 1.3rem;">
+                    Compte créé avec succès !
+                </h5>
+
+                <!-- Message -->
+                <p style="color: #aaa; font-size: 0.95rem;">
+                    Votre compte a bien été créé.<br>Vous pouvez maintenant vous connecter.
+                </p>
+
             </div>
- 
-            <div class="modal-footer justify-content-center border-0 pb-4">
-                <!-- Bouton qui redirige vers connexion après fermeture -->
-                <a href="connexion.html" class="btn btn-dark">Se connecter</a>
+
+            <div class="modal-footer justify-content-center border-0 pb-4" style="background: transparent;">
+                <a href="connexion.html" class="btn fw-bold px-4 py-2"
+                   style="background: #ff6b00; color: #fff; border: none; border-radius: 8px;">
+                    Se connecter →
+                </a>
             </div>
- 
+
         </div>
     </div>
 </div>
- 
  
 <?php include 'footer.php'; ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
