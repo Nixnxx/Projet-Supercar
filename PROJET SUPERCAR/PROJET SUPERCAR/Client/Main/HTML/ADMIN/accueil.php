@@ -93,7 +93,7 @@ if (!est_connecte()) {
     <div class="card-section" id="carrousel">
       <div class="entete d-flex justify-content-between align-items-center">
         <span><i class="bi bi-images me-2 text-warning"></i>Slides du Carrousel</span>
-        <a href="accueil_form.php?table=carousel" class="btn btn-orange btn-sm">
+        <a href="accueil_mod.php?table=carousel" class="btn btn-orange btn-sm">
           <i class="bi bi-plus-lg me-1"></i>Ajouter une slide
         </a>
       </div>
@@ -148,7 +148,7 @@ if (!est_connecte()) {
         <p><strong>Titre :</strong> <?= htmlspecialchars($hero['titre']) ?></p>
         <p><strong>Sous-titre :</strong> <?= htmlspecialchars($hero['sous_titre']) ?></p>
         <p><strong>Description :</strong> <?= htmlspecialchars(substr($hero['description'], 0, 100)) ?>…</p>
-        <p><strong>Bouton CTA :</strong>
+        <p><strong>Bouton :</strong>
           <span class="badge bg-warning text-dark"><?= htmlspecialchars($hero['texte']) ?></span>
           → <code><?= htmlspecialchars($hero['lien']) ?></code>
         </p>
@@ -199,7 +199,7 @@ if (!est_connecte()) {
     <div class="card-section" id="points">
       <div class="entete d-flex justify-content-between align-items-center">
         <span><i class="bi bi-list-check me-2 text-warning"></i>Points Forts</span>
-        <a href="admin_accueil_form.php?table=point" class="btn btn-orange btn-sm">
+        <a href="accueil_mod.php?table=point" class="btn btn-orange btn-sm">
           <i class="bi bi-plus-lg me-1"></i>Ajouter un point
         </a>
       </div>
@@ -234,7 +234,7 @@ if (!est_connecte()) {
     <div class="card-section" id="stats">
       <div class="entete d-flex justify-content-between align-items-center">
         <span><i class="bi bi-bar-chart me-2 text-danger"></i>Statistiques</span>
-        <a href="admin_accueil_form.php?table=stat" class="btn btn-orange btn-sm">
+        <a href="accueil_mod.php?table=stat" class="btn btn-orange btn-sm">
           <i class="bi bi-plus-lg me-1"></i>Ajouter une stat
         </a>
       </div>
