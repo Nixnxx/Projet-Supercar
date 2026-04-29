@@ -1,17 +1,19 @@
 <?php
-
 // ============================================================
-//  admin_accueil_form.php  -  Ajouter OU Modifier un élément
+//   -  Ajouter OU Modifier un élément
 //
 //  Comment ça marche :
 //  - On reçoit "table" en GET  (carousel, hero, hero_image, point, stat)
 //  - On reçoit "id"    en GET  (si id existe = modification, sinon = ajout)
 // ============================================================
 
-// Connexion à la base de données
-$conn = mysqli_connect("localhost", "root", "", "supercar");
-if (!$conn) {
-    die("Erreur de connexion : " . mysqli_connect_error());
+session_start();
+require('lienbd.php');
+require_once('fonction.php');
+
+if (!est_connecte()) {
+    header('Location: logina.php');
+    exit();
 }
 
 // On récupère la table et l'id depuis l'URL
@@ -25,7 +27,7 @@ $donnees = array();
 if ($id > 0) {
 
     if ($table == 'carousel') {
-        $req  = mysqli_prepare($conn, "SELECT * FROM accueil_carousel WHERE id = ?");
+        $req  = mysqli_prepare($lienbd, "SELECT * FROM accueil_carousel WHERE id = ?");
         mysqli_stmt_bind_param($req, "i", $id);
         mysqli_stmt_execute($req);
         $res  = mysqli_stmt_get_result($req);
@@ -33,7 +35,7 @@ if ($id > 0) {
     }
 
     if ($table == 'hero') {
-        $req  = mysqli_prepare($conn, "SELECT * FROM accueil_bienvenue WHERE id = ?");
+        $req  = mysqli_prepare($lienbd, "SELECT * FROM accueil_bienvenue WHERE id = ?");
         mysqli_stmt_bind_param($req, "i", $id);
         mysqli_stmt_execute($req);
         $res  = mysqli_stmt_get_result($req);
@@ -41,7 +43,7 @@ if ($id > 0) {
     }
 
     if ($table == 'hero_image') {
-        $req  = mysqli_prepare($conn, "SELECT * FROM accueil_bienvenue_images WHERE id = ?");
+        $req  = mysqli_prepare($lienbd, "SELECT * FROM accueil_bienvenue_images WHERE id = ?");
         mysqli_stmt_bind_param($req, "i", $id);
         mysqli_stmt_execute($req);
         $res  = mysqli_stmt_get_result($req);
@@ -49,7 +51,7 @@ if ($id > 0) {
     }
 
     if ($table == 'point') {
-        $req  = mysqli_prepare($conn, "SELECT * FROM accueil_points WHERE id = ?");
+        $req  = mysqli_prepare($lienbd, "SELECT * FROM accueil_points WHERE id = ?");
         mysqli_stmt_bind_param($req, "i", $id);
         mysqli_stmt_execute($req);
         $res  = mysqli_stmt_get_result($req);
@@ -57,7 +59,7 @@ if ($id > 0) {
     }
 
     if ($table == 'stat') {
-        $req  = mysqli_prepare($conn, "SELECT * FROM accueil_stats WHERE id = ?");
+        $req  = mysqli_prepare($lienbd, "SELECT * FROM accueil_stats WHERE id = ?");
         mysqli_stmt_bind_param($req, "i", $id);
         mysqli_stmt_execute($req);
         $res  = mysqli_stmt_get_result($req);
@@ -79,8 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $ordre       = intval($_POST['ordre']);
         $actif       = isset($_POST['actif']) ? 1 : 0;
 
-        // Gestion de l'image uploadée
-        $image = $donnees['image'] ?? ''; // on garde l'ancienne image par défaut
+        $image = $donnees['image'] ?? '';
         if (!empty($_FILES['image']['name'])) {
             $nom_fichier = basename($_FILES['image']['name']);
             move_uploaded_file($_FILES['image']['tmp_name'], "../" . $nom_fichier);
@@ -88,13 +89,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         if ($id > 0) {
-            // MODIFIER
-            $req = mysqli_prepare($conn, "UPDATE accueil_carousel SET titre=?, description=?, image=?, lien=?, texte_lien=?, ordre=?, actif=? WHERE id=?");
+            $req = mysqli_prepare($lienbd, "UPDATE accueil_carousel SET titre=?, description=?, image=?, lien=?, texte_lien=?, ordre=?, actif=? WHERE id=?");
             mysqli_stmt_bind_param($req, "sssssiis", $titre, $description, $image, $lien, $texte_lien, $ordre, $actif, $id);
-            // Note : "sssssiis" = 7 string + 1 int + 1 int + 1 int =  s=string, i=integer
         } else {
-            // AJOUTER
-            $req = mysqli_prepare($conn, "INSERT INTO accueil_carousel (titre, description, image, lien, texte_lien, ordre, actif) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $req = mysqli_prepare($lienbd, "INSERT INTO accueil_carousel (titre, description, image, lien, texte_lien, ordre, actif) VALUES (?, ?, ?, ?, ?, ?, ?)");
             mysqli_stmt_bind_param($req, "sssssii", $titre, $description, $image, $lien, $texte_lien, $ordre, $actif);
         }
         mysqli_stmt_execute($req);
@@ -112,8 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $texte_cta   = $_POST['texte_cta'];
         $lien_cta    = $_POST['lien_cta'];
 
-        // Le hero a toujours 1 seule ligne donc c'est toujours un UPDATE
-        $req = mysqli_prepare($conn, "UPDATE accueil_bienvenue SET titre=?, sous_titre=?, description=?, texte=?, lien=? WHERE id=?");
+        $req = mysqli_prepare($lienbd, "UPDATE accueil_bienvenue SET titre=?, sous_titre=?, description=?, texte=?, lien=? WHERE id=?");
         mysqli_stmt_bind_param($req, "sssssi", $titre, $sous_titre, $description, $texte_cta, $lien_cta, $id);
         mysqli_stmt_execute($req);
         header("Location: accueil.php?msg=ok#hero");
@@ -136,10 +133,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         if ($id > 0) {
-            $req = mysqli_prepare($conn, "UPDATE accueil_bienvenue_images SET image=?, alt=?, ordre=?, actif=? WHERE id=?");
+            $req = mysqli_prepare($lienbd, "UPDATE accueil_bienvenue_images SET image=?, alt=?, ordre=?, actif=? WHERE id=?");
             mysqli_stmt_bind_param($req, "ssiii", $image, $alt, $ordre, $actif, $id);
         } else {
-            $req = mysqli_prepare($conn, "INSERT INTO accueil_bienvenue_images (image, alt, ordre, actif) VALUES (?, ?, ?, ?)");
+            $req = mysqli_prepare($lienbd, "INSERT INTO accueil_bienvenue_images (image, alt, ordre, actif) VALUES (?, ?, ?, ?)");
             mysqli_stmt_bind_param($req, "ssii", $image, $alt, $ordre, $actif);
         }
         mysqli_stmt_execute($req);
@@ -156,10 +153,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $actif = isset($_POST['actif']) ? 1 : 0;
 
         if ($id > 0) {
-            $req = mysqli_prepare($conn, "UPDATE accueil_points SET texte=?, ordre=?, actif=? WHERE id=?");
+            $req = mysqli_prepare($lienbd, "UPDATE accueil_points SET texte=?, ordre=?, actif=? WHERE id=?");
             mysqli_stmt_bind_param($req, "siii", $texte, $ordre, $actif, $id);
         } else {
-            $req = mysqli_prepare($conn, "INSERT INTO accueil_points (texte, ordre, actif) VALUES (?, ?, ?)");
+            $req = mysqli_prepare($lienbd, "INSERT INTO accueil_points (texte, ordre, actif) VALUES (?, ?, ?)");
             mysqli_stmt_bind_param($req, "sii", $texte, $ordre, $actif);
         }
         mysqli_stmt_execute($req);
@@ -177,10 +174,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $actif  = isset($_POST['actif']) ? 1 : 0;
 
         if ($id > 0) {
-            $req = mysqli_prepare($conn, "UPDATE accueil_stats SET valeur=?, label=?, ordre=?, actif=? WHERE id=?");
+            $req = mysqli_prepare($lienbd, "UPDATE accueil_stats SET valeur=?, label=?, ordre=?, actif=? WHERE id=?");
             mysqli_stmt_bind_param($req, "ssiii", $valeur, $label, $ordre, $actif, $id);
         } else {
-            $req = mysqli_prepare($conn, "INSERT INTO accueil_stats (valeur, label, ordre, actif) VALUES (?, ?, ?, ?)");
+            $req = mysqli_prepare($lienbd, "INSERT INTO accueil_stats (valeur, label, ordre, actif) VALUES (?, ?, ?, ?)");
             mysqli_stmt_bind_param($req, "ssii", $valeur, $label, $ordre, $actif);
         }
         mysqli_stmt_execute($req);
@@ -194,14 +191,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $titre_page = ($id > 0) ? "Modifier" : "Ajouter";
 ?>
 
-
-<?php
-require_once('fonction.php');
-if (!est_connecte()) {
-    header('Location: login.html');
-    exit();
-}
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -240,9 +229,6 @@ if (!est_connecte()) {
   <div class="p-4">
     <form method="POST" enctype="multipart/form-data">
 
-      <?php /* ==============================
-               FORMULAIRE CARROUSEL
-             ============================== */ ?>
       <?php if ($table == 'carousel') : ?>
 
         <div class="mb-3">
@@ -299,9 +285,6 @@ if (!est_connecte()) {
       <?php endif; ?>
 
 
-      <?php /* ==============================
-               FORMULAIRE HERO
-             ============================== */ ?>
       <?php if ($table == 'hero') : ?>
 
         <div class="mb-3">
@@ -328,7 +311,7 @@ if (!est_connecte()) {
                    value="<?= htmlspecialchars($donnees['texte_cta'] ?? '') ?>">
           </div>
           <div class="col-4">
-            <label>Lien </label>
+            <label>Lien</label>
             <input type="text" name="lien_cta" class="form-control"
                    value="<?= htmlspecialchars($donnees['lien_cta'] ?? 'essai.php') ?>">
           </div>
@@ -337,9 +320,6 @@ if (!est_connecte()) {
       <?php endif; ?>
 
 
-      <?php /* ==============================
-               FORMULAIRE IMAGE HERO
-             ============================== */ ?>
       <?php if ($table == 'hero_image') : ?>
 
         <div class="mb-3">
@@ -377,9 +357,6 @@ if (!est_connecte()) {
       <?php endif; ?>
 
 
-      <?php /* ==============================
-               FORMULAIRE POINT FORT
-             ============================== */ ?>
       <?php if ($table == 'point') : ?>
 
         <div class="mb-3">
@@ -406,9 +383,6 @@ if (!est_connecte()) {
       <?php endif; ?>
 
 
-      <?php /* ==============================
-               FORMULAIRE STATISTIQUE
-             ============================== */ ?>
       <?php if ($table == 'stat') : ?>
 
         <div class="mb-3">
@@ -441,7 +415,6 @@ if (!est_connecte()) {
       <?php endif; ?>
 
 
-      <!-- Boutons -->
       <hr style="border-color:#333">
       <div class="d-flex gap-3">
         <button type="submit" class="btn btn-orange px-4">
@@ -454,10 +427,8 @@ if (!est_connecte()) {
   </div>
 </div>
 
-<?php mysqli_close($conn); ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-// Affiche un aperçu de l'image choisie avant l'envoi
 function afficherApercu(input) {
     var img = document.getElementById('apercu');
     if (input.files && input.files[0]) {
@@ -472,5 +443,3 @@ function afficherApercu(input) {
 </script>
 </body>
 </html>
-
-

@@ -1,45 +1,34 @@
 <?php
-
-
-
-
-// Connexion à la base de données
-$conn = mysqli_connect("localhost", "root", "", "supercar");
-
-// Vérification de la connexion
-if (!$conn) {
-    die("Erreur de connexion : " . mysqli_connect_error());
-}
-
-// Les slides du carrousel
-$req_carousel = mysqli_query($conn, "SELECT * FROM accueil_carousel ORDER BY ordre");
-
-// Le texte hero (1 seule ligne)
-$req_hero = mysqli_query($conn, "SELECT * FROM accueil_bienvenue LIMIT 1");
-$hero     = mysqli_fetch_assoc($req_hero);
-
-// Les images hero
-$req_images = mysqli_query($conn, "SELECT * FROM accueil_bienvenue_images ORDER BY ordre");
-
-// Les points forts
-$req_points = mysqli_query($conn, "SELECT * FROM accueil_points ORDER BY ordre");
-
-// Les statistiques
-$req_stats = mysqli_query($conn, "SELECT * FROM accueil_stats ORDER BY ordre");
-
-// ---- Message de confirmation (après ajout / modif / suppr) -
-$message = "";
-if (isset($_GET['msg'])) {
-    if ($_GET['msg'] == "ok")      $message = '<div class="alert alert-success">✅ Opération réussie !</div>';
-    if ($_GET['msg'] == "supprime") $message = '<div class="alert alert-warning">🗑️ Élément supprimé.</div>';
-}
-?>
-
-<?php
+session_start();
+require('lienbd.php');
 require('fonction.php');
+
 if (!est_connecte()) {
     header('Location: login.html');
     exit();
+}
+
+// Les slides du carrousel
+$req_carousel = mysqli_query($lienbd, "SELECT * FROM accueil_carousel ORDER BY ordre");
+
+// Le texte hero (1 seule ligne)
+$req_hero = mysqli_query($lienbd, "SELECT * FROM accueil_bienvenue LIMIT 1");
+$hero     = mysqli_fetch_assoc($req_hero);
+
+// Les images hero
+$req_images = mysqli_query($lienbd, "SELECT * FROM accueil_bienvenue_images ORDER BY ordre");
+
+// Les points forts
+$req_points = mysqli_query($lienbd, "SELECT * FROM accueil_points ORDER BY ordre");
+
+// Les statistiques
+$req_stats = mysqli_query($lienbd, "SELECT * FROM accueil_stats ORDER BY ordre");
+
+// ---- Message de confirmation (après ajout / modif / suppr) ----
+$message = "";
+if (isset($_GET['msg'])) {
+    if ($_GET['msg'] == "ok")       $message = '<div class="alert alert-success">✅ Opération réussie !</div>';
+    if ($_GET['msg'] == "supprime") $message = '<div class="alert alert-warning">🗑️ Élément supprimé.</div>';
 }
 ?>
 <!DOCTYPE html>
@@ -72,9 +61,9 @@ if (!est_connecte()) {
   <!-- ===== MENU GAUCHE ===== -->
   <div class="sidebar">
     <nav class="nav flex-column p-2 mt-2">
-       <?php include 'admin_style.php'; ?>
-  <?php include 'admin_nav.php'; ?>
-
+      <?php include 'admin_style.php'; ?>
+      <?php include 'admin_nav.php'; ?>
+    </nav>
   </div>
 
   <!-- ===== CONTENU PRINCIPAL ===== -->
@@ -83,7 +72,6 @@ if (!est_connecte()) {
     <h2 class="mb-1" style="color:#ff6b00">Gestion – Page Accueil</h2>
     <p class="text-secondary mb-4">Ajoutez, modifiez ou supprimez les éléments affichés sur l'accueil.</p>
 
-    <!-- Message retour -->
     <?= $message ?>
 
 
@@ -266,8 +254,6 @@ if (!est_connecte()) {
   </div><!-- fin contenu -->
 </div><!-- fin flex -->
 
-<?php mysqli_close($conn); ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
