@@ -70,8 +70,8 @@ require_once ("fonction.php");
         </button>
 
         <ul class="dropdown-menu dropdown-menu-end bg-dark text-white border-0 shadow-lg mt-2" style="min-width: 200px;">
-          <li><a class="dropdown-item text-white py-3" href="connexion.html">Se connecter</a></li>
-                    <li><a class="dropdown-item text-white py-3" href="inscription.html">S'inscrire</a></li>
+          <li><a class="dropdown-item text-white py-3" href="connexionh.php">Se connecter</a></li>
+                    <li><a class="dropdown-item text-white py-3" href="inscriptionh.php">S'inscrire</a></li>
 
         </ul>
       </div>

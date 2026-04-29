@@ -15,7 +15,8 @@ if(isset($_POST['utilisateur']) && isset($_POST['motdepasse'])){
         $resultat = mysqli_stmt_get_result($statement);
 
         if($resultat->num_rows === 0){
-            $erreur = "Identifiant incorrect";
+            header('Location: logina.php?erreur=1');
+            exit();
         } else {
             $user = $resultat->fetch_assoc();
            
@@ -27,7 +28,8 @@ if(isset($_POST['utilisateur']) && isset($_POST['motdepasse'])){
                 header('Location:accueil.php');
                 exit();
             } else {
-                $erreur = "Identifiant incorrect";
+                header('Location: logina.php?erreur=1');
+                exit();
             }
         }
     }

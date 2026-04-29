@@ -25,7 +25,8 @@ if (isset($_POST['utilisateur']) && isset($_POST['motdepasse'])) {
         $resultat = mysqli_stmt_get_result($statement);
 
         if ($resultat->num_rows === 0) {
-            $erreur = "identifiant incorrect";
+             header('Location: connexionh.php?erreur=1');
+exit();
         } else {
             $user = $resultat->fetch_assoc();
 
@@ -41,11 +42,13 @@ if (isset($_POST['utilisateur']) && isset($_POST['motdepasse'])) {
                 exit();
 
             } else {
-                $erreur = "identifiant incorrect";
+                header('Location: connexionh.php?erreur=1');
+exit();
             }
         }
     } else {
-        $erreur = "Veuillez remplir tous les champs";
+       header('Location: connexionh.php?erreur=2');
+exit();
     }
 }
 ?>

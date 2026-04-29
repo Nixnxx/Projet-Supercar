@@ -1,5 +1,6 @@
 <?php
 session_start();
+date_default_timezone_set('Indian/Mauritius');
 require_once 'lienbd.php';
 require_once 'fonction.php';
 
@@ -31,12 +32,7 @@ if(isset($_POST['reserver'])){
     $voiture = $_POST['voiture'];
 
     $dateDemande = date("Y-m-d H:i:s");
-
-    $sqlClient = "INSERT INTO client (nom, prenom, email, telephone, adresse, date_inscription)
-                 VALUES ('$nom','','$email','$telephone','',CURDATE())";
-
-    if(mysqli_query($lienbd, $sqlClient)){
-        $idClient = mysqli_insert_id($lienbd);
+    $idClient = $_SESSION['id_client']; // ← directement depuis la session
 
         $sql = "INSERT INTO demandeessai 
                 (date_demande, date_essai_proposee, statut, commentaire, id_client, id_voiture)
@@ -49,7 +45,7 @@ if(isset($_POST['reserver'])){
             $message = "Erreur lors de la réservation.";
         }
     }
-}
+
 ?>
 
 <section id="essai">

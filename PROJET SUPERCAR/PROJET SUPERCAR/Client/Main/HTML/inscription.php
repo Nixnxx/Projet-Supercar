@@ -35,7 +35,7 @@ mysqli_stmt_execute($statement3);
 $result=mysqli_stmt_get_result($statement3);
 
 if (mysqli_num_rows($result) > 0) {
-    echo "L'adresse e-mail est déjà utilisée. Veuillez en choisir une autre.";
+     header('Location: inscriptionh.php?erreur=1');
     exit();
 }
 
@@ -66,12 +66,13 @@ if (mysqli_num_rows($result) > 0) {
             $succes=true;
 
         } else {
-            echo "Erreur lors de l'inscription : " . mysqli_error($lienbd);
+                            header('Location: inscriptionh.php?erreur=2');
+                            exit();
         }
 
     } else {
-        echo "Erreur de préparation de la requête : " . mysqli_error($lienbd);
-    }
+header('Location: inscriptionh.php?erreur=2');
+                            exit();    }
 }
 
 
@@ -115,7 +116,7 @@ if (mysqli_num_rows($result) > 0) {
             </div>
 
             <div class="modal-footer justify-content-center border-0 pb-4" style="background: transparent;">
-                <a href="connexion.html" class="btn fw-bold px-4 py-2"
+                <a href="connexionh.php" class="btn fw-bold px-4 py-2"
                    style="background: #ff6b00; color: #fff; border: none; border-radius: 8px;">
                     Se connecter →
                 </a>
