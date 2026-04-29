@@ -1,4 +1,5 @@
 <?php
+session_start();
 require('lienbd.php');
 require('fonction.php');
 $erreur = null;
@@ -23,27 +24,17 @@ if (isset($_POST['utilisateur']) && isset($_POST['motdepasse'])) {
         // Résultat de la requête
         $resultat = mysqli_stmt_get_result($statement);
 
-        // Si le résultat est vide alors l'identifiant est incorrect sinon on vérifie le mot de passe
         if ($resultat->num_rows === 0) {
             $erreur = "identifiant incorrect";
         } else {
             $user = $resultat->fetch_assoc();
 
             if (password_verify($password, $user['mot_de_passe'])) {
-                session_start();
                 $_SESSION['connecte']  = 1;
                 $_SESSION['id_client'] = $user['id_client'];
 
-                // Vérifier s'il y a un message de contact en attente dans la session
                 if (isset($_SESSION['contact_en_attente'])) {
-                    $email_en_attente = $_SESSION['contact_en_attente']['email'];
-
-                    if ($email_en_attente === $utilisateur) {
-                        header('Location: contactclient.php');
-                    } else {
-                        unset($_SESSION['contact_en_attente']);
-                        header('Location: index.php');
-                    }
+                    header('Location: contactclient.php');
                 } else {
                     header('Location: index.php');
                 }

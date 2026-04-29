@@ -1,24 +1,25 @@
-   <?php
-   require_once 'fonction.php';
+<?php
+session_start();
+require_once 'lienbd.php';
+require_once 'fonction.php';
+
 if (!est_connecte()) {
     header('Location: nonconnecte.php');
     exit();
 }
 
-  include 'header.php';
-  ?>
+// RECUP INFOS CLIENT CONNECTÉ
+$sql_client = "SELECT * FROM client WHERE id_client = ?";
+$stmt_client = mysqli_prepare($lienbd, $sql_client);
+mysqli_stmt_bind_param($stmt_client, "i", $_SESSION['id_client']);
+mysqli_stmt_execute($stmt_client);
+$result_client = mysqli_stmt_get_result($stmt_client);
+$client = mysqli_fetch_assoc($result_client);
 
-  <?php
-
-$conn = new mysqli("localhost", "root", "", "supercar");
-
-if ($conn->connect_error) {
-    die("Erreur connexion : " . $conn->connect_error);
-}
+include 'header.php';
 
 $message = "";
 
-// récupérer voiture avec URL (oui c'est dure.....)
 $voitureSelected = isset($_GET['voiture']) ? $_GET['voiture'] : "";
 
 if(isset($_POST['reserver'])){
@@ -31,20 +32,18 @@ if(isset($_POST['reserver'])){
 
     $dateDemande = date("Y-m-d H:i:s");
 
-    //  insert client
     $sqlClient = "INSERT INTO client (nom, prenom, email, telephone, adresse, date_inscription)
                  VALUES ('$nom','','$email','$telephone','',CURDATE())";
 
-    if($conn->query($sqlClient)){
-        $idClient = $conn->insert_id;
+    if(mysqli_query($lienbd, $sqlClient)){
+        $idClient = mysqli_insert_id($lienbd);
 
-        //  insert demande essai (Nix bouffon)
         $sql = "INSERT INTO demandeessai 
                 (date_demande, date_essai_proposee, statut, commentaire, id_client, id_voiture)
                 VALUES 
                 ('$dateDemande','$date',0,'Demande via site',$idClient,'$voiture')";
 
-        if($conn->query($sql)){
+        if(mysqli_query($lienbd, $sql)){
             $message = "Votre demande d'essai a été envoyée !";
         }else{
             $message = "Erreur lors de la réservation.";
@@ -72,22 +71,22 @@ if(isset($_POST['reserver'])){
 <form method="POST" class="essai-form">
 
 <label>Nom</label>
-<input type="text" name="nom" required>
+<input type="text" name="nom" value="<?= htmlspecialchars($client['nom'] ?? '') ?>" required>
 
 <label>Email</label>
-<input type="email" name="email" required>
+<input type="email" name="email" value="<?= htmlspecialchars($client['email'] ?? '') ?>" required>
 
 <label>Téléphone</label>
-<input type="text" name="telephone" required>
+<input type="text" name="telephone" value="<?= htmlspecialchars($client['telephone'] ?? '') ?>" required>
 
 <label>Choisir une voiture</label>
 <select name="voiture" required>
 
 <?php
 $sql = "SELECT id_voiture, model FROM voiture";
-$result = $conn->query($sql);
+$result = mysqli_query($lienbd, $sql);
 
-while($row = $result->fetch_assoc()){
+while($row = mysqli_fetch_assoc($result)){
     $selected = ($row['id_voiture'] == $voitureSelected) ? "selected" : "";
     echo "<option value='".$row['id_voiture']."' $selected>".$row['model']."</option>";
 }

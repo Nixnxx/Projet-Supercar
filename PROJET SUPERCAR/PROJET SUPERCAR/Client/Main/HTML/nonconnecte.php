@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="2;url=connexion.html">
+    <meta http-equiv="refresh" content="1;url=connexion.html">
     <link rel="stylesheet" href="css/nonconnecte.css">
     <title>Connexion requise</title>
 </head>
