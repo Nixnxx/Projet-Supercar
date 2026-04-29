@@ -5,6 +5,17 @@ require('fonction.php');
 
 $succes = false;
 
+// RECUP INFOS CLIENT CONNECTÉ
+$client = [];
+if (est_connecte()) {
+    $sql_client = "SELECT * FROM client WHERE id_client = ?";
+    $stmt_client = mysqli_prepare($lienbd, $sql_client);
+    mysqli_stmt_bind_param($stmt_client, "i", $_SESSION['id_client']);
+    mysqli_stmt_execute($stmt_client);
+    $result_client = mysqli_stmt_get_result($stmt_client);
+    $client = mysqli_fetch_assoc($result_client);
+}
+
 // RECUP CONFIG CONTACT
 $config_query = "SELECT * FROM contact_config LIMIT 1";
 $config_result = mysqli_query($lienbd, $config_query);
@@ -23,6 +34,7 @@ if (isset($_POST['nom'], $_POST['numéro'], $_POST['email'], $_POST['message']))
         header('Location: nonconnecte.php');
         exit();
     }
+
 
     $id_client = $_SESSION['id_client'];
 
@@ -66,16 +78,16 @@ include 'header.php';
     <?php $attente = $_SESSION['contact_en_attente'] ?? []; ?>
     
     <input type="text" name="nom" 
-           placeholder="Nom" 
-           value="<?= htmlspecialchars($attente['nom'] ?? '') ?>" required>
+       placeholder="Nom" 
+       value="<?= htmlspecialchars($attente['nom'] ?? $client['nom'] ?? '') ?>" required>
 
-    <input type="text" name="numéro" 
-           placeholder="Téléphone" 
-           value="<?= htmlspecialchars($attente['numero'] ?? '') ?>" required>
+<input type="text" name="numéro" 
+       placeholder="Téléphone" 
+       value="<?= htmlspecialchars($attente['numero'] ?? $client['telephone'] ?? '') ?>" required>
 
-    <input type="email" name="email" 
-           placeholder="Email" 
-           value="<?= htmlspecialchars($attente['email'] ?? '') ?>" required>
+<input type="email" name="email" 
+       placeholder="Email" 
+       value="<?= htmlspecialchars($attente['email'] ?? $client['email'] ?? '') ?>" required>
 
     <textarea name="message" 
               placeholder="Votre message" required><?= htmlspecialchars($attente['message'] ?? '') ?></textarea>
