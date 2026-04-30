@@ -23,7 +23,7 @@ if (isset($_GET['erreur'])) {
 
     <title>Inscription-connexion</title>
 </head>
-<body class="connexions">
+<body class="connexion">
 <form class="connexion-form" method=POST action="login.php">
     <section>
         <h1>Connexion</h1>

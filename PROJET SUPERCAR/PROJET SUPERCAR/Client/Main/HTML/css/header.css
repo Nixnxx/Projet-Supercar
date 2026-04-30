@@ -19,6 +19,10 @@ header .container {
     flex-wrap: wrap;
 }
 
+header {
+    position: relative; /* déjà présent normalement */
+}
+
 header h1 {
     font-size: 2.5rem;
     font-weight: 700;
@@ -29,18 +33,21 @@ header h1 {
     text-transform: uppercase;
     letter-spacing: 2px;
     position: relative;
+    /* Supprime le ::before */
 }
 
-header h1::before {
-    content: '';
-    position: absolute;
+.logo-link {
+    position: absolute;  /* sort du flux flex */
+    left: 20px;          /* ajuste selon ton design */
     top: 50%;
     transform: translateY(-50%);
-    width: 150px;
-    height: 150px;
-    background: url('../Images-Index/LOGO CHOISI.png') no-repeat center;
+    display: block;
+    width: 100px;        /* agrandit comme tu veux */
+    height: 100px;
+    background: url('../Images-Index/marque.png') no-repeat center;
     background-size: contain;
-    margin-left: -140px;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 header h2 {

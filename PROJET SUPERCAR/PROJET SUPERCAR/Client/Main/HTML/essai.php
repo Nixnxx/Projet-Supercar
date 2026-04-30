@@ -55,9 +55,7 @@ if(isset($_POST['reserver'])){
 <h2>Demande d'essai</h2>
 <p>Réservez votre expérience</p>
 
-<div class="car-image">
-<img src="Images-Index/Porsche - Ilaina/porsche-essai.jpg">
-</div>
+
 </div>
 
 <?php if($message!=""){ ?>
