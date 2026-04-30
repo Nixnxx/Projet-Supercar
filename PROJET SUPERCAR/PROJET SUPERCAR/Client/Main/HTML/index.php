@@ -4,29 +4,27 @@
 //  On va chercher toutes les données dans la base de données
 // ============================================================
 
-// Connexion à la base de données
-$conn = mysqli_connect("localhost", "root", "", "supercar");
-if (!$conn) {
-    die("Erreur de connexion : " . mysqli_connect_error());
-}
+session_start();
+require('lienbd.php');
+require('fonction.php');
 
 // ---- On récupère les données depuis la BD ------------------
 
 // Les slides du carrousel (seulement celles qui sont actives, dans l'ordre)
-$req_carousel = mysqli_query($conn, "SELECT * FROM accueil_carousel WHERE actif = 1 ORDER BY ordre");
+$req_carousel = mysqli_query($lienbd, "SELECT * FROM accueil_carousel WHERE actif = 1 ORDER BY ordre");
 
 // Le texte hero (1 seule ligne)
-$req_hero = mysqli_query($conn, "SELECT * FROM accueil_bienvenue LIMIT 1");
+$req_hero = mysqli_query($lienbd, "SELECT * FROM accueil_bienvenue LIMIT 1");
 $hero     = mysqli_fetch_assoc($req_hero);
 
 // Les images de droite du hero (actives uniquement)
-$req_images = mysqli_query($conn, "SELECT * FROM accueil_bienvenue_images WHERE actif = 1 ORDER BY ordre");
+$req_images = mysqli_query($lienbd, "SELECT * FROM accueil_bienvenue_images WHERE actif = 1 ORDER BY ordre");
 
 // Les points forts (actifs uniquement)
-$req_points = mysqli_query($conn, "SELECT * FROM accueil_points WHERE actif = 1 ORDER BY ordre");
+$req_points = mysqli_query($lienbd, "SELECT * FROM accueil_points WHERE actif = 1 ORDER BY ordre");
 
 // Les statistiques (actives uniquement)
-$req_stats = mysqli_query($conn, "SELECT * FROM accueil_stats WHERE actif = 1 ORDER BY ordre");
+$req_stats = mysqli_query($lienbd, "SELECT * FROM accueil_stats WHERE actif = 1 ORDER BY ordre");
 
 ?>
 <!DOCTYPE html>
@@ -55,7 +53,7 @@ $req_stats = mysqli_query($conn, "SELECT * FROM accueil_stats WHERE actif = 1 OR
   <div class="carousel-inner">
 
     <?php
-    $premier = true; // La première slide doit avoir la classe "active"
+    $premier = true;
     while ($slide = mysqli_fetch_assoc($req_carousel)) :
     ?>
       <div class="carousel-item <?= $premier ? 'active' : '' ?>">
@@ -69,7 +67,7 @@ $req_stats = mysqli_query($conn, "SELECT * FROM accueil_stats WHERE actif = 1 OR
         </div>
       </div>
     <?php
-    $premier = false; // Les slides suivantes n'ont pas "active"
+    $premier = false;
     endwhile;
     ?>
 
@@ -88,24 +86,20 @@ $req_stats = mysqli_query($conn, "SELECT * FROM accueil_stats WHERE actif = 1 OR
       <!-- Texte à gauche -->
       <div class="col-lg-6 mb-5 mb-lg-0">
 
-        <!-- Titre vient de la BD -->
         <h2 class="display-4 fw-bold mb-4"
             style="background: linear-gradient(135deg, var(--primary-orange), #ff8c00);
                    -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
           <?= htmlspecialchars($hero['titre']) ?>
         </h2>
 
-        <!-- Sous-titre vient de la BD -->
         <p class="lead fs-4 mb-4">
           <?= htmlspecialchars($hero['sous_titre']) ?>
         </p>
 
-        <!-- Description vient de la BD -->
         <p class="fs-5 mb-4">
           <?= htmlspecialchars($hero['description']) ?>
         </p>
 
-        <!-- Points forts : on boucle sur la BD -->
         <ul class="list-unstyled fs-5 mb-5">
           <?php while ($point = mysqli_fetch_assoc($req_points)) : ?>
             <li class="mb-3">
@@ -115,7 +109,6 @@ $req_stats = mysqli_query($conn, "SELECT * FROM accueil_stats WHERE actif = 1 OR
           <?php endwhile; ?>
         </ul>
 
-        <!-- Bouton CTA vient de la BD -->
         <a href="<?= htmlspecialchars($hero['lien']) ?>"
            class="btn btn-warning btn-lg px-5 py-3 fw-bold rounded-pill shadow-lg">
           <?= htmlspecialchars($hero['texte']) ?>
@@ -134,7 +127,6 @@ $req_stats = mysqli_query($conn, "SELECT * FROM accueil_stats WHERE actif = 1 OR
           ?>
 
             <?php if ($compteur <= 2) : ?>
-              <!-- Les 2 premières images sont côte à côte (col-6) -->
               <div class="col-6">
                 <img src="<?= htmlspecialchars($img['image']) ?>"
                      class="img-fluid rounded shadow-lg"
@@ -142,7 +134,6 @@ $req_stats = mysqli_query($conn, "SELECT * FROM accueil_stats WHERE actif = 1 OR
                      style="height: 280px; object-fit: cover;">
               </div>
             <?php else : ?>
-              <!-- La 3ème image prend toute la largeur (col-12) -->
               <div class="col-12">
                 <img src="<?= htmlspecialchars($img['image']) ?>"
                      class="img-fluid rounded shadow-lg"
@@ -179,7 +170,6 @@ $req_stats = mysqli_query($conn, "SELECT * FROM accueil_stats WHERE actif = 1 OR
 
 
 <?php include 'footer.php'; ?>
-<?php mysqli_close($conn); ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

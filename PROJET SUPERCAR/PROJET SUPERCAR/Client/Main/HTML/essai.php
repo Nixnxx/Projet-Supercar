@@ -21,7 +21,14 @@ include 'header.php';
 
 $message = "";
 
+// condition ? valeur_si_vrai : valeur_si_faux;
 $voitureSelected = isset($_GET['voiture']) ? $_GET['voiture'] : "";
+/* if (isset($_GET['voiture'])) {
+     $voitureSelected = $_GET['voiture'];
+ } else {
+     $voitureSelected = "";
+ }
+*/
 
 if(isset($_POST['reserver'])){
 
