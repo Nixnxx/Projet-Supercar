@@ -20,6 +20,7 @@ require_once ("fonction.php");
     <link rel="stylesheet" href="css/logout.css">
     <link rel="stylesheet" href="css/contactclient.css">
     <link rel="stylesheet" href="css/essai.css">
+    <!-- <link rel="stylesheet" href="css/evenement.css"> -->
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -48,6 +49,7 @@ require_once ("fonction.php");
             </a>            
             <a href="contactclient.php" class="text-white text-decoration-none fw-semibold <?= ($pageactuelle === 'contactclient.php') ? 'active' : '' ?>">Contactez-nous</a>
       </nav>
+      <!-- <a href="evenement.php" class="text-white text-decoration-none fw-semibold <?= ($pageactuelle === 'evenement.php') ? 'active' : '' ?>">Événements</a> -->
 
       <?php if(est_connecte()) : ?> 
         <div>

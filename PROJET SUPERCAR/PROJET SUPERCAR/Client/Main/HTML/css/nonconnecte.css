@@ -58,7 +58,7 @@ body {
   width: 0%;
   background: #f97316;
   border-radius: 2px;
-  animation: progress 3s linear forwards;
+  animation: progress 1s linear forwards;
 }
 
 @keyframes progress {

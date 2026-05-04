@@ -75,3 +75,4 @@ INSERT INTO accueil_stats (valeur, label, ordre) VALUES
 ('+120',        'Véhicules vendus',   1),
 ('98%',         'Satisfaction client', 2),
 ('Île entière', 'Livraison gratuite',  3);
+
