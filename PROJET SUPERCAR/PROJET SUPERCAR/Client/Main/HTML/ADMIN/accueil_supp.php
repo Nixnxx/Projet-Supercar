@@ -37,7 +37,7 @@ if ($table == 'carousel') {
 
 } elseif ($table == 'hero_image') {
 
-    $req = mysqli_prepare($lienbd, "DELETE FROM accueil_hero_images WHERE id = ?");
+    $req = mysqli_prepare($lienbd, "DELETE FROM accueil_bienvenue_images WHERE id = ?");
     mysqli_stmt_bind_param($req, "i", $id);
     mysqli_stmt_execute($req);
     header("Location: accueil.php?msg=supprime#images");

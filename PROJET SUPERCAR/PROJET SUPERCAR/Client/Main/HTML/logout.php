@@ -1,6 +1,13 @@
 <?php
 session_start();
-unset($_SESSION['connecte']);
-header('Location:index.php');
-// PAS BESOIN DE METTRE EXIT PUISQU'IL N'Y A PLUS DE CODE DERRIERE
+
+// Supprime TOUTES les variables de session
+$_SESSION = [];
+
+// Détruit complètement la session
+session_destroy();
+
+// Redirection
+header('Location: index.php');
+exit();
 ?>

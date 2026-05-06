@@ -33,6 +33,7 @@ exit();
             if (password_verify($password, $user['mot_de_passe'])) {
                 $_SESSION['connecte']  = 1;
                 $_SESSION['id_client'] = $user['id_client'];
+                $_SESSION['client_connecte'] = true;
 
                 if (isset($_SESSION['contact_en_attente'])) {
                     header('Location: contactclient.php');

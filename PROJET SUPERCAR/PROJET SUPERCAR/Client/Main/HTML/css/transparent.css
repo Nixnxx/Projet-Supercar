@@ -8,7 +8,7 @@
 
 .connexion{
     color: white;
-    background:url(../bmw2.jpg);
+    background:url(../Images-Index/image-login/bmw2.jpg);
     background-position: center;
     background-size: cover;
     display: flex;
@@ -17,7 +17,7 @@
 }
 .inscription{
     color: white;
-    background:url(../bmw3.jpeg);
+    background:url(../Images-Index/image-login/bmw3.jpeg);
     background-position: center;
     background-size: cover;
     display: flex;

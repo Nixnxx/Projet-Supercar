@@ -35,7 +35,7 @@
                 <p class="mb-2"><a href="index.php">Accueil</a></p>
                 <p class="mb-2"><a href="voitures.php">Nos voitures</a></p>
                 <p class="mb-2"><a href="essai.php">Demande d'essai</a></p>
-                <p class="mb-2"><a href="contact.php">Contact</a></p>
+                <p class="mb-2"><a href="contactclient.php">Contact</a></p>
                 
             </div>
 

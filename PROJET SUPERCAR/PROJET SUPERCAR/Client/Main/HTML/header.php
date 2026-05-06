@@ -52,30 +52,45 @@ require_once ("fonction.php");
       <!-- <a href="evenement.php" class="text-white text-decoration-none fw-semibold <?= ($pageactuelle === 'evenement.php') ? 'active' : '' ?>">Événements</a> -->
 
       <?php if(est_connecte()) : ?> 
-        <div>
-            <a href="logout.php" class="btn btn-outline-light btn-sm d-flex align-items-center gap-2">
-                <i class="bi bi-box-arrow-right"></i>
-                Se déconnecter
-            </a>
-        </div>
+       <div>
+    <a href="logout.php" class="btn btn-sm d-flex align-items-center gap-2 fw-semibold" 
+       style="border: 1.5px solid var(--primary-orange); 
+              color: var(--primary-orange); 
+              border-radius: 20px; 
+              padding: 6px 16px;
+              transition: all 0.3s ease;">
+        <i class="bi bi-box-arrow-right"></i>
+        Se déconnecter
+    </a>
+</div>
 
-      <?php else : ?>
-        <div class="dropdown">
-            <button class="btn btn-link text-white p-0 border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                  d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-              </svg>
-            </button>
+    <?php else : ?>
+    <div class="dropdown">
+        <button class="btn btn-link text-white p-0 border-0" 
+                type="button" 
+                data-bs-toggle="dropdown" 
+                aria-expanded="false"
+                aria-label="Menu connexion">
+            <i class="bi bi-person-circle" style="font-size: 2rem;"></i>
+        </button>
 
-            <ul class="dropdown-menu dropdown-menu-end bg-dark text-white border-0 shadow-lg mt-2" style="min-width: 200px;">
-              <li><a class="dropdown-item text-white py-3" href="connexionh.php">Se connecter</a></li>
-              <li><a class="dropdown-item text-white py-3" href="inscriptionh.php">S'inscrire</a></li>
-            </ul>
-        </div>
-
-      <?php endif; ?>
-
+        <ul class="dropdown-menu dropdown-menu-end bg-dark text-white border-0 shadow-lg mt-2" 
+            style="min-width: 200px;">
+            <li>
+                <a class="dropdown-item text-white py-3 d-flex align-items-center gap-2" 
+                   href="connexionh.php">
+                    <i class="bi bi-box-arrow-in-right"></i> Se connecter
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item text-white py-3 d-flex align-items-center gap-2" 
+                   href="inscriptionh.php">
+                    <i class="bi bi-person-plus"></i> S'inscrire
+                </a>
+            </li>
+        </ul>
+    </div>
+<?php endif; ?>
     </div>
   </div>
 </header>

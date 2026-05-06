@@ -110,17 +110,56 @@ footer .container {
     z-index: 1990 !important;
 }
 
-/* Responsive */
+/* =========================
+   RESPONSIVE FOOTER
+========================= */
+
 @media (max-width: 768px) {
+
     footer {
-        min-height: 600px;
+        min-height: auto;
+        padding: 50px 0 30px;
+        text-align: center;
     }
+
+    footer::before {
+        width: 60px;
+        height: 60px;
+        top: -30px;
+    }
+
+    footer p {
+        margin-top: 20px;
+        font-size: 0.9rem;
+    }
+
+    footer h6 {
+        font-size: 1rem;
+        margin-top: 20px;
+    }
+
     .footer-overlay {
         background: rgba(0, 0, 0, 0.75);
     }
+
+    /* Colonnes en pleine largeur sur mobile */
+    footer .col-md-3 {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .footer-social .bi {
+        font-size: 1.5rem;
+    }
+
+    .footer-bottom {
+        font-size: 0.82rem;
+        padding-top: 10px;
+    }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
+
     footer {
         padding: 60px 0 40px;
         text-align: left;
@@ -132,5 +171,25 @@ footer .container {
 
     footer .row > div {
         text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+
+    footer {
+        padding: 40px 0 20px;
+    }
+
+    footer h6 {
+        font-size: 0.95rem;
+    }
+
+    footer p,
+    footer a {
+        font-size: 0.85rem;
+    }
+
+    .footer-social .bi {
+        font-size: 1.3rem;
     }
 }

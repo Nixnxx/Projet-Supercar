@@ -117,8 +117,8 @@ $req_stats = mysqli_query($lienbd, "SELECT * FROM accueil_stats WHERE actif = 1 
       </div>
 
       <!-- Images à droite : on boucle sur la BD -->
-      <div class="col-lg-6">
-        <div class="row g-4">
+      <div class="col-lg-6 photo">
+  <div class="row g-4">
 
           <?php
           $compteur = 0;

@@ -25,6 +25,7 @@ if(isset($_POST['utilisateur']) && isset($_POST['motdepasse'])){
                 session_start();
                 $_SESSION['connecte']  = 1;
                 $_SESSION['id_login']  = $user['id_login'];
+                $_SESSION['admin_connecte'] = true;
                 header('Location:accueil.php');
                 exit();
             } else {

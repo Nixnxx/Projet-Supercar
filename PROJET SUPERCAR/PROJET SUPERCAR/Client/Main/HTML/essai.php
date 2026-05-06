@@ -21,94 +21,98 @@ include 'header.php';
 
 $message = "";
 
-// condition ? valeur_si_vrai : valeur_si_faux;
-$voitureSelected = isset($_GET['voiture']) ? $_GET['voiture'] : "";
-/* if (isset($_GET['voiture'])) {
-     $voitureSelected = $_GET['voiture'];
- } else {
-     $voitureSelected = "";
- }
-*/
+// Récupération des paramètres GET
+$voitureSelected = isset($_GET['voiture'])   ? (int)$_GET['voiture']   : 0;
+$marqueSelected  = isset($_GET['id_marque']) ? (int)$_GET['id_marque'] : 0;
 
-if(isset($_POST['reserver'])){
+// TRAITEMENT FORMULAIRE
+if (isset($_POST['reserver'])) {
 
-    $nom = $_POST['nom'];
-    $email = $_POST['email'];
-    $telephone = $_POST['telephone'];
-    $date = $_POST['date_essai'];
-    $voiture = $_POST['voiture'];
+    $date    = $_POST['date_essai'];
+    $voiture = (int)$_POST['voiture'];
 
     $dateDemande = date("Y-m-d H:i:s");
-    $idClient = $_SESSION['id_client']; // ← directement depuis la session
+    $idClient    = $_SESSION['id_client'];
 
-        $sql = "INSERT INTO demandeessai 
-                (date_demande, date_essai_proposee, statut, commentaire, id_client, id_voiture)
-                VALUES 
-                ('$dateDemande','$date',0,'Demande via site',$idClient,'$voiture')";
+    $sql_insert = "INSERT INTO demandeessai 
+                   (date_demande, date_essai_proposee, statut, commentaire, id_client, id_voiture)
+                   VALUES (?, ?, 0, 'Demande via site', ?, ?)";
+    $stmt_insert = mysqli_prepare($lienbd, $sql_insert);
+    mysqli_stmt_bind_param($stmt_insert, "ssii", $dateDemande, $date, $idClient, $voiture);
 
-        if(mysqli_query($lienbd, $sql)){
-            $message = "Votre demande d'essai a été envoyée !";
-        }else{
-            $message = "Erreur lors de la réservation.";
-        }
+    if (mysqli_stmt_execute($stmt_insert)) {
+        $message = "Votre demande d'essai a été envoyée !";
+    } else {
+        $message = "Erreur lors de la réservation.";
     }
+}
 
+// REQUÊTE VOITURES selon la marque ou toutes
+if ($marqueSelected > 0) {
+    $stmt_v = mysqli_prepare($lienbd,
+        "SELECT v.id_voiture, v.model, m.nom AS marque
+         FROM voiture v
+         JOIN marque m ON v.id_marque = m.id_marque
+         WHERE v.id_marque = ?
+         ORDER BY v.model");
+    mysqli_stmt_bind_param($stmt_v, "i", $marqueSelected);
+} else {
+    $stmt_v = mysqli_prepare($lienbd,
+        "SELECT v.id_voiture, v.model, m.nom AS marque
+         FROM voiture v
+         JOIN marque m ON v.id_marque = m.id_marque
+         ORDER BY m.nom, v.model");
+}
+mysqli_stmt_execute($stmt_v);
+$result_voitures = mysqli_stmt_get_result($stmt_v);
 ?>
 
 <section id="essai">
-<div class="container">
+  <div class="container">
 
-<div class="essai-header">
-<h2>Demande d'essai</h2>
-<p>Réservez votre expérience</p>
+    <div class="essai-header">
+      <h2>Demande d'essai</h2>
+      <p>Réservez votre expérience</p>
+    </div>
 
+    <?php if ($message != "") : ?>
+      <p class="success"><?= htmlspecialchars($message) ?></p>
+    <?php endif; ?>
 
-</div>
+    <form method="POST" class="essai-form">
 
-<?php if($message!=""){ ?>
-<p class="success"><?php echo $message; ?></p>
-<?php } ?>
+      <label>Nom</label>
+      <input type="text" name="nom" value="<?= htmlspecialchars($client['nom'] ?? '') ?>" required>
 
-<form method="POST" class="essai-form">
+      <label>Email</label>
+      <input type="email" name="email" value="<?= htmlspecialchars($client['email'] ?? '') ?>" required>
 
-<label>Nom</label>
-<input type="text" name="nom" value="<?= htmlspecialchars($client['nom'] ?? '') ?>" required>
+      <label>Téléphone</label>
+      <input type="text" name="telephone" value="<?= htmlspecialchars($client['telephone'] ?? '') ?>" required>
 
-<label>Email</label>
-<input type="email" name="email" value="<?= htmlspecialchars($client['email'] ?? '') ?>" required>
+      <label>Choisir une voiture</label>
+      <select name="voiture" required>
+        <?php while ($row = mysqli_fetch_assoc($result_voitures)) : ?>
+          <option value="<?= (int)$row['id_voiture'] ?>"
+            <?= ($row['id_voiture'] == $voitureSelected) ? 'selected' : '' ?>>
+            <?= htmlspecialchars($row['model']) ?>
+          </option>
+        <?php endwhile; ?>
+      </select>
 
-<label>Téléphone</label>
-<input type="text" name="telephone" value="<?= htmlspecialchars($client['telephone'] ?? '') ?>" required>
+      <label>Date souhaitée</label>
+      <input type="date" name="date_essai" required>
 
-<label>Choisir une voiture</label>
-<select name="voiture" required>
+      <button type="submit" name="reserver">
+        Réserver un essai
+      </button>
 
-<?php
-$sql = "SELECT id_voiture, model FROM voiture";
-$result = mysqli_query($lienbd, $sql);
+    </form>
 
-while($row = mysqli_fetch_assoc($result)){
-    $selected = ($row['id_voiture'] == $voitureSelected) ? "selected" : "";
-    echo "<option value='".$row['id_voiture']."' $selected>".$row['model']."</option>";
-}
-?>
-
-</select>
-
-<label>Date souhaitée</label>
-<input type="date" name="date_essai" required>
-
-<button type="submit" name="reserver">
-Réserver un essai
-</button>
-
-</form>
-
-</div>
+  </div>
 </section>
 
 <?php include 'footer.php'; ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>
