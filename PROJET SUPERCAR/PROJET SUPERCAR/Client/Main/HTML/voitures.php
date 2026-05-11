@@ -124,10 +124,10 @@ $photos = isset($imagesParVoiture[$id]) ? $imagesParVoiture[$id] : [$row['image'
                 <?php echo number_format($row['prix'],0,',',' '); ?> Rs
             </span>
 
-            <button class="btn-commander"
-                onclick="window.location.href='essai.php?voiture=<?php echo $row['id_voiture']; ?>'">
-                Demande d'essai
-            </button>
+           <button class="btn-commander"
+    onclick="window.location.href='<?php echo est_connecte() ? 'essai.php?voiture='.$row['id_voiture'] : 'nonconnecte.php?redirect=essai&id_voiture='.$row['id_voiture']; ?>'">
+    Demande d'essai
+</button>
 
         </div>
     </div>

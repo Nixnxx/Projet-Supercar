@@ -47,7 +47,8 @@ if (isset($_POST['reserver'])) {
     }
 }
 
-// REQUÊTE VOITURES selon la marque ou toutes
+/* SI UNE MARQUE EST SÉLECTIONNÉE, ON FILTRE LES VOITURES 
+SINON ON AFFICHE TOUTES LES VOITURES ,CAROUSEL*/
 if ($marqueSelected > 0) {
     $stmt_v = mysqli_prepare($lienbd,
         "SELECT v.id_voiture, v.model, m.nom AS marque

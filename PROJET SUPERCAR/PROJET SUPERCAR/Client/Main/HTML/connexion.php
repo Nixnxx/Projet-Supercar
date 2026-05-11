@@ -35,12 +35,20 @@ exit();
                 $_SESSION['id_client'] = $user['id_client'];
                 $_SESSION['client_connecte'] = true;
 
-                if (isset($_SESSION['contact_en_attente'])) {
-                    header('Location: contactclient.php');
-                } else {
-                    header('Location: index.php');
-                }
-                exit();
+              if (isset($_SESSION['essai_en_attente'])) {
+    $params = [];
+    if (isset($_SESSION['essai_id_marque']))  $params[] = 'id_marque='  . $_SESSION['essai_id_marque'];
+    if (isset($_SESSION['essai_id_voiture'])) $params[] = 'voiture='    . $_SESSION['essai_id_voiture'];
+    $query = count($params) > 0 ? '?' . implode('&', $params) : '';
+    unset($_SESSION['essai_en_attente'], $_SESSION['essai_id_marque'], $_SESSION['essai_id_voiture']);
+    header('Location: essai.php' . $query);
+} elseif (isset($_SESSION['contact_en_attente'])) {
+    unset($_SESSION['contact_en_attente']);
+    header('Location: contactclient.php');
+} else {
+    header('Location: index.php');
+}
+exit();
 
             } else {
                 header('Location: connexionh.php?erreur=1');
