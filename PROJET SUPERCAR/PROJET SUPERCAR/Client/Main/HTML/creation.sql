@@ -1,178 +1,254 @@
--- TABLE CLIENT
-DROP TABLE IF EXISTS client;
-CREATE TABLE client (
-  id_client INT AUTO_INCREMENT PRIMARY KEY,
-  nom VARCHAR(50),
-  prenom VARCHAR(50),
-  email VARCHAR(100),
-  telephone VARCHAR(20),
-  adresse VARCHAR(100),
-  date_inscription DATE
-);
-
--- TABLE LOGIN
-DROP TABLE IF EXISTS login;
-CREATE TABLE login (
-  id_login INT AUTO_INCREMENT PRIMARY KEY,
-  login VARCHAR(100),
-  mot_de_passe VARCHAR(255),
-  niveau VARCHAR(50), -- admin ou client
-  id_client INT,
-  FOREIGN KEY (id_client) REFERENCES client(id_client)
-);
 
 
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
--- TABLE MARQUE
-DROP TABLE IF EXISTS marque;
-CREATE TABLE marque (
-  id_marque INT AUTO_INCREMENT PRIMARY KEY,
-  nom VARCHAR(50),
-  pays_origine VARCHAR(50),
-  description VARCHAR(500)
-);
+CREATE DATABASE SUPERCAR CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE SUPERCAR;
+-- ------------------------------------------------------------
+-- Table : accueil_bienvenue
+-- ------------------------------------------------------------
+DROP TABLE IF EXISTS `accueil_bienvenue`;
+CREATE TABLE IF NOT EXISTS `accueil_bienvenue` (
+  `id`          int          NOT NULL AUTO_INCREMENT,
+  `titre`       varchar(255) DEFAULT NULL,
+  `sous_titre`  varchar(255) DEFAULT NULL,
+  `description` text,
+  `texte`       varchar(100) DEFAULT NULL,
+  `lien`        varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- TABLE VOITURE
-DROP TABLE IF EXISTS voiture;
-CREATE TABLE voiture (
-  id_voiture INT AUTO_INCREMENT PRIMARY KEY,
-  model VARCHAR(50),
-  annee DATE,
-  prix BIGINT,
-  couleur VARCHAR(50),
-  specs VARCHAR(300),
-  type_carburant VARCHAR(50),
-  km INT,
-  image VARCHAR(255),
-  stock_total INT DEFAULT 1,
-  id_marque INT,
-  FOREIGN KEY (id_marque) REFERENCES marque(id_marque)
-);
+-- ------------------------------------------------------------
+-- Table : accueil_bienvenue_images
+-- ------------------------------------------------------------
+DROP TABLE IF EXISTS `accueil_bienvenue_images`;
+CREATE TABLE IF NOT EXISTS `accueil_bienvenue_images` (
+  `id`    int          NOT NULL AUTO_INCREMENT,
+  `image` varchar(255) DEFAULT NULL,
+  `alt`   varchar(255) DEFAULT NULL,
+  `ordre` int          DEFAULT '0',
+  `actif` tinyint      DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- IMAGES VOITURE
-DROP TABLE IF EXISTS voiture_images;
-CREATE TABLE voiture_images (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  id_voiture INT,
-  image VARCHAR(255),
-  ordre INT DEFAULT 0,
-  FOREIGN KEY (id_voiture) REFERENCES voiture(id_voiture)
-);
+-- ------------------------------------------------------------
+-- Table : accueil_carousel
+-- ------------------------------------------------------------
+DROP TABLE IF EXISTS `accueil_carousel`;
+CREATE TABLE IF NOT EXISTS `accueil_carousel` (
+  `id`          int          NOT NULL AUTO_INCREMENT,
+  `titre`       varchar(100) DEFAULT NULL,
+  `description` text,
+  `image`       varchar(255) DEFAULT NULL,
+  `lien`        varchar(255) DEFAULT NULL,
+  `texte_lien`  varchar(100) DEFAULT NULL,
+  `ordre`       int          DEFAULT '0',
+  `actif`       tinyint      DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- ------------------------------------------------------------
+-- Table : accueil_points
+-- ------------------------------------------------------------
+DROP TABLE IF EXISTS `accueil_points`;
+CREATE TABLE IF NOT EXISTS `accueil_points` (
+  `id`    int          NOT NULL AUTO_INCREMENT,
+  `texte` varchar(255) DEFAULT NULL,
+  `ordre` int          DEFAULT '0',
+  `actif` tinyint      DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- ------------------------------------------------------------
+-- Table : accueil_stats
+-- ------------------------------------------------------------
+DROP TABLE IF EXISTS `accueil_stats`;
+CREATE TABLE IF NOT EXISTS `accueil_stats` (
+  `id`     int         NOT NULL AUTO_INCREMENT,
+  `valeur` varchar(50) DEFAULT NULL,
+  `label`  varchar(100) DEFAULT NULL,
+  `ordre`  int         DEFAULT '0',
+  `actif`  tinyint     DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- TABLE CONTACT
-DROP TABLE IF EXISTS contact;
-CREATE TABLE contact (
-  id_contact INT AUTO_INCREMENT PRIMARY KEY,
-  nom VARCHAR(50),
-  email VARCHAR(100),
-  message VARCHAR(800),
-  numero VARCHAR(20),
-  id_client INT,
-  lu TINYINT DEFAULT 0,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (id_client) REFERENCES client(id_client)
-);
+-- ------------------------------------------------------------
+-- Table : client
+-- ------------------------------------------------------------
+DROP TABLE IF EXISTS `client`;
+CREATE TABLE IF NOT EXISTS `client` (
+  `id_client`        int         NOT NULL AUTO_INCREMENT,
+  `nom`              varchar(50) DEFAULT NULL,
+  `prenom`           varchar(50) DEFAULT NULL,
+  `email`            varchar(100) DEFAULT NULL,
+  `telephone`        varchar(20) DEFAULT NULL,
+  `adresse`          varchar(100) DEFAULT NULL,
+  `date_inscription` date        DEFAULT NULL,
+  PRIMARY KEY (`id_client`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- CONFIG CONTACT
-DROP TABLE IF EXISTS contact_config;
-CREATE TABLE contact_config (
-  id_config INT AUTO_INCREMENT PRIMARY KEY,
-  adresse VARCHAR(100),
-  email VARCHAR(100),
-  telephone VARCHAR(20),
-  map_embed TEXT
-);
+-- ------------------------------------------------------------
+-- Table : contact
+-- ------------------------------------------------------------
+DROP TABLE IF EXISTS `contact`;
+CREATE TABLE IF NOT EXISTS `contact` (
+  `id_contact` int          NOT NULL AUTO_INCREMENT,
+  `nom`        varchar(50)  DEFAULT NULL,
+  `email`      varchar(100) DEFAULT NULL,
+  `message`    varchar(800) DEFAULT NULL,
+  `numero`     varchar(20)  DEFAULT NULL,
+  `id_client`  int          DEFAULT NULL,
+  `lu`         tinyint      DEFAULT '0',
+  `created_at` datetime     DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_contact`),
+  KEY `id_client` (`id_client`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- ------------------------------------------------------------
+-- Table : contact_config
+-- ------------------------------------------------------------
+DROP TABLE IF EXISTS `contact_config`;
+CREATE TABLE IF NOT EXISTS `contact_config` (
+  `id_config`  int          NOT NULL AUTO_INCREMENT,
+  `adresse`    varchar(100) DEFAULT NULL,
+  `email`      varchar(100) DEFAULT NULL,
+  `telephone`  varchar(20)  DEFAULT NULL,
+  `map_embed`  text,
+  PRIMARY KEY (`id_config`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-DROP TABLE IF EXISTS demandeessai;
-CREATE TABLE demandeessai (
-  id_demande INT AUTO_INCREMENT PRIMARY KEY,
-  date_demande DATETIME,
-  date_essai_proposee DATE,
-  statut INT,
-  commentaire VARCHAR(200),
-  id_client INT,
-  id_voiture INT,
-  FOREIGN KEY (id_client) REFERENCES client(id_client),
-  FOREIGN KEY (id_voiture) REFERENCES voiture(id_voiture)
-);
+-- ------------------------------------------------------------
+-- Table : demandeessai
+-- ------------------------------------------------------------
+DROP TABLE IF EXISTS `demandeessai`;
+CREATE TABLE IF NOT EXISTS `demandeessai` (
+  `id_demande`          int          NOT NULL AUTO_INCREMENT,
+  `date_demande`        datetime     DEFAULT NULL,
+  `date_essai_proposee` date         DEFAULT NULL,
+  `statut`              int          DEFAULT NULL,
+  `commentaire`         varchar(200) DEFAULT NULL,
+  `id_client`           int          DEFAULT NULL,
+  `id_voiture`          int          DEFAULT NULL,
+  PRIMARY KEY (`id_demande`),
+  KEY `id_client`  (`id_client`),
+  KEY `id_voiture` (`id_voiture`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- ------------------------------------------------------------
+-- Table : login
+-- ------------------------------------------------------------
+DROP TABLE IF EXISTS `login`;
+CREATE TABLE IF NOT EXISTS `login` (
+  `id_login`     int          NOT NULL AUTO_INCREMENT,
+  `login`        varchar(100) DEFAULT NULL,
+  `mot_de_passe` varchar(255) DEFAULT NULL,
+  `niveau`       varchar(50)  DEFAULT NULL,
+  `id_client`    int          DEFAULT NULL,
+  PRIMARY KEY (`id_login`),
+  KEY `id_client` (`id_client`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- ------------------------------------------------------------
+-- Table : marque
+-- ------------------------------------------------------------
+DROP TABLE IF EXISTS `marque`;
+CREATE TABLE IF NOT EXISTS `marque` (
+  `id_marque`    int          NOT NULL AUTO_INCREMENT,
+  `nom`          varchar(50)  DEFAULT NULL,
+  PRIMARY KEY (`id_marque`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-DROP TABLE IF EXISTS service;
-CREATE TABLE service (
-  id_service INT AUTO_INCREMENT PRIMARY KEY,
-  nom VARCHAR(50),
-  description VARCHAR(300),
-  image VARCHAR(255),
-  icone VARCHAR(50),
-  tag VARCHAR(100),
-  numero INT DEFAULT 0
-);
+-- ------------------------------------------------------------
+-- Table : service
+-- ------------------------------------------------------------
+DROP TABLE IF EXISTS `service`;
+CREATE TABLE IF NOT EXISTS `service` (
+  `id_service`  int          NOT NULL AUTO_INCREMENT,
+  `nom`         varchar(50)  DEFAULT NULL,
+  `description` varchar(300) DEFAULT NULL,
+  `image`       varchar(255) DEFAULT NULL,
+  `icone`       varchar(50)  DEFAULT NULL,
+  `tag`         varchar(100) DEFAULT NULL,
+  `numero`      int          DEFAULT '0',
+  PRIMARY KEY (`id_service`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- RELATION VOITURE / SERVICE
-DROP TABLE IF EXISTS proposer;
-CREATE TABLE proposer (
-  id_voiture INT,
-  id_service INT,
-  PRIMARY KEY (id_voiture, id_service),
-  FOREIGN KEY (id_voiture) REFERENCES voiture(id_voiture),
-  FOREIGN KEY (id_service) REFERENCES service(id_service)
-);
+-- ------------------------------------------------------------
+-- Table : voiture
+-- ------------------------------------------------------------
+DROP TABLE IF EXISTS `voiture`;
+CREATE TABLE IF NOT EXISTS `voiture` (
+  `id_voiture`    int          NOT NULL AUTO_INCREMENT,
+  `model`         varchar(50)  DEFAULT NULL,
+  `annee`         date         DEFAULT NULL,
+  `prix`          bigint       DEFAULT NULL,
+  `specs`         varchar(300) DEFAULT NULL,
+  `type_carburant` varchar(50) DEFAULT NULL,
+  `km`            int          DEFAULT NULL,
+  `image`         varchar(255) DEFAULT NULL,
+  `stock_total`   int          DEFAULT '1',
+  `id_marque`     int          DEFAULT NULL,
+  PRIMARY KEY (`id_voiture`),
+  KEY `id_marque` (`id_marque`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- ------------------------------------------------------------
+-- Table : voiture_images
+-- ------------------------------------------------------------
+DROP TABLE IF EXISTS `voiture_images`;
+CREATE TABLE IF NOT EXISTS `voiture_images` (
+  `id`         int          NOT NULL AUTO_INCREMENT,
+  `id_voiture` int          DEFAULT NULL,
+  `image`      varchar(255) DEFAULT NULL,
+  `ordre`      int          DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `id_voiture` (`id_voiture`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- ------------------------------------------------------------
+-- Table : proposer  (table de liaison voiture <-> service)
+-- ------------------------------------------------------------
+DROP TABLE IF EXISTS `proposer`;
+CREATE TABLE IF NOT EXISTS `proposer` (
+  `id_voiture` int NOT NULL,
+  `id_service` int NOT NULL,
+  PRIMARY KEY (`id_voiture`, `id_service`),
+  KEY `id_service` (`id_service`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- BIENVENUE
-DROP TABLE IF EXISTS accueil_bienvenue;
-CREATE TABLE accueil_bienvenue (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  titre VARCHAR(255),
-  sous_titre VARCHAR(255),
-  description TEXT,
-  texte VARCHAR(100),
-  lien VARCHAR(255)
-);
+-- ============================================================
+--  Contraintes de clés étrangères (FK)
+--  À ajouter APRÈS la création de toutes les tables
+-- ============================================================
 
--- IMAGES BIENVENUE
-DROP TABLE IF EXISTS accueil_bienvenue_images;
-CREATE TABLE accueil_bienvenue_images (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  image VARCHAR(255),
-  alt VARCHAR(255),
-  ordre INT DEFAULT 0,
-  actif TINYINT DEFAULT 1
-);
+ALTER TABLE `contact`
+  ADD CONSTRAINT `contact_ibfk_1`
+    FOREIGN KEY (`id_client`) REFERENCES `client` (`id_client`);
 
--- CAROUSEL
-DROP TABLE IF EXISTS accueil_carousel;
-CREATE TABLE accueil_carousel (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  titre VARCHAR(100),
-  description TEXT,
-  image VARCHAR(255),
-  lien VARCHAR(255),
-  texte_lien VARCHAR(100),
-  ordre INT DEFAULT 0,
-  actif TINYINT DEFAULT 1
-);
+ALTER TABLE `demandeessai`
+  ADD CONSTRAINT `demandeessai_ibfk_1`
+    FOREIGN KEY (`id_client`)  REFERENCES `client`  (`id_client`),
+  ADD CONSTRAINT `demandeessai_ibfk_2`
+    FOREIGN KEY (`id_voiture`) REFERENCES `voiture` (`id_voiture`);
 
--- POINTS FORTS
-DROP TABLE IF EXISTS accueil_points;
-CREATE TABLE accueil_points (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  texte VARCHAR(255),
-  ordre INT DEFAULT 0,
-  actif TINYINT DEFAULT 1
-);
+ALTER TABLE `login`
+  ADD CONSTRAINT `login_ibfk_1`
+    FOREIGN KEY (`id_client`) REFERENCES `client` (`id_client`);
 
--- STATS
-DROP TABLE IF EXISTS accueil_stats;
-CREATE TABLE accueil_stats (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  valeur VARCHAR(50),
-  label VARCHAR(100),
-  ordre INT DEFAULT 0,
-  actif TINYINT DEFAULT 1
-);
+ALTER TABLE `proposer`
+  ADD CONSTRAINT `proposer_ibfk_1`
+    FOREIGN KEY (`id_voiture`) REFERENCES `voiture` (`id_voiture`),
+  ADD CONSTRAINT `proposer_ibfk_2`
+    FOREIGN KEY (`id_service`) REFERENCES `service` (`id_service`);
+
+ALTER TABLE `voiture`
+  ADD CONSTRAINT `voiture_ibfk_1`
+    FOREIGN KEY (`id_marque`) REFERENCES `marque` (`id_marque`);
+
+ALTER TABLE `voiture_images`
+  ADD CONSTRAINT `voiture_images_ibfk_1`
+    FOREIGN KEY (`id_voiture`) REFERENCES `voiture` (`id_voiture`);
+
+COMMIT;
