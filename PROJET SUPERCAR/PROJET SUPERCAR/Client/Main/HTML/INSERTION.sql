@@ -29,7 +29,7 @@ INSERT INTO `accueil_bienvenue_images` (`id`, `image`, `alt`, `ordre`, `actif`) 
 -- ------------------------------------------------------------
 INSERT INTO `accueil_carousel` (`id`, `titre`, `description`, `image`, `lien`, `texte_lien`, `ordre`, `actif`) VALUES
 (1, 'BMW',
-    'Le luxe allemand au service de la performance. Raffinement, puissance et élégance intemporelle.',
+    'Le luxe allemand au service de la performance. Raffinement, puissance et élégance intemporelle.', 
     'Images-Index/accueil-carousel/bmw4.jpg',
     'nonconnecte.php?redirect=essai&id_marque=2',
     'Demander un essai', 1, 1),
