@@ -49,9 +49,9 @@
 
         <div class="footer-bottom mt-3 text-center">
             <p class="mb-2 small">
-                &copy; 2025 SuperCar – Vente de voitures d'occasion
+                &copy;  SuperCar 
                 <br>
-                Garantie 12-24 mois • Financement sur mesure • Livraison à domicile île entière • Véhicules certifiés
+               • Livraison à domicile île entière • Véhicules certifiés
             </p>
             
             <p class="mb-0 small opacity-75">
@@ -77,29 +77,98 @@
       
       <div class="modal-body">
 
-        
-        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">Responsables du projet :</h6>
-        <p class="mb-4">Nix - Julien - Ilaina<br>
-        Étudiants en BTS SIO – Réalisation Professionnelle<br>
-        MCCI Business School<br>
-        Rue Savoir, Cybercity, Ebene, Maurice<br>
-</p>
-        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">Propriété intellectuelle :</h6>
-          <p class="mb-4"> L'ensemble du contenu de ce site (textes, images, logos, vidéos, design) est protégé par le droit d'auteur. Toute reproduction, représentation, modification ou diffusion, même partielle, est strictement interdite sans autorisation écrite préalable des auteurs.
-</p>
+        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">1. Présentation du site</h6>
+        <p class="mb-4">
+          Le site SuperCar est une application web dynamique réalisée dans le cadre du BTS SIO (Services Informatiques aux Organisations), option SLAM, à la MCCI Business School.
+        </p>
 
-        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">Données personnelles :</h6>
-        <p class="mb-4">   Ce site ne collecte, ne traite ni ne conserve aucune donnée personnelle des visiteurs. Aucun formulaire de collecte n'est présent.
-</p>
+        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">2. Responsables du projet</h6>
+        <p class="mb-4">
+          Nix - Julien - Ilaina<br>
+          Étudiants en BTS SIO – Réalisation Professionnelle<br>
+          MCCI Business School<br>
+          Rue Savoir, Cybercity, Ebène, Maurice
+        </p>
 
-        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">Limitation de responsabilité :</h6>
-    <p class="mb-4">Ce site est un prototype académique réalisé dans le cadre d'un projet étudiant BTS SIO. Il n'a pas vocation à représenter une entreprise réelle ni à proposer des services commerciaux. Les informations sont fictives/indicatives et n'engagent pas la responsabilité des auteurs ou de l'établissement.
-</p>
+        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">3. Objet du site</h6>
+        <p class="mb-2">Le site a pour objectif :</p>
+        <ul class="mb-4">
+          <li>De présenter les véhicules proposés par le concessionnaire</li>
+          <li>De permettre aux visiteurs de demander un essai de ces véhicules</li>
+          <li>De gérer les demandes d'essai en ligne</li>
+        </ul>
 
-        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">Cookies et traceurs :</h6>
-        <p class="mb-4">   Ce site n'utilise aucun cookie, traceur, pixel ou outil de suivi. Aucune donnée de navigation n'est collectée.
-</p>
+        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">4. Hébergement</h6>
+        <p class="mb-2">
+          Le site est actuellement hébergé localement dans un environnement de développement utilisant :
+        </p>
+        <ul class="mb-4">
+          <li>XAMPP</li>
+          <li>Apache</li>
+          <li>MySQL</li>
+        </ul>
+
+        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">5. Technologies utilisées</h6>
+        <p class="mb-2">Le projet utilise les technologies suivantes :</p>
+        <ul class="mb-4">
+          <li>PHP</li>
+          <li>Apache</li>
+          <li>MySQL</li>
+          <li>HTML5</li>
+          <li>CSS3</li>
+          <li>Bootstrap</li>
+          <li>JavaScript</li>
+        </ul>
+
+        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">6. Accès à l'administration</h6>
+        <p class="mb-2">
+          L'accès à l'espace d'administration est réservé exclusivement aux administrateurs autorisés. Les données administratives sont protégées par :
+        </p>
+        <ul class="mb-4">
+          <li>Un système d'authentification</li>
+          <li>Des sessions PHP (<code>$_SESSION</code>)</li>
+          <li>Des mots de passe sécurisés avec <code>password_hash</code></li>
+          <li>Des requêtes préparées MySQLi afin de limiter les injections SQL</li>
+        </ul>
+
+        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">7. Propriété intellectuelle</h6>
+        <p class="mb-4">
+          L'ensemble des contenus présents sur le site SuperCar (textes, images, logos, structure, code source et éléments graphiques) est utilisé dans un cadre pédagogique.<br><br>
+          Toute reproduction, diffusion ou utilisation non autorisée des contenus du site est interdite sans autorisation préalable.<br><br>
+          Les marques et modèles de voitures présentés restent la propriété de leurs détenteurs respectifs.
+        </p>
+
+        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">8. Données personnelles</h6>
+        <p class="mb-4">
+          Le site collecte certaines données personnelles dans le cadre de l'inscription et des demandes d'essai. Ces données sont traitées conformément à la politique de confidentialité du site, consultable via le lien dédié.
+        </p>
+
+        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">9. Limitation de responsabilité</h6>
+        <p class="mb-2">
+          Les développeurs du projet s'efforcent de fournir des informations aussi précises que possible. Toutefois, des erreurs ou omissions peuvent être présentes.<br><br>
+          Le site étant un projet pédagogique, les développeurs ne pourront être tenus responsables :
+        </p>
+        <ul class="mb-4">
+          <li>D'un dysfonctionnement technique</li>
+          <li>D'une interruption temporaire</li>
+          <li>D'une perte de données</li>
+          <li>Ou d'une mauvaise utilisation du site</li>
+        </ul>
+
+        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">10. Contact</h6>
+        <p class="mb-4">
+          Pour toute question concernant le site : <a href="mailto:contact@supercar.mu" class="text-warning">contact@supercar.mu</a>
+        </p>
+
       </div>
+
+      <div class="modal-footer border-top border-warning">
+        <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">Fermer</button>
+      </div>
+
+    </div>
+  </div>
+</div>
       
       <div class="modal-footer border-top border-warning">
         <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">Fermer</button>
@@ -123,54 +192,95 @@
       
       <div class="modal-body">
 
-       <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">Introduction</h6>
+        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">1. Introduction</h6>
         <p class="mb-4">
-          Cette politique de confidentialité s'applique au site SuperCar. Nous nous engageons à protéger et respecter votre vie privée. Cette politique explique comment nous traitons les informations que vous pourriez nous fournir.
+          La présente politique de confidentialité a pour objectif d'informer les utilisateurs du site SuperCar sur la collecte et l'utilisation de leurs données personnelles. Le respect de la vie privée des utilisateurs fait partie des priorités du projet.
         </p>
 
-        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">Collecte des données</h6>
+        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">2. Données collectées</h6>
+        <p class="mb-2 fw-semibold">Lors de l'inscription :</p>
+        <ul class="mb-3">
+          <li>Nom</li>
+          <li>Prénom</li>
+          <li>Adresse e-mail</li>
+          <li>Numéro de téléphone</li>
+          <li>Adresse postale</li>
+          <li>Mot de passe sécurisé</li>
+        </ul>
+        <p class="mb-2 fw-semibold">Lors d'une demande d'essai :</p>
+        <ul class="mb-4">
+          <li>Nom</li>
+          <li>Adresse e-mail</li>
+          <li>Numéro de téléphone</li>
+          <li>Véhicule souhaité</li>
+          <li>Date d'essai demandée</li>
+        </ul>
+
+        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">3. Finalité des données</h6>
+        <p class="mb-2">Les données collectées sont utilisées uniquement pour :</p>
+        <ul class="mb-3">
+          <li>Gérer les comptes utilisateurs</li>
+          <li>Traiter les demandes d'essai</li>
+          <li>Organiser les rendez-vous</li>
+          <li>Assurer le bon fonctionnement du site</li>
+        </ul>
+        <p class="mb-4">Les données ne sont ni revendues ni transmises à des tiers.</p>
+
+        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">4. Sécurité des données</h6>
+        <p class="mb-2">Le site met en œuvre plusieurs mesures de sécurité :</p>
+        <ul class="mb-4">
+          <li>Mots de passe hachés avec <code>password_hash</code></li>
+          <li>Utilisation de requêtes préparées MySQLi</li>
+          <li>Protection des espaces administrateurs par session PHP</li>
+          <li>Contrôle d'accès administrateur</li>
+        </ul>
+
+        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">5. Sessions et cookies</h6>
         <p class="mb-4">
-          Ce site étant un prototype académique, nous ne collectons, ne traitons ni ne stockons aucune donnée personnelle identifiable. Aucun formulaire de collecte d'informations personnelles n'est présent sur ce site.
+          Le site utilise des sessions PHP (<code>session_start()</code> et <code>$_SESSION</code>) afin de maintenir la connexion des utilisateurs et sécuriser certaines fonctionnalités. Aucun système publicitaire ou outil de suivi externe n'est utilisé.
         </p>
 
-        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">Utilisation des données</h6>
+        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">6. Conservation des données</h6>
+        <p class="mb-2">
+          Les données collectées via les formulaires d'inscription et de demande d'essai sont enregistrées dans une base de données MySQL. Ces données sont conservées pendant une durée raisonnable nécessaire :
+        </p>
+        <ul class="mb-3">
+          <li>À la gestion des comptes utilisateurs</li>
+          <li>Au traitement des demandes d'essai</li>
+          <li>Au bon fonctionnement du projet pédagogique SuperCar</li>
+        </ul>
+        <p class="mb-4">L'accès aux données est limité exclusivement à l'administrateur du site.</p>
+
+        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">7. Droits des utilisateurs</h6>
+        <p class="mb-2">Les utilisateurs peuvent demander :</p>
+        <ul class="mb-3">
+          <li>L'accès à leurs données</li>
+          <li>La modification de leurs informations</li>
+          <li>La suppression de leurs données personnelles</li>
+        </ul>
         <p class="mb-4">
-          Étant donné qu'aucune donnée personnelle n'est collectée, nous n'utilisons aucune information personnelle à des fins commerciales, marketing ou autres.
+          Toute demande peut être envoyée à : <a href="mailto:contact@supercar.mu" class="text-warning">contact@supercar.mu</a>
         </p>
 
-        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">Cookies et technologies similaires</h6>
+        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">8. Protection des mineurs</h6>
         <p class="mb-4">
-          Ce site n'utilise pas de cookies, balises web ou autres technologies de suivi pour collecter des informations sur les visiteurs.
+          Le site SuperCar est accessible à tout public. Toutefois, certaines fonctionnalités liées aux essais de véhicules peuvent nécessiter l'intervention d'un adulte disposant d'un permis de conduire valide.
         </p>
 
-        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">Partage des informations</h6>
-        <p class="mb-4">
-          Comme nous ne collectons aucune donnée personnelle, nous ne partageons aucune information avec des tiers.
-        </p>
-
-        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">Sécurité</h6>
-        <p class="mb-4">
-          Bien que nous ne collections pas de données personnelles, nous mettons en œuvre des mesures de sécurité appropriées pour protéger l'intégrité du site.
-        </p>
-
-        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">Vos droits</h6>
-        <p class="mb-4">
-          Conformément au RGPD et autres lois sur la protection des données, vous disposez de droits concernant vos données personnelles. Cependant, comme nous ne collectons aucune donnée, ces droits ne s'appliquent pas dans le cadre de ce site.
-        </p>
-
-        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">Modifications de cette politique</h6>
-        <p class="mb-4">
-          Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment. Toute modification sera publiée sur cette page.
-        </p>
-
-        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">Contact</h6>
+        <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">9. Modification de la politique</h6>
         <p class="mb-0">
-          Pour toute question relative à cette politique de confidentialité, vous pouvez nous contacter via notre établissement scolaire, MCCI Business School.
+          La présente politique de confidentialité peut être modifiée à tout moment afin d'améliorer le fonctionnement du site ou de respecter les évolutions du projet pédagogique.
         </p>
+
       </div>
+
       <div class="modal-footer border-top border-warning">
         <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">Fermer</button>
       </div>
+
+    </div>
+  </div>
+</div>
       
     </div>
   </div>
