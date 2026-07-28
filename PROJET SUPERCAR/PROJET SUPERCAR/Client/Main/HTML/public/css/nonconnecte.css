@@ -110,8 +110,14 @@ body {
     font-weight: 500;
 }
 
-/* responsive */
-@media (max-width: 480px) {
+/* ============================================================
+   RESPONSIVE
+   Points de rupture standards du site (voir styles.css) :
+   991.98px = tablette | 767.98px = petit écran | 575.98px = mobile
+============================================================ */
+
+/* ── Mobile ── */
+@media (max-width: 575.98px) {
     .carte {
         padding: 30px 20px;
         max-width: 320px;

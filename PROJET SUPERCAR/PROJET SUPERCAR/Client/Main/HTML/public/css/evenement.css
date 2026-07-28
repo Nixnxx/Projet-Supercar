@@ -116,10 +116,14 @@
     margin-right: 6px;
 }
 
-/* =========================
+/* ============================================================
    RESPONSIVE ÉVÉNEMENTS
-========================= */
-@media (max-width: 768px) {
+   Points de rupture standards du site (voir styles.css) :
+   991.98px = tablette | 767.98px = petit écran | 575.98px = mobile
+============================================================ */
+
+/* ── Petit écran / grand mobile ── */
+@media (max-width: 767.98px) {
     .events-page {
         padding: 50px 4% 60px;
     }
@@ -159,7 +163,8 @@
     }
 }
 
-@media (max-width: 480px) {
+/* ── Mobile ── */
+@media (max-width: 575.98px) {
     .events-page {
         padding: 40px 3% 40px;
     }

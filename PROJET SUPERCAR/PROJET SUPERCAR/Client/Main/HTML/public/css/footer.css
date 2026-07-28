@@ -6,7 +6,9 @@ footer {
     /* Bandeau GRIS CLAIR, assorti au header (aplat de couleur, sans photo). */
     background: var(--band-grey-2);
     text-align: center;
-    padding: 30px 0;
+    /* Espacement par défaut (ordinateur). Il est réduit sur petit écran
+       et sur mobile dans le bloc responsive en bas de ce fichier. */
+    padding: 60px 0 40px;
     border-top: 1.5px solid var(--accent-grey);
     position: relative;
 }
@@ -31,7 +33,7 @@ footer::before {
 }
 
 footer p {
-    margin-top: 50px;
+    margin-top: 0;
     font-size: 0.95rem;
 }
 
@@ -94,11 +96,14 @@ footer .container {
    et ces valeurs passent au-dessus de l'en-tête fixe (z-index 1000).
    L'ancien "z-index: 2000 !important" écrasait Bootstrap pour rien. */
 
-/* =========================
+/* ============================================================
    RESPONSIVE FOOTER
-========================= */
+   Points de rupture standards du site (voir styles.css) :
+   991.98px = tablette | 767.98px = petit écran | 575.98px = mobile
+============================================================ */
 
-@media (max-width: 768px) {
+/* ── Petit écran / grand mobile ── */
+@media (max-width: 767.98px) {
 
     footer {
         min-height: auto;
@@ -138,23 +143,8 @@ footer .container {
     }
 }
 
-@media (min-width: 769px) {
-
-    footer {
-        padding: 60px 0 40px;
-        text-align: left;
-    }
-
-    footer p {
-        margin-top: 0;
-    }
-
-    footer .row > div {
-        text-align: center;
-    }
-}
-
-@media (max-width: 480px) {
+/* ── Mobile ── */
+@media (max-width: 575.98px) {
 
     footer {
         padding: 40px 0 20px;
@@ -171,6 +161,15 @@ footer .container {
 
     .footer-social .bi {
         font-size: 1.3rem;
+    }
+
+    /* Bouton flottant WhatsApp : un peu plus petit sur mobile */
+    .whatsapp-flottant {
+        width: 50px;
+        height: 50px;
+        font-size: 1.6rem;
+        right: 16px;
+        bottom: 16px;
     }
 }
 
@@ -207,16 +206,8 @@ footer .container {
     box-shadow: 0 8px 24px rgba(37, 211, 102, 0.6);
 }
 
-/* Sur petit écran, on réduit un peu le bouton. */
-@media (max-width: 480px) {
-    .whatsapp-flottant {
-        width: 50px;
-        height: 50px;
-        font-size: 1.6rem;
-        right: 16px;
-        bottom: 16px;
-    }
-}
+/* Sur mobile, le bouton est réduit : voir le bloc @media 575.98px
+   plus haut, avec tout le reste du responsive du footer. */
 
 /* Accessibilité : si l'utilisateur a désactivé les animations, on n'agrandit
    plus le bouton au survol. */

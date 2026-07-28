@@ -278,10 +278,14 @@
 }
 
 
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 900px) {
+/* ============================================================
+   RESPONSIVE CONTACT
+   Points de rupture standards du site (voir styles.css) :
+   991.98px = tablette | 767.98px = petit écran | 575.98px = mobile
+============================================================ */
+
+/* ── Tablette ── */
+@media (max-width: 991.98px) {
     .contact-container {
         gap: 18px;
     }
@@ -296,7 +300,8 @@
     }
 }
 
-@media (max-width: 768px) {
+/* ── Petit écran / grand mobile ── */
+@media (max-width: 767.98px) {
     .contact-container {
         grid-template-columns: 1fr;
     }
@@ -318,7 +323,8 @@
     }
 }
 
-@media (max-width: 480px) {
+/* ── Mobile ── */
+@media (max-width: 575.98px) {
     .contact-info-bubbles {
         flex-direction: column;
         align-items: center;

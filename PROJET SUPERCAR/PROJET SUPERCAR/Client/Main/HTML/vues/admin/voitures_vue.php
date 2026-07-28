@@ -118,7 +118,7 @@ require __DIR__ . '/layout_haut.php';
     <form method="POST">
         <input type="hidden" name="id_voiture" value="<?= (int)$detail['id_voiture'] ?>">
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+        <div class="form-2col">
             <div class="form-group">
                 <label class="form-label">Modèle</label>
                 <input class="form-input" type="text" name="model" required
@@ -137,7 +137,7 @@ require __DIR__ . '/layout_haut.php';
             </div>
         </div>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+        <div class="form-2col">
             <div class="form-group">
                 <label class="form-label">Année</label>
                 <input class="form-input" type="date" name="annee"
@@ -151,7 +151,7 @@ require __DIR__ . '/layout_haut.php';
             </div>
         </div>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+        <div class="form-2col">
             <div class="form-group">
                 <label class="form-label">Type de carburant</label>
                 <select class="form-select" name="type_carburant">
@@ -240,7 +240,7 @@ require __DIR__ . '/layout_haut.php';
 
     <form method="POST" enctype="multipart/form-data">
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+        <div class="form-2col">
             <div class="form-group">
                 <label class="form-label">Modèle *</label>
                 <input class="form-input" type="text" name="model"
@@ -256,7 +256,7 @@ require __DIR__ . '/layout_haut.php';
             </div>
         </div>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+        <div class="form-2col">
             <div class="form-group">
                 <label class="form-label">Année</label>
                 <input class="form-input" type="date" name="annee">
@@ -268,7 +268,7 @@ require __DIR__ . '/layout_haut.php';
             </div>
         </div>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+        <div class="form-2col">
             <div class="form-group">
                 <label class="form-label">Type de carburant</label>
                 <select class="form-select" name="type_carburant">

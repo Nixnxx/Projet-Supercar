@@ -93,12 +93,22 @@ header .dropdown-menu {
 /* Texte des liens du menu */
 header .dropdown-item {
     color: var(--text-grey);
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+header .dropdown-item i {
+    color: var(--primary-orange);
+    transition: transform 0.2s ease;
 }
 
 header .dropdown-item:hover,
 header .dropdown-item:focus {
-    background-color: rgba(255, 90, 31, 0.06);
-    color: var(--primary-orange);
+    background-color: rgba(255, 90, 31, 0.08);
+    color: var(--primary-orange) !important;
+    transform: translateX(4px);
 }
 
 /* Petit fondu à l'ouverture.
@@ -155,20 +165,28 @@ header .dropdown-menu.show {
 
 /* Item "Se déconnecter" : en rouge, pour bien le distinguer des autres. */
 header .dropdown-item-danger {
-    color: #c0392b;
+    color: #e11d48;
 }
+
+header .dropdown-item-danger i {
+    color: #e11d48;
+}
+
 header .dropdown-item-danger:hover,
 header .dropdown-item-danger:focus {
-    background-color: rgba(192, 57, 43, 0.10);
-    color: #c0392b;
+    background-color: rgba(225, 29, 72, 0.08) !important;
+    color: #e11d48 !important;
+    transform: translateX(4px);
 }
 
-/* =========================
+/* ============================================================
    RESPONSIVE HEADER
-========================= */
+   Points de rupture standards du site (voir styles.css) :
+   991.98px = tablette | 767.98px = petit écran | 575.98px = mobile
+============================================================ */
 
 /* ── Tablette ── */
-@media (max-width: 991px) {
+@media (max-width: 991.98px) {
     .logo-link {
         width: 80px;
         height: 80px;
@@ -193,7 +211,7 @@ header .dropdown-item-danger:focus {
 }
 
 /* ── Mobile ── */
-@media (max-width: 576px) {
+@media (max-width: 575.98px) {
     header {
         padding: 0.6rem 0;
     }

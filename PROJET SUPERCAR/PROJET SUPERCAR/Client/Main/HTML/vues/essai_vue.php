@@ -44,9 +44,11 @@ require __DIR__ . '/layout/header.php';
       <label>Choisir une voiture</label>
       <select name="voiture" required>
         <?php foreach ($voitures as $row) : ?>
+          <?php $estIndisponible = ((int) $row['disponible'] === 0); ?>
           <option value="<?= (int)$row['id_voiture'] ?>"
-            <?= ($row['id_voiture'] == $voitureSelected) ? 'selected' : '' ?>>
-            <?= e($row['model']) ?>
+            <?= ($row['id_voiture'] == $voitureSelected) ? 'selected' : '' ?>
+            <?= $estIndisponible ? 'disabled style="color:#9aa0a6;"' : '' ?>>
+            <?= e($row['model']) ?><?= $estIndisponible ? ' (indisponible)' : '' ?>
           </option>
         <?php endforeach; ?>
       </select>

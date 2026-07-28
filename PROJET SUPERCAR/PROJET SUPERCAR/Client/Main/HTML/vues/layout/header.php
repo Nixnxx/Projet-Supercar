@@ -22,14 +22,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Feuilles de style du site (une par grande partie) -->
-    <link rel="stylesheet" href="css/styles.css?v=1.1">   <!-- variables + base -->
-    <link rel="stylesheet" href="css/header.css?v=1.1">
-    <link rel="stylesheet" href="css/accueil.css?v=1.1">
-    <link rel="stylesheet" href="css/footer.css?v=1.1">
-    <link rel="stylesheet" href="css/contact.css?v=1.1">
-    <link rel="stylesheet" href="css/service.css?v=1.1">
-    <link rel="stylesheet" href="css/voiture.css?v=1.1">
-    <link rel="stylesheet" href="css/essai.css?v=1.1">
+    <link rel="stylesheet" href="css/styles.css?v=1.2">   <!-- variables + base -->
+    <link rel="stylesheet" href="css/header.css?v=1.2">
+    <link rel="stylesheet" href="css/accueil.css?v=1.2">
+    <link rel="stylesheet" href="css/footer.css?v=1.2">
+    <link rel="stylesheet" href="css/contact.css?v=1.2">
+    <link rel="stylesheet" href="css/service.css?v=1.2">
+    <link rel="stylesheet" href="css/voiture.css?v=1.2">
+    <link rel="stylesheet" href="css/essai.css?v=1.2">
     <!-- Note : connexion.css, inscription.css, logout.css et contactclient.css
          ont été retirés : les 2 premiers ne servaient nulle part (les pages
          de connexion utilisent transparent.css) et les 2 autres n'existaient

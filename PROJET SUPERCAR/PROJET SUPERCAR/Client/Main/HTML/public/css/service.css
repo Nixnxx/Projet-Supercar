@@ -202,8 +202,14 @@
     color: #fff;
 }
 
-/* ── Responsive ── */
-@media (max-width: 768px) {
+/* ============================================================
+   RESPONSIVE SERVICES
+   Points de rupture standards du site (voir styles.css) :
+   991.98px = tablette | 767.98px = petit écran | 575.98px = mobile
+============================================================ */
+
+/* ── Petit écran / grand mobile ── */
+@media (max-width: 767.98px) {
     .services-wrapper {
         grid-template-columns: 1fr;
         padding: 0 16px;

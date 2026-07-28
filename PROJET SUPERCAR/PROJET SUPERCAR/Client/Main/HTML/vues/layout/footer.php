@@ -25,8 +25,7 @@ $whatsapp_numero = WHATSAPP_NUMERO;
 
             <div class="col-md-3">
                 <h6 class="fw-bold mb-3" style="color: var(--primary-orange);">Contactez-nous</h6>
-                <p class="mb-2"><i class="bi bi-telephone-fill me-2"></i> +230 57 45 61 70</p>
-                <p class="mb-2"><i class="bi bi-whatsapp me-2 text-success"></i> +230 57 45 61 70 (WhatsApp)</p>
+                <p class="mb-2"><i class="bi bi-whatsapp me-2 text-success"></i> +230 57 45 61 70 </p>
                 <p class="mb-2"><i class="bi bi-envelope-fill me-2"></i> contact@supercar.mu</p>
                 <p class="mb-0"><i class="bi bi-geo-alt-fill me-2"></i> Ebene / Cybercity, Maurice</p>
               </div>
@@ -36,7 +35,6 @@ $whatsapp_numero = WHATSAPP_NUMERO;
                 <a href="#"><i class="bi bi-facebook mx-2 fs-4"></i></a>
                 <a href="#"><i class="bi bi-instagram mx-2 fs-4"></i></a>
                 <a href="https://wa.me/<?= $whatsapp_numero ?>" target="_blank" rel="noopener"><i class="bi bi-whatsapp mx-2 fs-4"></i></a>
-                <a href="#"><i class="bi bi-linkedin mx-2 fs-4"></i></a>
             </div>
 
             <div class="col-md-3">

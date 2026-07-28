@@ -17,7 +17,7 @@ require __DIR__ . '/layout_haut.php';
 <?php endif; ?>
 
 <!-- FILTRES -->
-<div style="display:flex;gap:6px;margin-bottom:20px;">
+<div class="filtres">
     <a href="admin_essais.php" class="btn <?= $filtre<0?'btn-primary':'btn-ghost' ?>">Tout</a>
     <a href="?filtre=0" class="btn <?= $filtre===0?'btn-primary':'btn-ghost' ?>">En attente</a>
     <a href="?filtre=1" class="btn <?= $filtre===1?'btn-primary':'btn-ghost' ?>">Confirmés</a>
@@ -73,7 +73,7 @@ require __DIR__ . '/layout_haut.php';
 <div class="modal">
     <h3>Demande #<?= (int)$detail['id_demande'] ?></h3>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;">
+    <div class="form-2col">
         <div>
             <div class="form-label" style="font-size:10px;text-transform:uppercase;letter-spacing:.6px;color:var(--text-dim);margin-bottom:3px;">Client</div>
             <div style="color:var(--text)"><?= e($detail['nom'].' '.$detail['prenom']) ?></div>

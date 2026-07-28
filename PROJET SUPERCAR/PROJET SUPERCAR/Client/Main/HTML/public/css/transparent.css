@@ -105,25 +105,30 @@ section p {
     padding: 14px;
     border-radius: 30px;
     outline: none;
-    border: 1.5px solid transparent;
-    background-color: #ff5a1f;
+    border: none;
+    background: linear-gradient(135deg, #ff6b35, #ff5a1f);
     color: white;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.25s ease;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     display: block;
     text-align: center;
     text-decoration: none;
-    box-shadow: 0 4px 15px rgba(255, 90, 31, 0.35);
+    box-shadow: 0 4px 15px rgba(255, 90, 31, 0.25);
     margin-top: 25px;
 }
 
 .login-btn:hover {
-    background-color: transparent;
-    color: #ff5a1f;
-    border-color: #ff5a1f;
-    box-shadow: 0 0 20px rgba(255, 90, 31, 0.5);
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #ff7b4b, #ff6a35);
+    color: white;
+    box-shadow: 0 8px 24px rgba(255, 90, 31, 0.45);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(255, 90, 31, 0.25);
 }
 
 .register-link {
@@ -211,16 +216,22 @@ body.connexion.loaded section, body.inscription.loaded section {
     transform: translateY(0);
 }
 
-/* =========================
-   RESPONSIVE LOGIN / INSCRIPTION
-========================= */
-@media (max-width: 768px) {
+/* ============================================================
+   RESPONSIVE CONNEXION / INSCRIPTION
+   Points de rupture standards du site (voir styles.css) :
+   991.98px = tablette | 767.98px = petit écran | 575.98px = mobile
+============================================================ */
+
+/* ── Petit écran / grand mobile ── */
+@media (max-width: 767.98px) {
     body.connexion, body.inscription {
-        background-attachment: scroll !important; /* Fixes broken iOS fixed background repaint */
+        /* L'image de fond défile avec la page : sur iPhone, un fond "fixed"
+           s'affiche mal (l'image saute au défilement). */
+        background-attachment: scroll !important;
         background-position: center center;
         background-size: cover;
     }
-    
+
     section {
         padding: 30px 20px;
         width: 100%;
@@ -228,13 +239,34 @@ body.connexion.loaded section, body.inscription.loaded section {
     }
 }
 
-@media (max-width: 480px) {
+/* ── Mobile ── */
+@media (max-width: 575.98px) {
+    body.connexion, body.inscription {
+        padding: 20px 12px;
+    }
+
     section {
         padding: 24px 16px;
         border-radius: 16px;
     }
-    
+
     section h1 {
         font-size: 26px;
+    }
+
+    /* Champs plus confortables au doigt */
+    .input-box input {
+        padding: 12px 16px;
+        padding-right: 44px;
+        font-size: 14px;
+    }
+
+    .login-btn {
+        padding: 13px;
+        font-size: 15px;
+    }
+
+    .checkbox-box {
+        font-size: 12px;
     }
 }

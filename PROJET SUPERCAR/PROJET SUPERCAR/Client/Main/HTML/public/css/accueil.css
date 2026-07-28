@@ -250,11 +250,14 @@ form button:active {
     transform: scale(1.1) rotate(5deg);
 }
 
-/* =========================
+/* ============================================================
    RESPONSIVE ACCUEIL
-========================= */
+   Points de rupture standards du site (voir styles.css) :
+   991.98px = tablette | 767.98px = petit écran | 575.98px = mobile
+============================================================ */
 
-@media (max-width: 991px) {
+/* ── Tablette ── */
+@media (max-width: 991.98px) {
 
     #accueil {
         padding: 60px 0;
@@ -283,7 +286,8 @@ form button:active {
     }
 }
 
-@media (max-width: 768px) {
+/* ── Petit écran / grand mobile ── */
+@media (max-width: 767.98px) {
 
     section {
         padding: 60px 0;
@@ -380,9 +384,20 @@ form button:active {
     .bi-check-circle-fill {
         font-size: 1.2rem;
     }
+
+    /* Grille de photos du haut : les images passent les unes sous les autres */
+    .hero-grid {
+        flex-direction: column;
+    }
+
+    .hero-grid-left img,
+    .hero-grid-right img {
+        height: 220px;
+    }
 }
 
-@media (max-width: 480px) {
+/* ── Mobile ── */
+@media (max-width: 575.98px) {
 
     section {
         padding: 40px 0;
@@ -452,23 +467,12 @@ form button:active {
     border-color: var(--primary-orange);
 }
 
-/* Hauteurs sur grand écran */
-@media (min-width: 768px) {
-    .hero-grid-left img {
-        height: 420px;
-    }
-    .hero-grid-right img {
-        height: 202px;
-    }
+/* Hauteurs par défaut (ordinateur). Sur petit écran, ces hauteurs sont
+   remplacées dans le bloc responsive plus haut (@media 767.98px). */
+.hero-grid-left img {
+    height: 420px;
 }
 
-/* Adaptation mobile */
-@media (max-width: 767.98px) {
-    .hero-grid {
-        flex-direction: column;
-    }
-    .hero-grid-left img, 
-    .hero-grid-right img {
-        height: 220px;
-    }
+.hero-grid-right img {
+    height: 202px;
 }

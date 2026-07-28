@@ -250,9 +250,14 @@
     transform:translateY(-2px);
 }
 
-/* RESPONSIVE */
+/* ============================================================
+   RESPONSIVE ESSAI
+   Points de rupture standards du site (voir styles.css) :
+   991.98px = tablette | 767.98px = petit écran | 575.98px = mobile
+============================================================ */
 
-@media (max-width: 768px) {
+/* ── Petit écran / grand mobile ── */
+@media (max-width: 767.98px) {
     #essai {
         padding: 60px 16px;
     }
@@ -270,7 +275,8 @@
     }
 }
 
-@media (max-width: 480px) {
+/* ── Mobile ── */
+@media (max-width: 575.98px) {
     #essai {
         padding: 40px 12px;
     }

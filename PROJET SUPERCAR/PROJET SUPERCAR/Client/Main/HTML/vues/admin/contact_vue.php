@@ -36,7 +36,7 @@ require __DIR__ . '/layout_haut.php';
 <?php if ($tab === 'messages'): ?>
 
 <!-- STATS -->
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;">
+<div class="stats-3col">
     <div class="stat-card"><div class="stat-icon"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8"/></svg></div><div><div class="stat-label">Total</div><div class="stat-value"><?= (int)$stats['total'] ?></div></div></div>
     <div class="stat-card"><div class="stat-icon orange"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01"/></svg></div><div><div class="stat-label">Non lus</div><div class="stat-value" style="color:var(--accent)"><?= (int)$stats['non_lus'] ?></div></div></div>
     <div class="stat-card"><div class="stat-icon"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div><div><div class="stat-label">Lus</div><div class="stat-value"><?= (int)$stats['lus'] ?></div></div></div>

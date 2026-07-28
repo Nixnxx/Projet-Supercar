@@ -24,6 +24,24 @@
     .btn-orange:hover { background: #cc5500; color: #fff; }
     label      { color: #aaa; font-size: 0.9rem; }
     .apercu    { max-height: 130px; border-radius: 6px; margin-top: 8px; border: 1px solid #444; }
+
+    /* ── RESPONSIVE ──
+       Mêmes points de rupture que le reste du site (voir styles.css). */
+
+    /* Petit écran : le cadre ne colle plus aux bords de l'écran */
+    @media (max-width: 767.98px) {
+      .formulaire { margin: 20px 14px; }
+    }
+
+    /* Mobile : on réduit encore les marges et les boutons passent
+       l'un sous l'autre sur toute la largeur (plus faciles à toucher) */
+    @media (max-width: 575.98px) {
+      .formulaire      { margin: 14px 10px; }
+      .entete          { padding: 12px 14px; font-size: 0.95rem; }
+      .formulaire .p-4 { padding: 1rem !important; }
+      .boutons-form    { flex-direction: column; }
+      .boutons-form .btn { width: 100%; }
+    }
   </style>
 </head>
 <body>
@@ -69,12 +87,12 @@
         </div>
 
         <div class="row g-3 mb-3">
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <label>Lien du bouton</label>
             <input type="text" name="lien" class="form-control"
                    value="<?= e($donnees['lien'] ?? 'essai.php') ?>">
           </div>
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <label>Texte du bouton</label>
             <input type="text" name="texte_lien" class="form-control"
                    value="<?= e($donnees['texte_lien'] ?? 'Demander un essai') ?>">
@@ -82,12 +100,12 @@
         </div>
 
         <div class="row g-3 mb-3">
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <label>Ordre d'affichage</label>
             <input type="number" name="ordre" class="form-control"
                    value="<?= (int)($donnees['ordre'] ?? 0) ?>" min="0">
           </div>
-          <div class="col-6 d-flex align-items-end">
+          <div class="col-12 col-md-6 d-flex align-items-end">
             <div class="form-check form-switch">
               <input class="form-check-input" type="checkbox" name="actif" id="actif"
                      <?= ($donnees['actif'] ?? 1) ? 'checked' : '' ?>>
@@ -119,12 +137,12 @@
         </div>
 
         <div class="row g-3 mb-3">
-          <div class="col-8">
+          <div class="col-12 col-md-8">
             <label>Texte du bouton</label>
             <input type="text" name="texte_cta" class="form-control"
                    value="<?= e($donnees['texte'] ?? '') ?>">
           </div>
-          <div class="col-4">
+          <div class="col-12 col-md-4">
             <label>Lien</label>
             <input type="text" name="lien_cta" class="form-control"
                    value="<?= e($donnees['lien'] ?? 'essai.php') ?>">
@@ -153,12 +171,12 @@
         </div>
 
         <div class="row g-3 mb-3">
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <label>Ordre</label>
             <input type="number" name="ordre" class="form-control"
                    value="<?= (int)($donnees['ordre'] ?? 0) ?>" min="0">
           </div>
-          <div class="col-6 d-flex align-items-end">
+          <div class="col-12 col-md-6 d-flex align-items-end">
             <div class="form-check form-switch">
               <input class="form-check-input" type="checkbox" name="actif" id="actif"
                      <?= ($donnees['actif'] ?? 1) ? 'checked' : '' ?>>
@@ -179,12 +197,12 @@
         </div>
 
         <div class="row g-3 mb-3">
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <label>Ordre</label>
             <input type="number" name="ordre" class="form-control"
                    value="<?= (int)($donnees['ordre'] ?? 0) ?>" min="0">
           </div>
-          <div class="col-6 d-flex align-items-end">
+          <div class="col-12 col-md-6 d-flex align-items-end">
             <div class="form-check form-switch">
               <input class="form-check-input" type="checkbox" name="actif" id="actif"
                      <?= ($donnees['actif'] ?? 1) ? 'checked' : '' ?>>
@@ -211,12 +229,12 @@
         </div>
 
         <div class="row g-3 mb-3">
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <label>Ordre</label>
             <input type="number" name="ordre" class="form-control"
                    value="<?= (int)($donnees['ordre'] ?? 0) ?>" min="0">
           </div>
-          <div class="col-6 d-flex align-items-end">
+          <div class="col-12 col-md-6 d-flex align-items-end">
             <div class="form-check form-switch">
               <input class="form-check-input" type="checkbox" name="actif" id="actif"
                      <?= ($donnees['actif'] ?? 1) ? 'checked' : '' ?>>
@@ -229,7 +247,7 @@
 
 
       <hr style="border-color:#333">
-      <div class="d-flex gap-3">
+      <div class="d-flex gap-3 boutons-form">
         <button type="submit" class="btn btn-orange px-4">
           💾 <?= $id > 0 ? 'Enregistrer les modifications' : 'Ajouter' ?>
         </button>

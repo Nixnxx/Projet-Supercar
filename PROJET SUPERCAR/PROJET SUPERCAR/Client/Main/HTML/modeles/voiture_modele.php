@@ -54,16 +54,18 @@ function voiture_disponible($lienbd, $id) {
 }
 
 // Liste des voitures pour le formulaire d'essai (filtrable par marque).
+// On récupère aussi "disponible" pour griser les voitures déjà réservées
+// dans le menu déroulant (voir vues/essai_vue.php).
 function get_voitures_pour_essai($lienbd, $id_marque = 0) {
     if ($id_marque > 0) {
         $stmt = mysqli_prepare($lienbd,
-            "SELECT v.id_voiture, v.model, m.nom AS marque
+            "SELECT v.id_voiture, v.model, v.disponible, m.nom AS marque
              FROM voiture v JOIN marque m ON v.id_marque = m.id_marque
              WHERE v.id_marque = ? ORDER BY v.model");
         mysqli_stmt_bind_param($stmt, "i", $id_marque);
     } else {
         $stmt = mysqli_prepare($lienbd,
-            "SELECT v.id_voiture, v.model, m.nom AS marque
+            "SELECT v.id_voiture, v.model, v.disponible, m.nom AS marque
              FROM voiture v JOIN marque m ON v.id_marque = m.id_marque
              ORDER BY m.nom, v.model");
     }

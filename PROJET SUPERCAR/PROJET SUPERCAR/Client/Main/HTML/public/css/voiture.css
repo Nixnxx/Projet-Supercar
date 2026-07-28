@@ -264,12 +264,14 @@
     font-weight: 500;
 }
 
-/* =========================
+/* ============================================================
    RESPONSIVE VOITURES
-========================= */
+   Points de rupture standards du site (voir styles.css) :
+   991.98px = tablette | 767.98px = petit écran | 575.98px = mobile
+============================================================ */
 
 /* ── Tablette ── */
-@media (max-width: 991px) {
+@media (max-width: 991.98px) {
     .cars-grid {
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 20px;
@@ -289,7 +291,7 @@
 }
 
 /* ── Mobile ── */
-@media (max-width: 576px) {
+@media (max-width: 575.98px) {
     #voitures .container {
         padding-left: 12px;
         padding-right: 12px;

@@ -8,6 +8,30 @@
 }
 
 
+/* ============================================================
+   POINTS DE RUPTURE (BREAKPOINTS) DU SITE  —  À LIRE EN PREMIER
+   ------------------------------------------------------------
+   Le site utilise Bootstrap 5. Pour ne pas avoir deux systèmes
+   qui se contredisent, on reprend EXACTEMENT les mêmes points de
+   rupture que Bootstrap. Il y en a 3, et ce sont les SEULS
+   utilisés dans TOUS les fichiers CSS du site (client et admin) :
+
+     @media (max-width: 991.98px)   →  TABLETTE
+     @media (max-width: 767.98px)   →  PETIT ÉCRAN / GRAND MOBILE
+     @media (max-width: 575.98px)   →  MOBILE
+
+   Pourquoi des valeurs en .98 ? Parce que Bootstrap déclenche ses
+   propres styles À PARTIR de 992px, 768px et 576px. En s'arrêtant
+   à 991.98px on évite que les deux se déclenchent en même temps
+   sur la même largeur d'écran.
+
+   RÈGLE : dans chaque fichier CSS, le responsive est regroupé à la
+   FIN du fichier, et les blocs sont écrits dans cet ordre :
+   tablette, puis petit écran, puis mobile (du plus grand au plus
+   petit). On ne crée jamais un autre point de rupture.
+============================================================ */
+
+
 /* =========================
    VARIABLES GLOBALES  —  THÈME "ANTHRACITE CHIC"
    -------------------------
