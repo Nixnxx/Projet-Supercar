@@ -1,0 +1,3 @@
+# Dossier de code : jamais accessible directement par le navigateur.
+# Seuls les points d'entrée du dossier public/ ont le droit de l'inclure (require).
+Require all denied

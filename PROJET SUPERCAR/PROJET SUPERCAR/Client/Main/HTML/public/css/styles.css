@@ -1,0 +1,149 @@
+/* =========================
+   RESET
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   VARIABLES GLOBALES  —  THÈME "ANTHRACITE CHIC"
+   -------------------------
+   3 couleurs : ORANGE (accent), GRIS (structure) et BLANC (cartes).
+   - Header + footer : gris ANTHRACITE (foncé mais pas noir).
+   - Contenu         : fond gris clair + cartes blanches.
+   Tout est réglé ICI : changer une couleur se répercute sur tout le site.
+========================= */
+:root {
+    /* Accent orange sportif */
+    --primary-orange:   #ff5a1f; 
+    --secondary-orange: #e03a00;
+
+    /* Thème clair premium (Light Slate) */
+    --band-grey:        rgba(255, 255, 255, 0.85); /* En-tête transparent verre */
+    --band-grey-2:      #f8fafc;
+    --dark-grey:        #ffffff; /* Cartes et sections principales */
+    --medium-grey:      #f1f5f9; /* Sections alternatives et fonds de champs */
+    --light-grey:       #ffffff; /* Fonds de cartes */
+    --page-bg:          #fafbfd; /* Fond de page principal */
+
+    /* Textes */
+    --text-dark:        #0f172a; /* Titres (Slate 900) */
+    --text-grey:        #475569; /* Texte de lecture (Slate 600) */
+    --text-muted:       #94a3b8; /* Texte secondaire (Slate 400) */
+
+    --white: #ffffff;          /* texte blanc sur les boutons orange */
+    --accent-grey: rgba(15, 23, 42, 0.08);    /* bordures très fines */
+}
+
+
+/* =========================
+   BASE
+========================= */
+body {
+    font-family: 'Outfit', sans-serif;
+    line-height: 1.6;
+    color: var(--text-grey);
+    background: var(--page-bg);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+
+/* =========================
+   LIEN ACTIF (HEADER)
+========================= */
+a.active {
+    color: var(--primary-orange) !important;
+    font-weight: 700;
+    text-decoration: none;
+    position: relative;
+}
+a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--primary-orange);
+    border-radius: 2px;
+}
+
+
+/* =========================
+   BOUTONS / TEXTES ORANGE
+   (remplacent le jaune "warning" de Bootstrap pour rester dans le thème)
+========================= */
+.btn-orange {
+    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+    color: #fff;
+    border: none;
+    box-shadow: 0 4px 15px rgba(255, 90, 31, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-orange:hover {
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(255, 90, 31, 0.45);
+}
+
+.btn-outline-orange {
+    border: 1px solid var(--primary-orange);
+    color: var(--primary-orange);
+    background: transparent;
+    transition: all 0.2s ease;
+}
+.btn-outline-orange:hover {
+    background: var(--primary-orange);
+    color: #fff;
+}
+
+.text-orange { color: var(--primary-orange) !important; }
+
+/* Bande orange pleine (utilisée pour la section "stats" de l'accueil et
+   toute autre section qu'on veut faire ressortir fortement en orange). */
+.bande-orange {
+    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+    color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.28);
+}
+
+
+/* =========================
+   HEADER → voir header.css
+========================= */
+
+/* =========================
+   FOOTER → voir footer.css
+========================= */
+
+/* =========================
+   VOITURES → voir voiture.css
+========================= */
+
+/* =========================
+   SERVICES → voir service.css
+========================= */
+
+/* =========================
+   CONTACT → voir contact.css
+========================= */
+
+/* =========================
+   ANIMATION D'OUVERTURE DE PAGE (Transition JS/CSS - Niveau BTS SIO)
+========================= */
+body {
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+body.loaded {
+    opacity: 1;
+}

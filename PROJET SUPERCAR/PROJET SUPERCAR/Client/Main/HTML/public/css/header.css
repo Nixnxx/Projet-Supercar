@@ -1,0 +1,256 @@
+/* =========================
+   HEADER
+========================= */
+
+header {
+    /* Bandeau BLANC FLOTTANT / GLASSMORPHIC */
+    background: var(--band-grey);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1.5px solid var(--accent-grey);
+    padding: 0.2rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+}
+
+/* En-tête clair => texte des liens élégant */
+header .text-white {
+    color: var(--text-grey) !important;
+    transition: color 0.25s ease;
+}
+header nav a:hover {
+    color: var(--primary-orange) !important;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    transition: transform 0.25s ease;
+}
+header h1:hover {
+    transform: scale(1.02);
+}
+
+.logo-link {
+    display: block;
+    width: 130px;
+    height: 130px;
+    background: url('../Images-Index/marque.webp') no-repeat center;
+    background-size: contain;
+    cursor: pointer;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+header h2 {
+    font-size: 0.9rem;
+    color: var(--text-grey);
+    font-weight: 300;
+    width: 100%;
+    margin-top: 5px;
+    margin-left: 60px;
+}
+
+/* Navigation */
+
+.nav-list a,
+.dropdown-item {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-list a:hover,
+.dropdown-item:hover {
+    color: var(--primary-orange) !important;
+}
+
+/* ── Menu déroulant (Se connecter / S'inscrire / Se déconnecter) ── */
+/* On préfixe par "header" pour que NOS règles gagnent contre celles de
+   Bootstrap (qui est chargé après dans le <head>). Sinon le menu ressort
+   blanc au lieu du fond sombre voulu. */
+
+header .dropdown-menu {
+    background: #ffffff;
+    border: 1px solid var(--accent-grey);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+/* Texte des liens du menu */
+header .dropdown-item {
+    color: var(--text-grey);
+}
+
+header .dropdown-item:hover,
+header .dropdown-item:focus {
+    background-color: rgba(255, 90, 31, 0.06);
+    color: var(--primary-orange);
+}
+
+/* Petit fondu à l'ouverture.
+   IMPORTANT : on anime UNIQUEMENT l'opacité, jamais "transform".
+   Bootstrap place le menu SOUS le bouton grâce à "transform" ; si on
+   animait aussi "transform" ici, on écraserait ce placement et le menu
+   se superposerait au bouton (c'était le bug d'origine). */
+header .dropdown-menu.show {
+    animation: dropdownFade 0.2s ease-out;
+}
+
+@keyframes dropdownFade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.dropend .dropdown-toggle::after {
+    display: none;
+}
+
+/* (La règle "a.active" du lien de menu actif est définie une seule fois,
+   dans styles.css, pour éviter le doublon.) */
+
+/* ── Bouton "compte" (en haut à droite) ──
+   Utilisé DANS LES DEUX ÉTATS (connecté ou non) pour un rendu cohérent :
+   bordure orange arrondie qui se remplit au survol / à l'ouverture du menu. */
+.btn-compte {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1.5px solid var(--primary-orange);
+    background: transparent;
+    color: var(--primary-orange);
+    border-radius: 24px;
+    padding: 7px 18px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-compte i {
+    font-size: 1.2rem;
+}
+
+/* Survol OU menu ouvert (aria-expanded="true") : le bouton se remplit. */
+.btn-compte:hover,
+.btn-compte:focus,
+.btn-compte[aria-expanded="true"] {
+    background: var(--primary-orange);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(255, 90, 31, 0.25);
+}
+
+/* Item "Se déconnecter" : en rouge, pour bien le distinguer des autres. */
+header .dropdown-item-danger {
+    color: #c0392b;
+}
+header .dropdown-item-danger:hover,
+header .dropdown-item-danger:focus {
+    background-color: rgba(192, 57, 43, 0.10);
+    color: #c0392b;
+}
+
+/* =========================
+   RESPONSIVE HEADER
+========================= */
+
+/* ── Tablette ── */
+@media (max-width: 991px) {
+    .logo-link {
+        width: 80px;
+        height: 80px;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    nav.d-flex {
+        gap: 6px !important;
+    }
+
+    nav.d-flex a {
+        font-size: 0.85rem;
+    }
+
+    .btn-compte {
+        padding: 6px 14px;
+        font-size: 0.85rem;
+    }
+}
+
+/* ── Mobile ── */
+@media (max-width: 576px) {
+    header {
+        padding: 0.6rem 0;
+    }
+
+    header .container > div {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    /* Logo + titre centrés */
+    header .d-flex.align-items-center.gap-3 {
+        justify-content: center;
+        width: 100%;
+    }
+
+    header h1 {
+        font-size: 1.4rem;
+        letter-spacing: 0.5px;
+    }
+
+    .logo-link {
+        width: 50px;
+        height: 50px;
+    }
+
+    header h2 {
+        margin-left: 0;
+        text-align: center;
+        font-size: 0.78rem;
+    }
+
+    /* Nav centré et wrappé */
+    nav.d-flex {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 6px !important;
+        width: 100%;
+    }
+
+    nav.d-flex a {
+        font-size: 0.75rem;
+        padding: 4px 6px;
+    }
+
+    /* Bouton compte centré */
+    header .container > div > div:last-child {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .btn-compte {
+        padding: 5px 12px;
+        font-size: 0.8rem;
+    }
+}
+
+/* (L'ancienne règle "a[href=logout.php]" a été retirée : le lien de
+   déconnexion est désormais un simple élément du menu déroulant, stylé
+   par .dropdown-item-danger ci-dessus. Plus besoin d'un bouton bordé.) */

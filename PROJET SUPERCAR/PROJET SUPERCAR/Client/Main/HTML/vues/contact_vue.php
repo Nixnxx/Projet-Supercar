@@ -1,0 +1,86 @@
+<?php
+// ============================================================
+//  vues/contact_vue.php  —  VUE : page de contact
+//  Reçoit : $client (pré-remplissage), $config (infos concession).
+//  Les données de configuration sont échappées avec e().
+// ============================================================
+require __DIR__ . '/layout/header.php';
+?>
+
+<section id="contact">
+    <div class="container">
+        <h2>Contactez-nous</h2>
+
+        <div class="contact-container">
+
+            <!-- CARTE -->
+            <div class="mini-map-wrapper">
+                <div class="map-header">
+                    <h3>Notre Concession</h3>
+                </div>
+
+                <div class="mini-map">
+                    <iframe src="<?= e($config['map_embed'] ?? '') ?>"></iframe>
+                </div>
+            </div>
+
+            <!-- FORMULAIRE -->
+<form method="POST">
+
+    <input type="text" name="nom"
+       placeholder="Nom"
+       value="<?= e($client['nom'] ?? '') ?>" required>
+
+<input type="text" name="numero"
+       placeholder="Téléphone"
+       value="<?= e($client['telephone'] ?? '') ?>" required>
+
+<input type="email" name="email"
+       placeholder="Email"
+       value="<?= e($client['email'] ?? '') ?>" required>
+
+    <textarea name="message"
+              placeholder="Votre message" required></textarea>
+
+    <button type="submit">Envoyer</button>
+</form>
+
+        </div>
+    </div>
+</section>
+
+<!-- BULLES D'INFOS -->
+<div class="contact-info-bubbles">
+
+    <div class="info-bubble">
+        <h4>Adresse</h4>
+        <p><?= e($config['adresse'] ?? '') ?></p>
+    </div>
+
+    <div class="info-bubble">
+        <h4>Email</h4>
+        <p><?= e($config['email'] ?? '') ?></p>
+    </div>
+
+    <div class="info-bubble">
+        <h4>Téléphone</h4>
+        <p><?= e($config['telephone'] ?? '') ?></p>
+    </div>
+
+</div>
+
+<!-- FENÊTRE DE CONFIRMATION -->
+<?php if (isset($_GET['succes'])) : ?>
+<div class="modal fade show d-block" tabindex="-1" style="background:rgba(0,0,0,0.6);">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content border-0 rounded-3" style="background:#111;">
+            <div class="modal-body text-center px-4 py-4">
+                <p class="text-white mb-3" style="font-size:0.95rem;">Message bien envoyé.</p>
+                <a href="contact.php" class="btn btn-sm px-4" style="background:#f97316; color:white; border-radius:20px;">OK</a>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+
+<?php require __DIR__ . '/layout/footer.php'; ?>

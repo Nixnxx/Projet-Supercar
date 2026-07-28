@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body.connexion {
+    color: white;
+    background: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.6)), url(../Images-Index/image-login/bmw2.webp);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+body.inscription {
+    color: white;
+    background: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.6)), url(../Images-Index/image-login/bmw3.webp);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+section {
+    background-color: rgba(15, 23, 42, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 450px;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+section h1 {
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    color: white;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+section p {
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.input-box {
+    width: 100%;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 14px 20px;
+    padding-right: 48px;
+    border-radius: 30px;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 15px;
+    transition: all 0.25s ease;
+}
+
+.input-box input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.input-box input:focus {
+    border-color: #ff5a1f;
+    background-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 15px rgba(255, 90, 31, 0.35);
+}
+
+.input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 16px;
+    pointer-events: none;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 30px;
+    outline: none;
+    border: 1.5px solid transparent;
+    background-color: #ff5a1f;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(255, 90, 31, 0.35);
+    margin-top: 25px;
+}
+
+.login-btn:hover {
+    background-color: transparent;
+    color: #ff5a1f;
+    border-color: #ff5a1f;
+    box-shadow: 0 0 20px rgba(255, 90, 31, 0.5);
+}
+
+.register-link {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.register-link p {
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.register-link a {
+    color: #ff5a1f;
+    text-decoration: none;
+    transition: color 0.25s ease;
+    font-weight: bold;
+}
+
+.register-link a:hover {
+    color: #e03a00;
+    text-decoration: underline;
+}
+
+/* Lien "Retour à l'accueil" (le survol était géré en JS avant, maintenant en CSS) */
+.retour-accueil {
+    display: inline-block;
+    margin-top: 15px;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.25s ease;
+}
+
+.retour-accueil:hover {
+    color: #ff5a1f;
+}
+
+/* Case "politique de confidentialité" (connexion + inscription) */
+.checkbox-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.4;
+    text-align: left;
+}
+
+.checkbox-box label {
+    cursor: pointer;
+}
+
+.checkbox-box input {
+    width: 16px;
+    height: 16px;
+    accent-color: #ff5a1f;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.checkbox-box a {
+    color: #ff5a1f;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* =========================
+   ANIMATION D'OUVERTURE DE PAGE (Transition JS/CSS - Niveau BTS SIO)
+========================= */
+body.connexion section, body.inscription section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+body.connexion.loaded section, body.inscription.loaded section {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================
+   RESPONSIVE LOGIN / INSCRIPTION
+========================= */
+@media (max-width: 768px) {
+    body.connexion, body.inscription {
+        background-attachment: scroll !important; /* Fixes broken iOS fixed background repaint */
+        background-position: center center;
+        background-size: cover;
+    }
+    
+    section {
+        padding: 30px 20px;
+        width: 100%;
+        max-width: 380px;
+    }
+}
+
+@media (max-width: 480px) {
+    section {
+        padding: 24px 16px;
+        border-radius: 16px;
+    }
+    
+    section h1 {
+        font-size: 26px;
+    }
+}

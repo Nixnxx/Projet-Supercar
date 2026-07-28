@@ -189,6 +189,7 @@ CREATE TABLE IF NOT EXISTS `voiture` (
   `km`            int          DEFAULT NULL,
   `image`         varchar(255) DEFAULT NULL,
   `stock_total`   int          DEFAULT '1',
+  `disponible`    tinyint(1)   NOT NULL DEFAULT '1',
   `id_marque`     int          DEFAULT NULL,
   PRIMARY KEY (`id_voiture`),
   KEY `id_marque` (`id_marque`)

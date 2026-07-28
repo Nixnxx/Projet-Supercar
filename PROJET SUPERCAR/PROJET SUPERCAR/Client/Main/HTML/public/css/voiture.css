@@ -1,0 +1,352 @@
+/* =========================
+   VARIABLES & BASE
+========================= */
+
+/* =========================
+   GRILLE & CARTES VOITURES
+========================= */
+.cars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 30px;
+    margin: 50px 0;
+}
+
+.car-card {
+    background: var(--light-grey);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--accent-grey);
+    border-top: 4px solid var(--primary-orange); /* liseré orange permanent */
+    transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 6px 22px rgba(15, 23, 42, 0.03);
+}
+
+.car-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--primary-orange);
+    box-shadow: 0 16px 35px rgba(255, 90, 31, 0.12);
+}
+
+.car-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background: var(--medium-grey);
+}
+
+.car-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.car-card:hover .car-image-wrapper img {
+    transform: scale(1.05);
+}
+
+.car-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+    color: var(--white);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.car-content {
+    padding: 25px;
+}
+
+.car-content h3 {
+    font-size: 1.3rem;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.car-description {
+    font-size: 0.9rem;
+    color: #6b727b;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.car-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--accent-grey);
+}
+
+.car-price {
+    font-size: 1.4rem;
+    color: var(--primary-orange);
+    font-weight: 700;
+}
+
+.btn-commander {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 15px rgba(255, 90, 31, 0.25);
+    white-space: nowrap;
+}
+
+.btn-commander:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(255, 90, 31, 0.4);
+}
+
+.btn-commander:active {
+    transform: translateY(0);
+}
+
+
+/* =========================
+   BARRE DE RECHERCHE
+========================= */
+.search-bar {
+    margin: 30px auto 50px;
+    max-width: 500px;
+    text-align: center;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: 30px;
+    border: 1.5px solid var(--accent-grey);
+    background: var(--medium-grey);
+    color: var(--text-dark);
+    font-size: 1rem;
+    transition: 0.25s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+.search-bar input::placeholder {
+    color: #8a9099;
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: var(--primary-orange);
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(255, 90, 31, 0.10);
+}
+
+
+/* =========================
+   SÉPARATEUR DE MARQUE
+========================= */
+.brand-separator {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin: 50px 0 30px;
+}
+
+.brand-separator p {
+    font-size: 1.2rem;
+    color: var(--text-grey);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.brand-separator p::before,
+.brand-separator p::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 120px;
+    height: 1px;
+    background: var(--accent-grey);
+}
+
+.brand-separator p::before {
+    left: -140px;
+}
+
+.brand-separator p::after {
+    right: -140px;
+}
+
+
+ /* =========================
+   DÉTAILS DE LA VOITURE     */
+
+
+   .slider {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.slider .slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slider .slide.active {
+    display: block;
+}
+
+.slide-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+    z-index: 10;
+}
+
+.slide-btn.prev { left: 8px; }
+.slide-btn.next { right: 8px; }
+
+.slide-dots {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    cursor: pointer;
+}
+
+.dot.active {
+    background: white;
+}
+
+.car-infos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 10px 0;
+}
+
+.car-info-item {
+    background: rgba(255, 90, 31, 0.06);
+    border: 1px solid rgba(255, 90, 31, 0.15);
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 13px;
+    color: var(--primary-orange);
+    font-weight: 500;
+}
+
+/* =========================
+   RESPONSIVE VOITURES
+========================= */
+
+/* ── Tablette ── */
+@media (max-width: 991px) {
+    .cars-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin: 30px 0;
+    }
+
+    .car-image-wrapper {
+        height: 200px;
+    }
+
+    .brand-separator p::before,
+    .brand-separator p::after {
+        width: 60px;
+    }
+    .brand-separator p::before { left: -75px; }
+    .brand-separator p::after  { right: -75px; }
+}
+
+/* ── Mobile ── */
+@media (max-width: 576px) {
+    #voitures .container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    #voitures .container h2 {
+        font-size: 1.5rem;
+    }
+
+    .cars-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin: 20px 0;
+    }
+
+    .car-content {
+        padding: 16px;
+    }
+
+    .car-content h3 {
+        font-size: 1.1rem;
+    }
+
+    .car-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .btn-commander {
+        width: 100%;
+        text-align: center;
+    }
+
+    .search-bar {
+        margin: 20px auto 30px;
+    }
+
+    .search-bar input {
+        padding: 12px 16px;
+        font-size: 0.9rem;
+    }
+
+    .brand-separator {
+        margin: 30px 0 20px;
+    }
+
+    .brand-separator p {
+        font-size: 1rem;
+    }
+
+    .brand-separator p::before,
+    .brand-separator p::after {
+        display: none;
+    }
+
+    .car-price {
+        font-size: 1.2rem;
+    }
+}
