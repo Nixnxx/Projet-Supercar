@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/transparent.css?v=1.2">
+    <link rel="stylesheet" href="../css/transparent.css?v=1.3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/b3996a5c2b.js" crossorigin="anonymous"></script>
     <title>Connexion administrateur</title>
@@ -35,19 +35,19 @@
         </section>
 </form>
 
-<!-- FENÊTRE D'ERREUR -->
+<!-- FENÊTRE D'ERREUR
+     Même gabarit que la connexion et l'inscription côté client :
+     le style est dans css/transparent.css (classes .fenetre-*). -->
 <?php if ($erreur_msg != "") : ?>
-<div class="modal fade show d-block" tabindex="-1" style="background:rgba(15,23,42,0.4); backdrop-filter:blur(4px);">
+<div class="modal fade show d-block fenetre-message" tabindex="-1" role="dialog" aria-modal="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
-        <div class="modal-content border-0" style="background:#ffffff; border-radius:16px; box-shadow: 0 15px 35px rgba(15,23,42,0.08);">
-            <div style="height:4px; background:linear-gradient(90deg,#ff6b35,#ff5a1f); border-radius:16px 16px 0 0;"></div>
-            <div class="modal-body text-center px-4 py-4">
-                <div style="width:48px; height:48px; background:rgba(255,107,53,0.08); border-radius:50%; display:flex; align-items:center; justify-content:center; margin: 0 auto 12px; color:#ff6b35;">
-                    <span style="font-size:1.3rem;">⚠️</span>
-                </div>
-                <h6 class="fw-bold mb-2" style="color:#ff6b35; font-family:'Outfit', sans-serif;">Erreur de connexion</h6>
-                <p class="mb-3" style="color:#475569; font-size:0.9rem; font-family:'Outfit', sans-serif;"><?= e($erreur_msg) ?></p>
-                <a href="logina.php" class="btn btn-sm px-4" style="background:#ff6b35; color:white; border:none; border-radius:20px; font-size:0.85rem; font-family:'Outfit', sans-serif;">Réessayer</a>
+        <div class="modal-content fenetre-carte">
+            <div class="fenetre-barre"></div>
+            <div class="fenetre-corps">
+                <div class="fenetre-icone erreur">⚠️</div>
+                <p class="fenetre-titre">Erreur de connexion</p>
+                <p class="fenetre-texte"><?= e($erreur_msg) ?></p>
+                <a href="logina.php" class="fenetre-bouton">Réessayer</a>
             </div>
         </div>
     </div>
