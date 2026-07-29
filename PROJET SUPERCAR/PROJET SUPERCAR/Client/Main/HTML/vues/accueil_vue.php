@@ -22,7 +22,10 @@ require __DIR__ . '/layout/header.php';
         <div class="carousel-caption text-start">
           <h5><?= e($slide['titre']) ?></h5>
           <p><?= nl2br(e($slide['description'])) ?></p>
-          <a href="<?= e($slide['lien']) ?>" class="btn btn-outline-light">
+          <!-- url_sure() et non e() : le lien est saisi librement par l'admin.
+               e() laisserait passer un lien "javascript:..." qui s'exécuterait
+               au clic. url_sure() n'autorise que les liens internes et http(s). -->
+          <a href="<?= url_sure($slide['lien']) ?>" class="btn btn-outline-light">
             <?= e($slide['texte_lien']) ?>
           </a>
         </div>
@@ -60,7 +63,8 @@ require __DIR__ . '/layout/header.php';
           <?php endforeach; ?>
         </ul>
 
-        <a href="<?= e($hero['lien'] ?? 'essai.php') ?>"
+        <!-- url_sure() : même raison que pour le carrousel ci-dessus. -->
+        <a href="<?= url_sure($hero['lien'] ?? 'essai.php') ?>"
            class="btn btn-orange btn-lg px-5 py-3 fw-bold rounded-pill shadow-lg">
           <?= e($hero['texte'] ?? '') ?>
         </a>

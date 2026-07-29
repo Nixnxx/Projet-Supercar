@@ -4,17 +4,27 @@
 //  Reçoit : $carousel, $hero, $images, $points, $stats, $message.
 //  $message contient seulement le TYPE de message ("ok" ou "supprime") :
 //  c'est ici, dans la vue, que le HTML correspondant est construit.
-//  Les suppressions se font par un simple lien vers accueil_supp.php.
+//  Les suppressions se font par un formulaire POST vers accueil_supp.php.
 // ============================================================
 require __DIR__ . '/layout_haut.php';
 
-// Petit utilitaire local : affiche un bouton "supprimer" (un lien).
+// Petit utilitaire local : affiche un bouton "supprimer".
 // $cle = carousel | hero_image | point | stat ; $id = identifiant.
+//
+// POURQUOI UN FORMULAIRE ET NON UN LIEN :
+// une adresse (lien) peut être appelée par une simple balise <img> placée
+// sur un site pirate. Le navigateur de l'admin la chargerait avec son
+// cookie de session, et l'élément serait supprimé à son insu.
+// Un formulaire POST ne peut pas être déclenché de cette façon.
 function bouton_suppr($cle, $id, $confirmation) {
-    echo '<a class="btn btn-danger btn-sm"';
-    echo ' href="accueil_supp.php?table=' . e($cle) . '&id=' . (int)$id . '"';
+    echo '<form method="POST" action="accueil_supp.php" class="form-action">';
+    csrf_champ();
+    echo '<input type="hidden" name="table" value="' . e($cle) . '">';
+    echo '<input type="hidden" name="id" value="' . (int)$id . '">';
+    echo '<button class="btn btn-danger btn-sm" name="supprimer"';
     echo ' data-confirm="' . e($confirmation) . '">';
-    echo '<i class="bi bi-trash"></i></a>';
+    echo '<i class="bi bi-trash"></i></button>';
+    echo '</form>';
 }
 ?>
 

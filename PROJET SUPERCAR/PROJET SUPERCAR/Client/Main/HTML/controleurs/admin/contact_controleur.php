@@ -15,6 +15,13 @@ $id     = intval($_GET['id'] ?? 0);
 $tab    = $_GET['tab'] ?? 'messages';
 $succes = $_GET['succes'] ?? '';
 
+// Toutes les actions qui MODIFIENT la base passent par POST (configuration,
+// marquage lu/non lu, suppression). Une simple lecture (afficher la liste,
+// voir un message) se fait en GET et n'a pas besoin de jeton.
+if (!empty($_POST)) {
+    csrf_verifier();
+}
+
 // ---- Enregistrement de la configuration (formulaire envoyé) ----
 if (isset($_POST['save_config'])) {
     $adr = trim($_POST['adresse']);
@@ -28,16 +35,24 @@ if (isset($_POST['save_config'])) {
     exit();
 }
 
-// ---- Suppression d'un message (lien) ----
-if ($action === 'supprimer' && $id > 0) {
-    supprimer_message($lienbd, $id);
+// ---- Suppression d'un message (formulaire envoyé) ----
+if (isset($_POST['supprimer'])) {
+    $id_suppr = intval($_POST['id_suppr']);
+    if ($id_suppr > 0) {
+        supprimer_message($lienbd, $id_suppr);
+    }
     header('Location: admin_contact.php?succes=supprime');
     exit();
 }
 
-// ---- Marquer lu / non lu (lien) ----
-if (($action === 'lu' || $action === 'nonlu') && $id > 0) {
-    marquer_message($lienbd, $id, $action === 'lu' ? 1 : 0);
+// ---- Marquer lu / non lu (formulaire envoyé) ----
+if (isset($_POST['marquer'])) {
+    $id_marquer = intval($_POST['id_marquer']);
+    // On ne garde que 0 ou 1 : toute autre valeur devient 0.
+    $nouvel_etat = intval($_POST['nouvel_etat']) === 1 ? 1 : 0;
+    if ($id_marquer > 0) {
+        marquer_message($lienbd, $id_marquer, $nouvel_etat);
+    }
     header('Location: admin_contact.php');
     exit();
 }

@@ -16,6 +16,16 @@ if (est_connecte()) {
 
 // ---- Traitement du formulaire de connexion ----
 if (isset($_POST['utilisateur'], $_POST['motdepasse'])) {
+
+    // On vérifie le jeton CSRF avant tout traitement.
+    csrf_verifier();
+
+    // Trop d'échecs récents : on refuse sans même regarder le mot de passe.
+    if (connexion_bloquee()) {
+        header('Location: connexion.php?erreur=4');
+        exit();
+    }
+
     $utilisateur = trim($_POST['utilisateur']);
     $password    = $_POST['motdepasse'];
 
@@ -33,7 +43,17 @@ if (isset($_POST['utilisateur'], $_POST['motdepasse'])) {
     $user = trouver_client_par_email($lienbd, $utilisateur);
 
     if ($user !== null && password_verify($password, $user['mot_de_passe'])) {
-        // Connexion réussie : on retient le client dans la session.
+
+        // On change l'identifiant de session au moment où l'on gagne des
+        // droits. Protection contre la FIXATION DE SESSION : si un pirate
+        // avait imposé son identifiant de session à la victime, celui-ci
+        // devient inutilisable. Le "true" supprime l'ancienne session.
+        session_regenerate_id(true);
+
+        // Connexion réussie : on remet le compteur d'échecs à zéro.
+        reussite_connexion();
+
+        // On retient le client dans la session.
         $_SESSION['connecte']        = 1;
         $_SESSION['id_client']       = $user['id_client'];
         $_SESSION['client_connecte'] = true;
@@ -61,7 +81,9 @@ if (isset($_POST['utilisateur'], $_POST['motdepasse'])) {
         exit();
     }
 
-    // Identifiants incorrects.
+    // Identifiants incorrects : on compte l'échec.
+    echec_connexion();
+
     header('Location: connexion.php?erreur=1');
     exit();
 }
@@ -73,6 +95,7 @@ if (isset($_GET['erreur'])) {
         case 1: $erreur_msg = "Identifiant ou mot de passe incorrect."; break;
         case 2: $erreur_msg = "Veuillez remplir tous les champs."; break;
         case 3: $erreur_msg = "Vous devez accepter la politique de confidentialité."; break;
+        case 4: $erreur_msg = "Trop de tentatives. Veuillez patienter 5 minutes."; break;
     }
 }
 

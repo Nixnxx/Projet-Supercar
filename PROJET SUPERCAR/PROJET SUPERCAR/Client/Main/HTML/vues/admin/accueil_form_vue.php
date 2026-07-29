@@ -62,6 +62,10 @@
     <!-- Le formulaire est envoyé à la même URL (table + id conservés) -->
     <form method="POST" enctype="multipart/form-data">
 
+        <!-- Jeton anti-CSRF : prouve que le formulaire vient bien de notre site -->
+        <?php csrf_champ(); ?>
+
+
       <?php if ($table == 'carousel') : ?>
 
         <div class="mb-3">

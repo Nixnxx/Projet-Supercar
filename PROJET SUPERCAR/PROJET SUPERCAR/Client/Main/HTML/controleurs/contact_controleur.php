@@ -17,6 +17,10 @@ $config = get_config_contact($lienbd);
 
 // ---- Traitement du formulaire ----
 if (isset($_POST['nom'], $_POST['numero'], $_POST['email'], $_POST['message'])) {
+
+    // On vérifie le jeton CSRF avant tout traitement.
+    csrf_verifier();
+
     $nom     = trim($_POST['nom']);
     $numero  = trim($_POST['numero']);
     $email   = trim($_POST['email']);

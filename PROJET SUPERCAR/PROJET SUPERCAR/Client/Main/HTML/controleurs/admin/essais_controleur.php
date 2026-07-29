@@ -13,6 +13,13 @@ $action = $_GET['action'] ?? '';
 $id     = intval($_GET['id'] ?? 0);
 $succes = $_GET['succes'] ?? '';
 
+// Toutes les actions qui MODIFIENT la base passent par POST (changement de
+// statut, suppression). Une simple lecture (afficher la liste, voir un
+// détail) se fait en GET et n'a pas besoin de jeton.
+if (!empty($_POST)) {
+    csrf_verifier();
+}
+
 // Pour afficher le statut en toutes lettres et avec la bonne couleur.
 // Statut 1 (Confirmé) = voiture réservée → indisponible côté client.
 // Statut 3 (Terminé)  = essai réalisé   → la voiture redevient disponible.
@@ -29,9 +36,12 @@ if (isset($_POST['set_statut'])) {
     exit();
 }
 
-// ---- Suppression (lien) ----
-if ($action === 'supprimer' && $id > 0) {
-    supprimer_essai($lienbd, $id);
+// ---- Suppression (formulaire envoyé) ----
+if (isset($_POST['supprimer'])) {
+    $id_suppr = intval($_POST['id_suppr']);
+    if ($id_suppr > 0) {
+        supprimer_essai($lienbd, $id_suppr);
+    }
     header('Location: admin_essais.php?succes=supprime');
     exit();
 }

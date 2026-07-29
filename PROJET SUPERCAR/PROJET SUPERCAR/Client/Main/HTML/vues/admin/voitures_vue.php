@@ -92,9 +92,17 @@ require __DIR__ . '/layout_haut.php';
         </td>
         <td>
             <div class="actions">
+                <!-- "Modifier" reste un LIEN : il ne fait qu'afficher un formulaire. -->
                 <a class="btn btn-ghost btn-sm" href="?action=detail&id=<?= (int)$v['id_voiture'] ?>">Modifier</a>
-                <a class="btn btn-danger btn-sm" href="?action=supprimer&id=<?= (int)$v['id_voiture'] ?>"
-                   data-confirm="Supprimer <?= e($v['model']) ?> ?">✕</a>
+
+                <!-- "Supprimer" est un FORMULAIRE POST : il modifie la base,
+                     donc il ne doit pas être déclenchable par une simple adresse. -->
+                <form method="POST" class="form-action">
+                    <?php csrf_champ(); ?>
+                    <input type="hidden" name="id_suppr" value="<?= (int)$v['id_voiture'] ?>">
+                    <button class="btn btn-danger btn-sm" name="supprimer"
+                            data-confirm="Supprimer <?= e($v['model']) ?> ?">✕</button>
+                </form>
             </div>
         </td>
     </tr>
@@ -116,6 +124,10 @@ require __DIR__ . '/layout_haut.php';
     <h3>Modifier — <?= e($detail['model']) ?></h3>
 
     <form method="POST">
+
+        <!-- Jeton anti-CSRF : prouve que le formulaire vient bien de notre site -->
+        <?php csrf_champ(); ?>
+
         <input type="hidden" name="id_voiture" value="<?= (int)$detail['id_voiture'] ?>">
 
         <div class="form-2col">
@@ -195,12 +207,19 @@ require __DIR__ . '/layout_haut.php';
                 <img src="../<?= e($ph['image']) ?>"
                      style="width:80px;height:55px;object-fit:cover;border-radius:6px;border:1px solid var(--border);"
                      alt="">
-                <!-- Suppression d'une photo : simple lien avec confirmation -->
-                <a href="?action=supprimer_photo&id_photo=<?= (int)$ph['id'] ?>&id_voiture=<?= (int)$detail['id_voiture'] ?>"
-                   data-confirm="Supprimer cette photo ?"
-                   style="position:absolute;top:-6px;right:-6px;background:#e53e3e;color:white;
-                          text-decoration:none;border-radius:50%;width:18px;height:18px;
-                          font-size:11px;line-height:18px;text-align:center;">✕</a>
+                <!-- Suppression d'une photo : FORMULAIRE POST avec confirmation.
+                     Le formulaire est en display:inline (.form-action), il ne
+                     perturbe donc pas le positionnement du bouton en absolu. -->
+                <form method="POST" class="form-action">
+                    <?php csrf_champ(); ?>
+                    <input type="hidden" name="id_photo_suppr" value="<?= (int)$ph['id'] ?>">
+                    <input type="hidden" name="id_voiture_photo_suppr" value="<?= (int)$detail['id_voiture'] ?>">
+                    <button name="supprimer_photo"
+                            data-confirm="Supprimer cette photo ?"
+                            style="position:absolute;top:-6px;right:-6px;background:#e53e3e;color:white;
+                                   border:none;padding:0;cursor:pointer;border-radius:50%;width:18px;height:18px;
+                                   font-size:11px;line-height:18px;text-align:center;">✕</button>
+                </form>
             </div>
             <?php endforeach; ?>
         </div>
@@ -210,6 +229,10 @@ require __DIR__ . '/layout_haut.php';
 
         <!-- Formulaire upload d'une nouvelle photo -->
         <form method="POST" enctype="multipart/form-data">
+
+            <!-- Jeton anti-CSRF : prouve que le formulaire vient bien de notre site -->
+            <?php csrf_champ(); ?>
+
             <input type="hidden" name="id_voiture_photo" value="<?= (int)$detail['id_voiture'] ?>">
             <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
                 <input class="form-input" type="file" name="nouvelle_photo" id="inputNouvellePhoto"
@@ -239,6 +262,10 @@ require __DIR__ . '/layout_haut.php';
     <h3>Ajouter un véhicule</h3>
 
     <form method="POST" enctype="multipart/form-data">
+
+        <!-- Jeton anti-CSRF : prouve que le formulaire vient bien de notre site -->
+        <?php csrf_champ(); ?>
+
 
         <div class="form-2col">
             <div class="form-group">

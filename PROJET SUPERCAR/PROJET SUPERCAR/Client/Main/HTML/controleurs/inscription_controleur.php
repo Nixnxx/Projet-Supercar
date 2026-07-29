@@ -20,6 +20,10 @@ $succes = false;
 // ---- Traitement du formulaire d'inscription ----
 if (isset($_POST['nom'], $_POST['prenom'], $_POST['email'],
           $_POST['telephone'], $_POST['adresse'], $_POST['motdepasse'])) {
+
+    // On vérifie le jeton CSRF avant tout traitement.
+    csrf_verifier();
+
     $nom       = trim($_POST['nom']);
     $prenom    = trim($_POST['prenom']);
     $email     = trim($_POST['email']);

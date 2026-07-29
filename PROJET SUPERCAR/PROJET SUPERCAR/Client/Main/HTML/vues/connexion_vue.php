@@ -18,6 +18,10 @@
 
 <!-- Le formulaire s'envoie à lui-même (le contrôleur connexion.php) -->
 <form class="connexion-form" method="POST" action="connexion.php">
+
+    <!-- Jeton anti-CSRF : prouve que le formulaire vient bien de notre site -->
+    <?php csrf_champ(); ?>
+
     <section>
         <h1>Connexion</h1>
         <p>Avez-vous déjà un compte ? Identifiez-vous</p>

@@ -53,9 +53,17 @@ require __DIR__ . '/layout_haut.php';
         <td><span class="badge <?= $statuts_class[$e['statut']] ?>"><?= $statuts_labels[$e['statut']] ?></span></td>
         <td>
             <div class="actions">
+                <!-- "Gérer" reste un LIEN : il ne fait qu'afficher un formulaire. -->
                 <a class="btn btn-ghost btn-sm" href="?action=detail&id=<?= (int)$e['id_demande'] ?>">Gérer</a>
-                <a class="btn btn-danger btn-sm" href="?action=supprimer&id=<?= (int)$e['id_demande'] ?>"
-                   data-confirm="Supprimer cette demande ?">✕</a>
+
+                <!-- "Supprimer" est un FORMULAIRE POST : il modifie la base,
+                     donc il ne doit pas être déclenchable par une simple adresse. -->
+                <form method="POST" class="form-action">
+                    <?php csrf_champ(); ?>
+                    <input type="hidden" name="id_suppr" value="<?= (int)$e['id_demande'] ?>">
+                    <button class="btn btn-danger btn-sm" name="supprimer"
+                            data-confirm="Supprimer cette demande ?">✕</button>
+                </form>
             </div>
         </td>
     </tr>
@@ -88,6 +96,10 @@ require __DIR__ . '/layout_haut.php';
     </div>
 
     <form method="POST">
+
+        <!-- Jeton anti-CSRF : prouve que le formulaire vient bien de notre site -->
+        <?php csrf_champ(); ?>
+
         <input type="hidden" name="id_demande" value="<?= (int)$detail['id_demande'] ?>">
         <div class="form-group" style="margin-bottom:12px;">
             <label class="form-label">Statut</label>

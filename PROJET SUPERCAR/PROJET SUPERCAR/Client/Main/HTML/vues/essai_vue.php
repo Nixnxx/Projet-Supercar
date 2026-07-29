@@ -32,6 +32,10 @@ require __DIR__ . '/layout/header.php';
 
     <form method="POST" class="essai-form">
 
+        <!-- Jeton anti-CSRF : prouve que le formulaire vient bien de notre site -->
+        <?php csrf_champ(); ?>
+
+
       <label>Nom</label>
       <input type="text" name="nom" value="<?= e($client['nom'] ?? '') ?>" required>
 

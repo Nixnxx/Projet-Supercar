@@ -21,12 +21,17 @@ require __DIR__ . '/layout/header.php';
                 </div>
 
                 <div class="mini-map">
-                    <iframe src="<?= e($config['map_embed'] ?? '') ?>"></iframe>
+                    <!-- url_sure() : l'adresse de la carte vient de la base.
+                         On n'autorise que http(s), jamais "javascript:". -->
+                    <iframe src="<?= url_sure($config['map_embed'] ?? '') ?>"></iframe>
                 </div>
             </div>
 
             <!-- FORMULAIRE -->
 <form method="POST">
+
+    <!-- Jeton anti-CSRF : prouve que le formulaire vient bien de notre site -->
+    <?php csrf_champ(); ?>
 
     <input type="text" name="nom"
        placeholder="Nom"

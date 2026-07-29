@@ -34,6 +34,10 @@ $marqueSelected  = isset($_GET['id_marque']) ? (int)$_GET['id_marque'] : 0;
 
 // ---- Traitement du formulaire de réservation ----
 if (isset($_POST['reserver'])) {
+
+    // On vérifie le jeton CSRF avant tout traitement.
+    csrf_verifier();
+
     $date    = $_POST['date_essai'] ?? '';
     $voiture = (int)($_POST['voiture'] ?? 0);
 

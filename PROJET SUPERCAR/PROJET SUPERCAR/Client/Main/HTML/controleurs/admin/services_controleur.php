@@ -14,6 +14,13 @@ $action = $_GET['action'] ?? '';
 $id     = intval($_GET['id'] ?? 0);
 $succes = $_GET['succes'] ?? '';
 
+// Toutes les actions qui MODIFIENT la base passent par POST (ajout,
+// modification, suppression). Une simple lecture (afficher la liste, voir
+// un détail) se fait en GET et n'a pas besoin de jeton.
+if (!empty($_POST)) {
+    csrf_verifier();
+}
+
 // ---- Modification (formulaire envoyé) ----
 if (isset($_POST['set_service'])) {
     $nid    = intval($_POST['id_service']);
@@ -60,9 +67,12 @@ if (isset($_POST['add_service'])) {
     exit();
 }
 
-// ---- Suppression (lien) ----
-if ($action === 'supprimer' && $id > 0) {
-    supprimer_service($lienbd, $id);
+// ---- Suppression (formulaire envoyé) ----
+if (isset($_POST['supprimer'])) {
+    $id_suppr = intval($_POST['id_suppr']);
+    if ($id_suppr > 0) {
+        supprimer_service($lienbd, $id_suppr);
+    }
     header('Location: admin_services.php?succes=supprime');
     exit();
 }

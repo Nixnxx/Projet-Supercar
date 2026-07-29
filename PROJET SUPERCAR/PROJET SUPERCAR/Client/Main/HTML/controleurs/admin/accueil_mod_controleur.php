@@ -21,6 +21,9 @@ $donnees = ($id > 0) ? accueil_get_ligne($lienbd, $table, $id) : [];
 // ---- Enregistrement (formulaire envoyé) ----
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    // On vérifie le jeton CSRF avant tout enregistrement.
+    csrf_verifier();
+
     if ($table === 'carousel') {
         $titre      = trim($_POST['titre']);
         $desc       = trim($_POST['description']);

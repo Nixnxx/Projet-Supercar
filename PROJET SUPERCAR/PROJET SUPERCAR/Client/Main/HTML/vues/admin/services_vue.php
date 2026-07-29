@@ -52,9 +52,17 @@ require __DIR__ . '/layout_haut.php';
                     <td style="font-size:12px; color:var(--text-dim);"><?= e(substr($s['description'], 0, 50)) ?>...</td>
                     <td style="text-align:right;">
                         <div class="actions" style="justify-content:flex-end;">
+                            <!-- "Modifier" reste un LIEN : il ne fait qu'afficher un formulaire. -->
                             <a class="btn btn-ghost btn-sm" href="?action=detail&id=<?= (int)$s['id_service'] ?>">Modifier</a>
-                            <a class="btn btn-danger btn-sm" href="?action=supprimer&id=<?= (int)$s['id_service'] ?>"
-                               data-confirm="Supprimer ce service ?">✕</a>
+
+                            <!-- "Supprimer" est un FORMULAIRE POST : il modifie la base,
+                                 donc il ne doit pas être déclenchable par une simple adresse. -->
+                            <form method="POST" class="form-action">
+                                <?php csrf_champ(); ?>
+                                <input type="hidden" name="id_suppr" value="<?= (int)$s['id_service'] ?>">
+                                <button class="btn btn-danger btn-sm" name="supprimer"
+                                        data-confirm="Supprimer ce service ?">✕</button>
+                            </form>
                         </div>
                     </td>
                 </tr>
@@ -70,6 +78,10 @@ require __DIR__ . '/layout_haut.php';
     <div class="modal" style="max-width:400px;">
         <h3 style="margin-bottom:15px;">Modifier Service</h3>
         <form method="POST" enctype="multipart/form-data">
+
+            <!-- Jeton anti-CSRF : prouve que le formulaire vient bien de notre site -->
+            <?php csrf_champ(); ?>
+
             <input type="hidden" name="id_service" value="<?= (int)$detail['id_service'] ?>">
 
             <div class="form-group">
@@ -125,6 +137,10 @@ require __DIR__ . '/layout_haut.php';
     <div class="modal" style="max-width:400px;">
         <h3 style="margin-bottom:15px;">Nouveau Service</h3>
         <form method="POST" enctype="multipart/form-data">
+
+            <!-- Jeton anti-CSRF : prouve que le formulaire vient bien de notre site -->
+            <?php csrf_champ(); ?>
+
 
             <div class="form-group">
                 <label class="form-label">Numéro d'ordre *</label>

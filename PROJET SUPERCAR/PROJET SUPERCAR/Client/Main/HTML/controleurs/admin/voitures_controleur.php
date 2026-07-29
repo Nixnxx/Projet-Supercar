@@ -14,6 +14,13 @@ $action = $_GET['action'] ?? '';
 $id     = intval($_GET['id'] ?? 0);
 $succes = $_GET['succes'] ?? '';
 
+// Toutes les actions qui MODIFIENT la base passent par POST (ajout,
+// modification, suppression). Une simple lecture (afficher la liste, voir
+// un détail) se fait en GET et n'a pas besoin de jeton.
+if (!empty($_POST)) {
+    csrf_verifier();
+}
+
 // ---- Ajout d'une photo dans le slider (formulaire envoyé) ----
 if (isset($_POST['add_photo'])) {
     $id_voiture_photo = intval($_POST['id_voiture_photo']);
@@ -84,18 +91,23 @@ if (isset($_POST['add_voiture'])) {
     exit();
 }
 
-// ---- Suppression d'une photo du slider (lien) ----
-if ($action === 'supprimer_photo') {
-    $id_photo   = intval($_GET['id_photo']);
-    $id_voiture = intval($_GET['id_voiture']);
-    supprimer_image_voiture($lienbd, $id_photo);
+// ---- Suppression d'une photo du slider (formulaire envoyé) ----
+if (isset($_POST['supprimer_photo'])) {
+    $id_photo   = intval($_POST['id_photo_suppr']);
+    $id_voiture = intval($_POST['id_voiture_photo_suppr']);
+    if ($id_photo > 0) {
+        supprimer_image_voiture($lienbd, $id_photo);
+    }
     header('Location: admin_voitures.php?action=detail&id=' . $id_voiture . '&succes=photo_supprime');
     exit();
 }
 
-// ---- Suppression d'une voiture (lien) ----
-if ($action === 'supprimer' && $id > 0) {
-    supprimer_voiture($lienbd, $id);
+// ---- Suppression d'une voiture (formulaire envoyé) ----
+if (isset($_POST['supprimer'])) {
+    $id_suppr = intval($_POST['id_suppr']);
+    if ($id_suppr > 0) {
+        supprimer_voiture($lienbd, $id_suppr);
+    }
     header('Location: admin_voitures.php?succes=supprime');
     exit();
 }

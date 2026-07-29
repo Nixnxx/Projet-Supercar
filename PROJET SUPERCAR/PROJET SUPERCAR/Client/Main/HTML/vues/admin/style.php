@@ -341,6 +341,12 @@ tbody tr.unread td { color: var(--text); font-weight: 500; }
 
 .actions { display: flex; gap: 5px; flex-wrap: wrap; }
 
+/* Les actions qui MODIFIENT la base sont des formulaires POST (et non des
+   liens), pour qu'elles ne puissent pas être déclenchées par une simple URL.
+   Ce formulaire ne doit pas casser l'alignement des boutons : on le rend
+   transparent pour la mise en page. */
+.form-action { display: inline; margin: 0; padding: 0; }
+
 /* ── BADGE STATUS ── */
 .badge {
     display: inline-block;

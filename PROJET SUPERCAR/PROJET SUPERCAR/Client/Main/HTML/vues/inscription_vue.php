@@ -18,6 +18,10 @@
 
     <!-- Le formulaire s'envoie à lui-même (le contrôleur inscription.php) -->
     <form class="inscription-form" method="POST" action="inscription.php">
+
+        <!-- Jeton anti-CSRF : prouve que le formulaire vient bien de notre site -->
+        <?php csrf_champ(); ?>
+
         <section>
             <h1>Inscription</h1>
 

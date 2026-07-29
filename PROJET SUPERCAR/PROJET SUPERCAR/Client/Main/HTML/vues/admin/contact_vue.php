@@ -70,11 +70,24 @@ require __DIR__ . '/layout_haut.php';
         </td>
         <td>
             <div class="actions">
+                <!-- "Voir" reste un LIEN : il ne fait qu'afficher le message. -->
                 <a class="btn btn-ghost btn-sm" href="?action=voir&id=<?= (int)$m['id_contact'] ?>">Voir</a>
-                <a class="btn btn-ghost btn-sm" href="?action=<?= $m['lu']?'nonlu':'lu' ?>&id=<?= (int)$m['id_contact'] ?>"><?= $m['lu']?'Non lu':'Lu' ?></a>
-                <!-- Suppression : simple lien, avec une confirmation -->
-                <a class="btn btn-danger btn-sm" href="?action=supprimer&id=<?= (int)$m['id_contact'] ?>"
-                   data-confirm="Supprimer ce message ?">✕</a>
+
+                <!-- Marquer lu / non lu : FORMULAIRE POST, car cela modifie la base. -->
+                <form method="POST" class="form-action">
+                    <?php csrf_champ(); ?>
+                    <input type="hidden" name="id_marquer" value="<?= (int)$m['id_contact'] ?>">
+                    <input type="hidden" name="nouvel_etat" value="<?= $m['lu'] ? 0 : 1 ?>">
+                    <button class="btn btn-ghost btn-sm" name="marquer"><?= $m['lu'] ? 'Non lu' : 'Lu' ?></button>
+                </form>
+
+                <!-- Suppression : FORMULAIRE POST, avec une confirmation. -->
+                <form method="POST" class="form-action">
+                    <?php csrf_champ(); ?>
+                    <input type="hidden" name="id_suppr" value="<?= (int)$m['id_contact'] ?>">
+                    <button class="btn btn-danger btn-sm" name="supprimer"
+                            data-confirm="Supprimer ce message ?">✕</button>
+                </form>
             </div>
         </td>
     </tr>
@@ -89,6 +102,10 @@ require __DIR__ . '/layout_haut.php';
 <div class="card">
     <div class="card-header">Informations de contact</div>
     <form method="POST">
+
+        <!-- Jeton anti-CSRF : prouve que le formulaire vient bien de notre site -->
+        <?php csrf_champ(); ?>
+
         <div class="form-grid">
             <div class="form-group full">
                 <label class="form-label">Adresse</label>

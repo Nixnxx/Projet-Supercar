@@ -19,6 +19,10 @@
 <body class="connexion">
 
 <form class="connexion-form" method="POST" action="logina.php">
+
+    <!-- Jeton anti-CSRF : prouve que le formulaire vient bien de notre site -->
+    <?php csrf_champ(); ?>
+
     <section>
         <h1>Connexion</h1>
 
