@@ -1,19 +1,17 @@
 <?php
 // ============================================================
 //  vues/admin/nav.php  —  VUE (partiel) : menu latéral du back-office
-//  Calcule les pastilles (messages non lus, essais en attente) via
-//  les modèles, puis affiche le menu. $lienbd vient du contrôleur.
+//
+//  Cette vue se contente d'AFFICHER : elle n'interroge plus la base.
+//  Les deux compteurs des pastilles sont préparés en amont par
+//  controleurs/admin/menu_controleur.php, inclus par chaque
+//  contrôleur admin.
+//
+//  Reçoit : $nb_messages_non_lus, $nb_essais_en_attente
 // ============================================================
 
-require_once __DIR__ . '/../../modeles/contact_modele.php';
-require_once __DIR__ . '/../../modeles/essai_modele.php';
-
-// Page courante, pour surligner le bon lien.
+// Page courante, pour surligner le bon lien du menu.
 $current = basename($_SERVER['PHP_SELF']);
-
-// Compteurs affichés en pastille.
-$_nlu_count   = (int) (get_stats_messages($lienbd)['non_lus'] ?? 0);
-$_essai_count = (int) (get_stats_essais($lienbd)['en_attente'] ?? 0);
 ?>
 <nav class="nav">
     <div class="nav-logo">Super<span>Car</span></div>
@@ -28,13 +26,13 @@ $_essai_count = (int) (get_stats_essais($lienbd)['en_attente'] ?? 0);
     <a href="admin_contact.php" class="nav-link <?= $current==='admin_contact.php'?'active':'' ?>">
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
         Messages
-        <?php if ($_nlu_count > 0): ?><span class="nav-badge"><?= $_nlu_count ?></span><?php endif; ?>
+        <?php if ($nb_messages_non_lus > 0): ?><span class="nav-badge"><?= $nb_messages_non_lus ?></span><?php endif; ?>
     </a>
 
     <a href="admin_essais.php" class="nav-link <?= $current==='admin_essais.php'?'active':'' ?>">
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
         Essais
-        <?php if ($_essai_count > 0): ?><span class="nav-badge"><?= $_essai_count ?></span><?php endif; ?>
+        <?php if ($nb_essais_en_attente > 0): ?><span class="nav-badge"><?= $nb_essais_en_attente ?></span><?php endif; ?>
     </a>
 
      <a href="accueil.php" class="nav-link <?= $current==='accueil.php'?'active':'' ?>">

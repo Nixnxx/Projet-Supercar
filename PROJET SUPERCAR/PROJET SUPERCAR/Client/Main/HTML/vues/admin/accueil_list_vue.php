@@ -2,6 +2,8 @@
 // ============================================================
 //  vues/admin/accueil_list_vue.php  —  VUE : contenu de l'accueil
 //  Reçoit : $carousel, $hero, $images, $points, $stats, $message.
+//  $message contient seulement le TYPE de message ("ok" ou "supprime") :
+//  c'est ici, dans la vue, que le HTML correspondant est construit.
 //  Les suppressions se font par un simple lien vers accueil_supp.php.
 // ============================================================
 require __DIR__ . '/layout_haut.php';
@@ -23,7 +25,11 @@ function bouton_suppr($cle, $id, $confirmation) {
         <span class="page-sub">Ajoutez, modifiez ou supprimez les éléments affichés sur l'accueil.</span>
     </div>
 
-    <?= $message ?>
+    <?php if ($message === 'ok') : ?>
+        <div class="alert success">✅ Opération réussie !</div>
+    <?php elseif ($message === 'supprime') : ?>
+        <div class="alert danger">🗑️ Élément supprimé.</div>
+    <?php endif; ?>
 
 
     <!-- SECTION 1 : CARROUSEL -->

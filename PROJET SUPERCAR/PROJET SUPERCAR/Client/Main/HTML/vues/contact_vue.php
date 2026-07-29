@@ -1,7 +1,8 @@
 <?php
 // ============================================================
 //  vues/contact_vue.php  —  VUE : page de contact
-//  Reçoit : $client (pré-remplissage), $config (infos concession).
+//  Reçoit : $client (pré-remplissage), $config (infos concession),
+//           $succes (vrai si le message vient d'être envoyé).
 //  Les données de configuration sont échappées avec e().
 // ============================================================
 require __DIR__ . '/layout/header.php';
@@ -70,7 +71,7 @@ require __DIR__ . '/layout/header.php';
 </div>
 
 <!-- FENÊTRE DE CONFIRMATION -->
-<?php if (isset($_GET['succes'])) : ?>
+<?php if ($succes) : ?>
 <div class="modal fade show d-block" tabindex="-1" style="background:rgba(0,0,0,0.6);">
     <div class="modal-dialog modal-dialog-centered modal-sm">
         <div class="modal-content border-0 rounded-3" style="background:#111;">

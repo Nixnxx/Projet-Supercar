@@ -31,6 +31,11 @@ if (isset($_POST['nom'], $_POST['numero'], $_POST['email'], $_POST['message'])) 
     }
 }
 
+// Le message a-t-il été envoyé ? (on revient ici avec ?succes=1 après
+// l'enregistrement). C'est le contrôleur qui lit l'URL, pas la vue :
+// la vue reçoit un simple vrai/faux et se contente de l'afficher.
+$succes = isset($_GET['succes']);
+
 $titre_page = 'SuperCar – Contactez-nous';
 
 require __DIR__ . '/../vues/contact_vue.php';

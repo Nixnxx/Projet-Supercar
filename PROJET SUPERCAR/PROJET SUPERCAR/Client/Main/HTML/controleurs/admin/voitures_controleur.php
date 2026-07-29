@@ -7,6 +7,7 @@
 
 require_once __DIR__ . '/../../includes/init.php';
 require_once __DIR__ . '/../../includes/garde_admin.php';
+require_once __DIR__ . '/menu_controleur.php';   // compteurs des pastilles du menu
 require_once __DIR__ . '/../../modeles/voiture_modele.php';
 
 $action = $_GET['action'] ?? '';
