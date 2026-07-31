@@ -6,15 +6,15 @@
 
 // Tous les services, triés par numéro d'ordre.
 function get_services($lienbd) {
-    $liste = mysqli_fetch_all(
-        mysqli_query($lienbd, "SELECT * FROM service ORDER BY numero"),
-        MYSQLI_ASSOC);
+    $sql = "SELECT * FROM service ORDER BY numero";
+    $liste = mysqli_fetch_all(mysqli_query($lienbd, $sql), MYSQLI_ASSOC);
     return $liste ?: [];
 }
 
 // Un service par son id.
 function get_service($lienbd, $id) {
-    $stmt = mysqli_prepare($lienbd, "SELECT * FROM service WHERE id_service = ?");
+    $sql = "SELECT * FROM service WHERE id_service = ?";
+    $stmt = mysqli_prepare($lienbd, $sql);
     mysqli_stmt_bind_param($stmt, "i", $id);
     mysqli_stmt_execute($stmt);
     $ligne = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
@@ -51,7 +51,8 @@ function modifier_service($lienbd, $id, $nom, $desc, $icone, $tag, $numero, $ima
 
 // Supprime un service.
 function supprimer_service($lienbd, $id) {
-    $stmt = mysqli_prepare($lienbd, "DELETE FROM service WHERE id_service = ?");
+    $sql = "DELETE FROM service WHERE id_service = ?";
+    $stmt = mysqli_prepare($lienbd, $sql);
     mysqli_stmt_bind_param($stmt, "i", $id);
     mysqli_stmt_execute($stmt);
 }

@@ -6,7 +6,8 @@
 
 // Vérifie si un email est déjà utilisé (renvoie true ou false).
 function email_existe($lienbd, $email) {
-    $stmt = mysqli_prepare($lienbd, "SELECT id_client FROM client WHERE email = ?");
+    $sql = "SELECT id_client FROM client WHERE email = ?";
+    $stmt = mysqli_prepare($lienbd, $sql);
     mysqli_stmt_bind_param($stmt, "s", $email);
     mysqli_stmt_execute($stmt);
     $res = mysqli_stmt_get_result($stmt);
@@ -37,13 +38,15 @@ function creer_login($lienbd, $login, $mdp_hash, $id_client) {
 
 // Nombre total de clients (pour le tableau de bord admin).
 function compter_clients($lienbd) {
-    $res = mysqli_query($lienbd, "SELECT COUNT(*) total FROM client");
+    $sql = "SELECT COUNT(*) total FROM client";
+    $res = mysqli_query($lienbd, $sql);
     return (int) mysqli_fetch_assoc($res)['total'];
 }
 
 // Renvoie les infos d'un client à partir de son id.
 function get_client($lienbd, $id_client) {
-    $stmt = mysqli_prepare($lienbd, "SELECT * FROM client WHERE id_client = ?");
+    $sql = "SELECT * FROM client WHERE id_client = ?";
+    $stmt = mysqli_prepare($lienbd, $sql);
     mysqli_stmt_bind_param($stmt, "i", $id_client);
     mysqli_stmt_execute($stmt);
     $ligne = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));

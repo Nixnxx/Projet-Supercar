@@ -8,57 +8,58 @@
 // ---------- Côté client (seulement les éléments ACTIFS) ----------
 
 function get_carousel_actif($lienbd) {
-    $liste = mysqli_fetch_all(mysqli_query($lienbd,
-        "SELECT * FROM accueil_carousel WHERE actif = 1 ORDER BY ordre"), MYSQLI_ASSOC);
+    $sql = "SELECT * FROM accueil_carousel WHERE actif = 1 ORDER BY ordre";
+    $liste = mysqli_fetch_all(mysqli_query($lienbd, $sql), MYSQLI_ASSOC);
     return $liste ?: [];
 }
 
 function get_hero($lienbd) {
-    $ligne = mysqli_fetch_assoc(mysqli_query($lienbd, "SELECT * FROM accueil_bienvenue LIMIT 1"));
+    $sql = "SELECT * FROM accueil_bienvenue LIMIT 1";
+    $ligne = mysqli_fetch_assoc(mysqli_query($lienbd, $sql));
     return $ligne ?: null;
 }
 
 function get_hero_images_actives($lienbd) {
-    $liste = mysqli_fetch_all(mysqli_query($lienbd,
-        "SELECT * FROM accueil_bienvenue_images WHERE actif = 1 ORDER BY ordre"), MYSQLI_ASSOC);
+    $sql = "SELECT * FROM accueil_bienvenue_images WHERE actif = 1 ORDER BY ordre";
+    $liste = mysqli_fetch_all(mysqli_query($lienbd, $sql), MYSQLI_ASSOC);
     return $liste ?: [];
 }
 
 function get_points_actifs($lienbd) {
-    $liste = mysqli_fetch_all(mysqli_query($lienbd,
-        "SELECT * FROM accueil_points WHERE actif = 1 ORDER BY ordre"), MYSQLI_ASSOC);
+    $sql = "SELECT * FROM accueil_points WHERE actif = 1 ORDER BY ordre";
+    $liste = mysqli_fetch_all(mysqli_query($lienbd, $sql), MYSQLI_ASSOC);
     return $liste ?: [];
 }
 
 function get_stats_actives($lienbd) {
-    $liste = mysqli_fetch_all(mysqli_query($lienbd,
-        "SELECT * FROM accueil_stats WHERE actif = 1 ORDER BY ordre"), MYSQLI_ASSOC);
+    $sql = "SELECT * FROM accueil_stats WHERE actif = 1 ORDER BY ordre";
+    $liste = mysqli_fetch_all(mysqli_query($lienbd, $sql), MYSQLI_ASSOC);
     return $liste ?: [];
 }
 
 // ---------- Côté admin (TOUS les éléments, actifs ou non) ----------
 
 function get_carousel_tout($lienbd) {
-    $liste = mysqli_fetch_all(mysqli_query($lienbd,
-        "SELECT * FROM accueil_carousel ORDER BY ordre"), MYSQLI_ASSOC);
+    $sql = "SELECT * FROM accueil_carousel ORDER BY ordre";
+    $liste = mysqli_fetch_all(mysqli_query($lienbd, $sql), MYSQLI_ASSOC);
     return $liste ?: [];
 }
 
 function get_hero_images_tout($lienbd) {
-    $liste = mysqli_fetch_all(mysqli_query($lienbd,
-        "SELECT * FROM accueil_bienvenue_images ORDER BY ordre"), MYSQLI_ASSOC);
+    $sql = "SELECT * FROM accueil_bienvenue_images ORDER BY ordre";
+    $liste = mysqli_fetch_all(mysqli_query($lienbd, $sql), MYSQLI_ASSOC);
     return $liste ?: [];
 }
 
 function get_points_tout($lienbd) {
-    $liste = mysqli_fetch_all(mysqli_query($lienbd,
-        "SELECT * FROM accueil_points ORDER BY ordre"), MYSQLI_ASSOC);
+    $sql = "SELECT * FROM accueil_points ORDER BY ordre";
+    $liste = mysqli_fetch_all(mysqli_query($lienbd, $sql), MYSQLI_ASSOC);
     return $liste ?: [];
 }
 
 function get_stats_tout($lienbd) {
-    $liste = mysqli_fetch_all(mysqli_query($lienbd,
-        "SELECT * FROM accueil_stats ORDER BY ordre"), MYSQLI_ASSOC);
+    $sql = "SELECT * FROM accueil_stats ORDER BY ordre";
+    $liste = mysqli_fetch_all(mysqli_query($lienbd, $sql), MYSQLI_ASSOC);
     return $liste ?: [];
 }
 
@@ -77,15 +78,20 @@ function accueil_table_reelle($cle) {
 }
 
 // Récupère une ligne par id (pour pré-remplir un formulaire de modification).
+// EXCEPTION à la règle "une ligne => null" : ici on renvoie un tableau vide,
+// car l'appelant s'en sert directement pour pré-remplir des champs de
+// formulaire (voir controleurs/admin/accueil_mod_controleur.php).
 function accueil_get_ligne($lienbd, $cle, $id) {
     $table = accueil_table_reelle($cle);
     if ($table === null || $id <= 0) {
         return [];
     }
-    $stmt = mysqli_prepare($lienbd, "SELECT * FROM `$table` WHERE id = ?");
+    $sql = "SELECT * FROM `$table` WHERE id = ?";
+    $stmt = mysqli_prepare($lienbd, $sql);
     mysqli_stmt_bind_param($stmt, "i", $id);
     mysqli_stmt_execute($stmt);
-    return mysqli_fetch_assoc(mysqli_stmt_get_result($stmt)) ?: [];
+    $ligne = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
+    return $ligne ?: [];
 }
 
 // Supprime une ligne dans un des blocs de l'accueil.
@@ -94,7 +100,8 @@ function accueil_supprimer($lienbd, $cle, $id) {
     if ($table === null || $id <= 0) {
         return false;
     }
-    $stmt = mysqli_prepare($lienbd, "DELETE FROM `$table` WHERE id = ?");
+    $sql = "DELETE FROM `$table` WHERE id = ?";
+    $stmt = mysqli_prepare($lienbd, $sql);
     mysqli_stmt_bind_param($stmt, "i", $id);
     mysqli_stmt_execute($stmt);
     return true;
