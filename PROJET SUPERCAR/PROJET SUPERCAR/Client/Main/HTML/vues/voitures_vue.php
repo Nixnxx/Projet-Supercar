@@ -104,6 +104,12 @@ foreach ($voitures as $row) :
             </span>
             <?php endif; ?>
 
+            <?php if (!empty($row['transmission'])) : ?>
+            <span class="car-info-item">
+                🚗 <?= e($row['transmission']) ?>
+            </span>
+            <?php endif; ?>
+
         </div>
 
         <div class="car-footer">

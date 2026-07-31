@@ -56,22 +56,22 @@ function get_images_voiture($lienbd, $id_voiture) {
 }
 
 // Ajoute une voiture et renvoie son nouvel id.
-function ajouter_voiture($lienbd, $model, $annee, $km, $carburant, $prix, $specs, $image, $id_marque) {
-    $sql = "INSERT INTO voiture (model, annee, km, type_carburant, prix, specs, image, id_marque)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+function ajouter_voiture($lienbd, $model, $annee, $km, $carburant, $prix, $specs, $image, $id_marque,$transmission) {
+    $sql = "INSERT INTO voiture (model, annee, km, type_carburant, prix, specs, image, id_marque, transmission)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($lienbd, $sql);
-    mysqli_stmt_bind_param($stmt, "ssisissi", $model, $annee, $km, $carburant, $prix, $specs, $image, $id_marque);
+    mysqli_stmt_bind_param($stmt, "ssisissis", $model, $annee, $km, $carburant, $prix, $specs, $image, $id_marque, $transmission);
     mysqli_stmt_execute($stmt);
     return mysqli_insert_id($lienbd);
 }
 
 // Met à jour une voiture existante.
-function modifier_voiture($lienbd, $id, $model, $annee, $km, $carburant, $prix, $specs, $id_marque) {
+function modifier_voiture($lienbd, $id, $model, $annee, $km, $carburant, $prix, $specs, $id_marque, $transmission) {
     $sql = "UPDATE voiture
-            SET model=?, annee=?, km=?, type_carburant=?, prix=?, specs=?, id_marque=?
+            SET model=?, annee=?, km=?, type_carburant=?, prix=?, specs=?, id_marque=?, transmission=?
             WHERE id_voiture=?";
     $stmt = mysqli_prepare($lienbd, $sql);
-    mysqli_stmt_bind_param($stmt, "ssisisii", $model, $annee, $km, $carburant, $prix, $specs, $id_marque, $id);
+    mysqli_stmt_bind_param($stmt, "ssisisisi", $model, $annee, $km, $carburant, $prix, $specs, $id_marque, $transmission, $id);
     mysqli_stmt_execute($stmt);
 }
 

@@ -45,7 +45,8 @@ if (isset($_POST['set_voiture'])) {
     $prix      = intval($_POST['prix']);
     $specs     = trim($_POST['specs']);
     $id_marque = intval($_POST['id_marque']);
-    modifier_voiture($lienbd, $nid, $model, $annee, $km, $carburant, $prix, $specs, $id_marque);
+    $transmission = trim($_POST['transmission']); // Récupération de la transmission
+    modifier_voiture($lienbd, $nid, $model, $annee, $km, $carburant, $prix, $specs, $id_marque, $transmission);
     header('Location: admin_voitures.php?succes=update');
     exit();
 }
@@ -59,6 +60,7 @@ if (isset($_POST['add_voiture'])) {
     $prix      = intval($_POST['prix']);
     $specs     = trim($_POST['specs']);
     $id_marque = intval($_POST['id_marque']);
+    $transmission = trim($_POST['transmission']); // Récupération de la transmission
 
     // On enregistre chaque photo choisie (plusieurs photos possibles).
     $photos = [];
@@ -81,7 +83,7 @@ if (isset($_POST['add_voiture'])) {
 
     // La 1re photo devient l'image principale.
     $image  = $photos[0] ?? '';
-    $new_id = ajouter_voiture($lienbd, $model, $annee, $km, $carburant, $prix, $specs, $image, $id_marque);
+    $new_id = ajouter_voiture($lienbd, $model, $annee, $km, $carburant, $prix, $specs, $image, $id_marque, $transmission);
 
     // Les autres photos vont dans le slider.
     foreach ($photos as $ordre => $chemin) {

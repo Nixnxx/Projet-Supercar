@@ -176,11 +176,23 @@ require __DIR__ . '/layout_haut.php';
                 </select>
             </div>
             <div class="form-group">
-                <label class="form-label">Prix (Rs)</label>
-                <input class="form-input" type="number" name="prix" min="0"
-                       value="<?= e($detail['prix'] ?? '') ?>"
-                       placeholder="ex : 2500000">
+                <label class="form-label">Transmission</label>
+                <select class="form-select" name="transmission">
+                    <?php foreach (['Manuelle', 'Automatique'] as $t): ?>
+                    <option value="<?= $t ?>"
+                        <?= trim($detail['transmission'] ?? '') == $t ? 'selected' : '' ?>>
+                        <?= $t ?>
+                    </option>
+                    <?php endforeach; ?>
+                </select>
             </div>
+        </div>
+
+        <div class="form-group espace-sm">
+            <label class="form-label">Prix (Rs)</label>
+            <input class="form-input" type="number" name="prix" min="0"
+                   value="<?= e($detail['prix'] ?? '') ?>"
+                   placeholder="ex : 2500000">
         </div>
 
         <div class="form-group espace">
@@ -299,10 +311,18 @@ require __DIR__ . '/layout_haut.php';
                 </select>
             </div>
             <div class="form-group">
-                <label class="form-label">Prix (Rs) *</label>
-                <input class="form-input" type="number" name="prix"
-                       min="0" required placeholder="ex : 2500000">
+                <label class="form-label">Transmission</label>
+                <select class="form-select" name="transmission">
+                    <option value="Manuelle">Manuelle</option>
+                    <option value="Automatique">Automatique</option>
+                </select>
             </div>
+        </div>
+
+        <div class="form-group espace-sm">
+            <label class="form-label">Prix (Rs) *</label>
+            <input class="form-input" type="number" name="prix" min="0" required
+                   placeholder="ex : 2500000">
         </div>
 
         <div class="form-group espace-sm">
