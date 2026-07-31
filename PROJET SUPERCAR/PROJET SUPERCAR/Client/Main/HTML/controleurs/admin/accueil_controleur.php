@@ -8,7 +8,8 @@
 require_once __DIR__ . '/../../includes/init.php';
 require_once __DIR__ . '/../../includes/garde_admin.php';
 require_once __DIR__ . '/menu_controleur.php';   // compteurs des pastilles du menu
-require_once __DIR__ . '/../../modeles/accueil_modele.php';
+require_once __DIR__ . '/../../modeles/accueil_modele.php';         // lecture partagée (get_hero)
+require_once __DIR__ . '/../../modeles/admin/accueil_modele.php';
 
 // Toutes les données (actives ou non) pour l'administration.
 $carousel = get_carousel_tout($lienbd);

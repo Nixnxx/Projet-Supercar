@@ -18,8 +18,8 @@
 //  Fournit à la vue : $nb_messages_non_lus, $nb_essais_en_attente
 // ============================================================
 
-require_once __DIR__ . '/../../modeles/contact_modele.php';
-require_once __DIR__ . '/../../modeles/essai_modele.php';
+require_once __DIR__ . '/../../modeles/admin/contact_modele.php';
+require_once __DIR__ . '/../../modeles/admin/essai_modele.php';
 
 // Nombre de messages jamais ouverts par l'administrateur.
 $nb_messages_non_lus = (int) (get_stats_messages($lienbd)['non_lus'] ?? 0);

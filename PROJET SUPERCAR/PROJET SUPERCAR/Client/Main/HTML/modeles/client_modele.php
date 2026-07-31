@@ -1,7 +1,9 @@
 <?php
 // ============================================================
 //  modeles/client_modele.php  —  MODÈLE : clients
-//  Requêtes sur la table client et son compte de connexion (login).
+//  Inscription et consultation de son propre compte.
+//  Les statistiques destinées au back-office sont dans
+//  modeles/admin/client_modele.php.
 // ============================================================
 
 // Vérifie si un email est déjà utilisé (renvoie true ou false).
@@ -34,13 +36,6 @@ function creer_login($lienbd, $login, $mdp_hash, $id_client) {
     $stmt = mysqli_prepare($lienbd, $sql);
     mysqli_stmt_bind_param($stmt, "sssi", $login, $mdp_hash, $niveau, $id_client);
     return mysqli_stmt_execute($stmt);
-}
-
-// Nombre total de clients (pour le tableau de bord admin).
-function compter_clients($lienbd) {
-    $sql = "SELECT COUNT(*) total FROM client";
-    $res = mysqli_query($lienbd, $sql);
-    return (int) mysqli_fetch_assoc($res)['total'];
 }
 
 // Renvoie les infos d'un client à partir de son id.

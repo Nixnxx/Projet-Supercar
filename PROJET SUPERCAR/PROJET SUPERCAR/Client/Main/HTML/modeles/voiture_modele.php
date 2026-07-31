@@ -1,10 +1,13 @@
 <?php
 // ============================================================
 //  modeles/voiture_modele.php  —  MODÈLE : voitures
-//  Catalogue côté client + gestion côté admin (ajout/modif/suppression + photos).
+//  CÔTÉ CLIENT : catalogue public et vérifications liées à la demande
+//  d'essai. La GESTION du parc (ajout, modification, suppression,
+//  photos, marques) est dans modeles/admin/voiture_modele.php.
 //
 //  ------------------------------------------------------------
 //  RÈGLES D'ÉCRITURE — LES MÊMES DANS TOUS LES MODÈLES
+//  (client comme admin ; ce bloc est la référence du projet)
 //  ------------------------------------------------------------
 //  1) La requête est TOUJOURS rangée dans $sql avant d'être exécutée :
 //
@@ -24,9 +27,12 @@
 //       - vrai/faux (existence)    : $res = ...; return mysqli_num_rows($res) > 0;
 //       - agrégat (COUNT / SUM)    : return mysqli_fetch_assoc($res);
 //                                    (un agrégat renvoie toujours une ligne)
+//
+//  3) Séparation client / admin :
+//     Une fonction utilisée UNIQUEMENT par le back-office va dans
+//     modeles/admin/. Une fonction utilisée par le site client — même si
+//     l'admin s'en sert aussi pour une simple lecture — reste ici.
 // ============================================================
-
-// ---------- Côté client ----------
 
 // Toutes les voitures avec le nom de leur marque (page catalogue).
 function get_voitures_avec_marque($lienbd) {
@@ -61,7 +67,7 @@ function voiture_existe($lienbd, $id) {
 }
 
 // Vrai si CETTE voiture est disponible (colonne voiture.disponible = 1).
-// Cette colonne est synchronisée automatiquement par essai_modele.php
+// Cette colonne est synchronisée automatiquement par admin/essai_modele.php
 // quand l'admin change le statut d'une demande d'essai (voir maj_statut_essai).
 // Sert à bloquer une réservation lancée directement par l'URL.
 function voiture_disponible($lienbd, $id) {
@@ -95,43 +101,10 @@ function get_voitures_pour_essai($lienbd, $id_marque = 0) {
     return $liste ?: [];
 }
 
-// ---------- Côté admin ----------
-
-// Nombre total de voitures (tableau de bord).
-function compter_voitures($lienbd) {
-    $sql = "SELECT COUNT(*) total FROM voiture";
-    $res = mysqli_query($lienbd, $sql);
-    return (int) mysqli_fetch_assoc($res)['total'];
-}
-
-// Liste des voitures pour l'admin (filtrable par marque ; -1 = toutes).
-function get_voitures_admin($lienbd, $filtre_marque = -1) {
-    if ($filtre_marque > 0) {
-        $sql = "SELECT v.*, m.nom AS marque
-                FROM voiture v JOIN marque m ON m.id_marque = v.id_marque
-                WHERE v.id_marque = ?
-                ORDER BY m.nom, v.model";
-        $stmt = mysqli_prepare($lienbd, $sql);
-        mysqli_stmt_bind_param($stmt, "i", $filtre_marque);
-    } else {
-        $sql = "SELECT v.*, m.nom AS marque
-                FROM voiture v JOIN marque m ON m.id_marque = v.id_marque
-                ORDER BY m.nom, v.model";
-        $stmt = mysqli_prepare($lienbd, $sql);
-    }
-    mysqli_stmt_execute($stmt);
-    $liste = mysqli_fetch_all(mysqli_stmt_get_result($stmt), MYSQLI_ASSOC);
-    return $liste ?: [];
-}
-
-// Toutes les marques (pour les filtres et les listes déroulantes).
-function get_marques($lienbd) {
-    $sql = "SELECT * FROM marque ORDER BY nom";
-    $liste = mysqli_fetch_all(mysqli_query($lienbd, $sql), MYSQLI_ASSOC);
-    return $liste ?: [];
-}
-
 // Une voiture par son id.
+// Utilisée par le client (page de demande d'essai) ET par l'admin (pré-remplir
+// le formulaire de modification) : c'est une simple LECTURE, elle reste donc
+// ici et le contrôleur admin inclut ce fichier en plus du sien.
 function get_voiture($lienbd, $id) {
     $sql = "SELECT * FROM voiture WHERE id_voiture = ?";
     $stmt = mysqli_prepare($lienbd, $sql);
@@ -139,73 +112,4 @@ function get_voiture($lienbd, $id) {
     mysqli_stmt_execute($stmt);
     $ligne = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
     return $ligne ?: null;
-}
-
-// Les photos (slider) d'une voiture.
-function get_images_voiture($lienbd, $id_voiture) {
-    $sql = "SELECT * FROM voiture_images WHERE id_voiture = ? ORDER BY ordre";
-    $stmt = mysqli_prepare($lienbd, $sql);
-    mysqli_stmt_bind_param($stmt, "i", $id_voiture);
-    mysqli_stmt_execute($stmt);
-    $liste = mysqli_fetch_all(mysqli_stmt_get_result($stmt), MYSQLI_ASSOC);
-    return $liste ?: [];
-}
-
-// Ajoute une voiture et renvoie son nouvel id.
-function ajouter_voiture($lienbd, $model, $annee, $km, $carburant, $prix, $specs, $image, $id_marque) {
-    $sql = "INSERT INTO voiture (model, annee, km, type_carburant, prix, specs, image, id_marque)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-    $stmt = mysqli_prepare($lienbd, $sql);
-    mysqli_stmt_bind_param($stmt, "ssisissi", $model, $annee, $km, $carburant, $prix, $specs, $image, $id_marque);
-    mysqli_stmt_execute($stmt);
-    return mysqli_insert_id($lienbd);
-}
-
-// Met à jour une voiture existante.
-function modifier_voiture($lienbd, $id, $model, $annee, $km, $carburant, $prix, $specs, $id_marque) {
-    $sql = "UPDATE voiture
-            SET model=?, annee=?, km=?, type_carburant=?, prix=?, specs=?, id_marque=?
-            WHERE id_voiture=?";
-    $stmt = mysqli_prepare($lienbd, $sql);
-    mysqli_stmt_bind_param($stmt, "ssisisii", $model, $annee, $km, $carburant, $prix, $specs, $id_marque, $id);
-    mysqli_stmt_execute($stmt);
-}
-
-// Supprime une voiture ET ses photos.
-function supprimer_voiture($lienbd, $id) {
-    $sql = "DELETE FROM voiture_images WHERE id_voiture = ?";
-    $stmt = mysqli_prepare($lienbd, $sql);
-    mysqli_stmt_bind_param($stmt, "i", $id);
-    mysqli_stmt_execute($stmt);
-
-    $sql = "DELETE FROM voiture WHERE id_voiture = ?";
-    $stmt = mysqli_prepare($lienbd, $sql);
-    mysqli_stmt_bind_param($stmt, "i", $id);
-    mysqli_stmt_execute($stmt);
-}
-
-// Renvoie le prochain numéro d'ordre pour une nouvelle photo.
-function prochain_ordre_image($lienbd, $id_voiture) {
-    $sql = "SELECT MAX(ordre) AS max_ordre FROM voiture_images WHERE id_voiture = ?";
-    $stmt = mysqli_prepare($lienbd, $sql);
-    mysqli_stmt_bind_param($stmt, "i", $id_voiture);
-    mysqli_stmt_execute($stmt);
-    $ligne = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
-    return ($ligne['max_ordre'] ?? 0) + 1;
-}
-
-// Ajoute une photo au slider d'une voiture.
-function ajouter_image_voiture($lienbd, $id_voiture, $chemin, $ordre) {
-    $sql = "INSERT INTO voiture_images (id_voiture, image, ordre) VALUES (?, ?, ?)";
-    $stmt = mysqli_prepare($lienbd, $sql);
-    mysqli_stmt_bind_param($stmt, "isi", $id_voiture, $chemin, $ordre);
-    mysqli_stmt_execute($stmt);
-}
-
-// Supprime une photo précise du slider.
-function supprimer_image_voiture($lienbd, $id) {
-    $sql = "DELETE FROM voiture_images WHERE id = ?";
-    $stmt = mysqli_prepare($lienbd, $sql);
-    mysqli_stmt_bind_param($stmt, "i", $id);
-    mysqli_stmt_execute($stmt);
 }

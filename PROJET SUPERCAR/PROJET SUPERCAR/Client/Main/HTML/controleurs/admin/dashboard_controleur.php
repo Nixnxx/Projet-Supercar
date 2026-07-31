@@ -8,10 +8,10 @@ require_once __DIR__ . '/../../includes/init.php';
 require_once __DIR__ . '/../../includes/garde_admin.php';   // accès réservé aux admins
 require_once __DIR__ . '/menu_controleur.php';   // compteurs des pastilles du menu
 
-require_once __DIR__ . '/../../modeles/contact_modele.php';
-require_once __DIR__ . '/../../modeles/client_modele.php';
-require_once __DIR__ . '/../../modeles/voiture_modele.php';
-require_once __DIR__ . '/../../modeles/essai_modele.php';
+require_once __DIR__ . '/../../modeles/admin/contact_modele.php';
+require_once __DIR__ . '/../../modeles/admin/client_modele.php';
+require_once __DIR__ . '/../../modeles/admin/voiture_modele.php';
+require_once __DIR__ . '/../../modeles/admin/essai_modele.php';
 
 // Statistiques globales.
 $stats = [

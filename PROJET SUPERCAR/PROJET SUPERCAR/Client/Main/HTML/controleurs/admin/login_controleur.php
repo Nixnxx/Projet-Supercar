@@ -8,7 +8,7 @@
 // ============================================================
 
 require_once __DIR__ . '/../../includes/init.php';
-require_once __DIR__ . '/../../modeles/auth_modele.php';
+require_once __DIR__ . '/../../modeles/admin/auth_modele.php';
 
 // Déjà connecté en admin ? On va au tableau de bord.
 if (est_admin()) {

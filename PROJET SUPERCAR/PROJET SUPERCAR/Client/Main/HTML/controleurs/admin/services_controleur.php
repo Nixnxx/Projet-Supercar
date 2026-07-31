@@ -8,7 +8,8 @@
 require_once __DIR__ . '/../../includes/init.php';
 require_once __DIR__ . '/../../includes/garde_admin.php';
 require_once __DIR__ . '/menu_controleur.php';   // compteurs des pastilles du menu
-require_once __DIR__ . '/../../modeles/service_modele.php';
+require_once __DIR__ . '/../../modeles/service_modele.php';        // lecture partagée (get_services)
+require_once __DIR__ . '/../../modeles/admin/service_modele.php';
 
 $action = $_GET['action'] ?? '';
 $id     = intval($_GET['id'] ?? 0);

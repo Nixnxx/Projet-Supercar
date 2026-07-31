@@ -1,7 +1,10 @@
 <?php
 // ============================================================
-//  modeles/auth_modele.php  —  MODÈLE : connexion
-//  Requêtes pour connecter un client ou un administrateur.
+//  modeles/auth_modele.php  —  MODÈLE : connexion d'un CLIENT
+//  La connexion d'un ADMINISTRATEUR est dans
+//  modeles/admin/auth_modele.php : les deux ne doivent jamais se
+//  mélanger, c'est ce qui garantit qu'un client ne peut pas entrer
+//  dans le back-office.
 // ============================================================
 
 // Cherche un CLIENT à partir de son email.
@@ -15,18 +18,6 @@ function trouver_client_par_email($lienbd, $email) {
     mysqli_stmt_bind_param($stmt, "s", $email);
     mysqli_stmt_execute($stmt);
     // On renvoie la ligne, ou null si aucun compte trouvé.
-    $ligne = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
-    return $ligne ?: null;
-}
-
-// Cherche un ADMINISTRATEUR à partir de son login.
-// IMPORTANT : on filtre sur niveau = 'admin'. Sans ce filtre, un simple
-// client pouvait se connecter à l'espace admin (c'était la grosse faille).
-function trouver_admin_par_login($lienbd, $login) {
-    $sql = "SELECT * FROM login WHERE login = ? AND niveau = 'admin'";
-    $stmt = mysqli_prepare($lienbd, $sql);
-    mysqli_stmt_bind_param($stmt, "s", $login);
-    mysqli_stmt_execute($stmt);
     $ligne = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
     return $ligne ?: null;
 }

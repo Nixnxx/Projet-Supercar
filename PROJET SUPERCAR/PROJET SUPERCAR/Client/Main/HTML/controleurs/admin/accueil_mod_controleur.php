@@ -10,7 +10,7 @@
 
 require_once __DIR__ . '/../../includes/init.php';
 require_once __DIR__ . '/../../includes/garde_admin.php';
-require_once __DIR__ . '/../../modeles/accueil_modele.php';
+require_once __DIR__ . '/../../modeles/admin/accueil_modele.php';
 
 $table = $_GET['table'] ?? '';
 $id    = intval($_GET['id'] ?? 0);

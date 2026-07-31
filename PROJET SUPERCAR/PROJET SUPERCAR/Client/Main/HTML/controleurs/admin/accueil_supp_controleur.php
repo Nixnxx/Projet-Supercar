@@ -8,7 +8,7 @@
 
 require_once __DIR__ . '/../../includes/init.php';
 require_once __DIR__ . '/../../includes/garde_admin.php';
-require_once __DIR__ . '/../../modeles/accueil_modele.php';
+require_once __DIR__ . '/../../modeles/admin/accueil_modele.php';
 
 // On n'accepte QUE la méthode POST : une suppression modifie la base,
 // elle ne doit donc jamais pouvoir être déclenchée par une simple adresse.
