@@ -112,8 +112,7 @@ foreach ($voitures as $row) :
             </span>
 
            <?php if ($estIndisponible) : ?>
-           <button class="btn-commander" disabled
-                   style="background:#9aa0a6; opacity:.6; cursor:not-allowed;">
+           <button class="btn-commander btn-indisponible" disabled>
                Indisponible
            </button>
            <?php else : ?>

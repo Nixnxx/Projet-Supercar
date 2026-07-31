@@ -16,7 +16,7 @@ require __DIR__ . '/layout_haut.php';
     <?php if ($succes === 'ajoute'):   ?><div class="alert success">✓ Ajouté.</div><?php endif; ?>
     <?php if ($succes === 'supprime'): ?><div class="alert success">✕ Supprimé.</div><?php endif; ?>
 
-    <div style="display:flex; justify-content:flex-end; margin-bottom:20px;">
+    <div class="toolbar-droite">
         <a href="?action=ajouter" class="btn btn-primary">+ Ajouter</a>
     </div>
 
@@ -31,7 +31,7 @@ require __DIR__ . '/layout_haut.php';
                     <th>Icône</th>
                     <th>Tag</th>
                     <th>Description</th>
-                    <th style="text-align:right;">Actions</th>
+                    <th class="cell-droite">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,17 +41,17 @@ require __DIR__ . '/layout_haut.php';
                     <td><?= str_pad($s['numero'], 2, '0', STR_PAD_LEFT) ?></td>
                     <td>
                         <?php if ($s['image']): ?>
-                            <img src="../<?= e($s['image']) ?>" style="width:50px; height:35px; object-fit:cover; border-radius:4px;">
+                            <img src="../<?= e($s['image']) ?>" class="vignette-service">
                         <?php else: ?>
-                            <div style="width:50px; height:35px; background:var(--border); border-radius:4px;"></div>
+                            <div class="vignette-vide"></div>
                         <?php endif; ?>
                     </td>
-                    <td style="font-weight:600;"><?= e($s['nom']) ?></td>
+                    <td class="cell-nom"><?= e($s['nom']) ?></td>
                     <td><i class="bi <?= e($s['icone']) ?>"></i> <small><?= e($s['icone']) ?></small></td>
                     <td><small><?= e($s['tag']) ?></small></td>
-                    <td style="font-size:12px; color:var(--text-dim);"><?= e(substr($s['description'], 0, 50)) ?>...</td>
-                    <td style="text-align:right;">
-                        <div class="actions" style="justify-content:flex-end;">
+                    <td class="cell-desc"><?= e(substr($s['description'], 0, 50)) ?>...</td>
+                    <td class="cell-droite">
+                        <div class="actions actions-droite">
                             <!-- "Modifier" reste un LIEN : il ne fait qu'afficher un formulaire. -->
                             <a class="btn btn-ghost btn-sm" href="?action=detail&id=<?= (int)$s['id_service'] ?>">Modifier</a>
 
@@ -75,8 +75,8 @@ require __DIR__ . '/layout_haut.php';
 <!-- FENÊTRE MODIFICATION -->
 <?php if ($detail): ?>
 <div class="modal-overlay open" data-close-href="admin_services.php">
-    <div class="modal" style="max-width:400px;">
-        <h3 style="margin-bottom:15px;">Modifier Service</h3>
+    <div class="modal modal-sm">
+        <h3 class="modal-titre-espace">Modifier Service</h3>
         <form method="POST" enctype="multipart/form-data">
 
             <!-- Jeton anti-CSRF : prouve que le formulaire vient bien de notre site -->
@@ -111,9 +111,9 @@ require __DIR__ . '/layout_haut.php';
 
             <div class="form-group">
                 <?php if($detail['image']): ?>
-                    <div style="margin-bottom:10px; text-align:center; background:var(--bg-card); padding:8px; border-radius:8px; border:1px solid var(--border);">
-                        <img src="../<?= e($detail['image']) ?>" style="max-width:100%; height:80px; object-fit:contain; border-radius:4px;">
-                        <label style="display:flex; align-items:center; justify-content:center; gap:8px; color:var(--danger); cursor:pointer; font-size:12px; margin-top:8px;">
+                    <div class="bloc-image-actuelle">
+                        <img src="../<?= e($detail['image']) ?>" >
+                        <label class="retirer-image">
                             <input type="checkbox" name="remove_image"> 🗑 Retirer l'image
                         </label>
                     </div>
@@ -122,7 +122,7 @@ require __DIR__ . '/layout_haut.php';
                 <input class="form-input" type="file" name="image" accept="image/*">
             </div>
 
-            <div class="modal-footer" style="padding-top:10px;">
+            <div class="modal-footer espace-haut">
                 <a href="admin_services.php" class="btn btn-ghost">Annuler</a>
                 <button type="submit" class="btn btn-primary" name="set_service">Enregistrer</button>
             </div>
@@ -134,8 +134,8 @@ require __DIR__ . '/layout_haut.php';
 <!-- FENÊTRE AJOUT -->
 <?php if ($action === 'ajouter'): ?>
 <div class="modal-overlay open" data-close-href="admin_services.php">
-    <div class="modal" style="max-width:400px;">
-        <h3 style="margin-bottom:15px;">Nouveau Service</h3>
+    <div class="modal modal-sm">
+        <h3 class="modal-titre-espace">Nouveau Service</h3>
         <form method="POST" enctype="multipart/form-data">
 
             <!-- Jeton anti-CSRF : prouve que le formulaire vient bien de notre site -->
@@ -172,7 +172,7 @@ require __DIR__ . '/layout_haut.php';
                 <input class="form-input" type="file" name="image" accept="image/*">
             </div>
 
-            <div class="modal-footer" style="padding-top:10px;">
+            <div class="modal-footer espace-haut">
                 <a href="admin_services.php" class="btn btn-ghost">Annuler</a>
                 <button type="submit" class="btn btn-primary" name="add_service">Créer</button>
             </div>

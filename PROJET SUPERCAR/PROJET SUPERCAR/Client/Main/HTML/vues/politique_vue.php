@@ -9,13 +9,11 @@ require __DIR__ . '/layout/header.php';
 ?>
 
 <section class="py-5">
-  <div class="container" style="max-width: 900px;">
+  <div class="container page-legale">
 
-    <div style="background:#fff; border:1px solid var(--accent-grey);
-                border-top:4px solid var(--primary-orange); border-radius:16px;
-                padding:40px; box-shadow:0 6px 22px rgba(20,30,50,0.06);">
+    <div class="carte-legale">
 
-      <h1 class="mb-4" style="color: var(--text-dark);">Politique de confidentialité</h1>
+      <h1 class="mb-4">Politique de confidentialité</h1>
 
       <?php require __DIR__ . '/layout/politique_contenu.php'; ?>
 

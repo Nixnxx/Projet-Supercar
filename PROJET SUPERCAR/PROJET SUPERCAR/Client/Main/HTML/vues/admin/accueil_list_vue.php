@@ -59,7 +59,7 @@ function bouton_suppr($cle, $id, $confirmation) {
                 <?php foreach ($carousel as $slide) : ?>
                     <tr>
                         <td><?= (int)$slide['id'] ?></td>
-                        <td><img src="../<?= e($slide['image']) ?>" style="width:70px;height:45px;object-fit:cover;border-radius:5px;" alt=""></td>
+                        <td><img src="../<?= e($slide['image']) ?>" class="vignette" alt=""></td>
                         <td><?= e($slide['titre']) ?></td>
                         <td><?= (int)$slide['ordre'] ?></td>
                         <td><?= $slide['actif'] ? '<span class="badge badge-ok">Oui</span>' : '<span class="badge badge-no">Non</span>' ?></td>
@@ -85,23 +85,23 @@ function bouton_suppr($cle, $id, $confirmation) {
                 <i class="bi bi-pencil"></i> Modifier
             </a>
         </div>
-        <div style="padding: 20px; display: flex; flex-direction: column; gap: 10px;">
-            <p style="color: var(--text-muted); font-size: 13px;">
-                <span style="color: var(--text-dim); font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px;">Titre</span><br>
+        <div class="apercu-hero">
+            <p class="hero-champ">
+                <span class="hero-libelle">Titre</span><br>
                 <?= e($hero['titre'] ?? '') ?>
             </p>
-            <p style="color: var(--text-muted); font-size: 13px;">
-                <span style="color: var(--text-dim); font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px;">Sous-titre</span><br>
+            <p class="hero-champ">
+                <span class="hero-libelle">Sous-titre</span><br>
                 <?= e($hero['sous_titre'] ?? '') ?>
             </p>
-            <p style="color: var(--text-muted); font-size: 13px;">
-                <span style="color: var(--text-dim); font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px;">Description</span><br>
+            <p class="hero-champ">
+                <span class="hero-libelle">Description</span><br>
                 <?= e(substr($hero['description'] ?? '', 0, 120)) ?>…
             </p>
-            <p style="color: var(--text-muted); font-size: 13px;">
-                <span style="color: var(--text-dim); font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px;">Bouton</span><br>
+            <p class="hero-champ">
+                <span class="hero-libelle">Bouton</span><br>
                 <span class="badge badge-wait"><?= e($hero['texte'] ?? '') ?></span>
-                → <code style="color: var(--text-dim); font-size: 12px;"><?= e($hero['lien'] ?? '') ?></code>
+                → <code class="hero-lien"><?= e($hero['lien'] ?? '') ?></code>
             </p>
         </div>
     </div>
@@ -124,8 +124,8 @@ function bouton_suppr($cle, $id, $confirmation) {
                 <?php foreach ($images as $img) : ?>
                     <tr>
                         <td><?= (int)$img['id'] ?></td>
-                        <td><img src="../<?= e($img['image']) ?>" style="width:70px;height:45px;object-fit:cover;border-radius:5px;" alt=""></td>
-                        <td style="max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><?= e($img['image']) ?></td>
+                        <td><img src="../<?= e($img['image']) ?>" class="vignette" alt=""></td>
+                        <td class="cell-fichier"><?= e($img['image']) ?></td>
                         <td><?= e($img['alt']) ?></td>
                         <td><?= (int)$img['ordre'] ?></td>
                         <td><?= $img['actif'] ? '<span class="badge badge-ok">Oui</span>' : '<span class="badge badge-no">Non</span>' ?></td>
@@ -194,7 +194,7 @@ function bouton_suppr($cle, $id, $confirmation) {
                 <?php foreach ($stats as $stat) : ?>
                     <tr>
                         <td><?= (int)$stat['id'] ?></td>
-                        <td><strong style="color: var(--accent);"><?= e($stat['valeur']) ?></strong></td>
+                        <td><strong class="valeur-stat"><?= e($stat['valeur']) ?></strong></td>
                         <td><?= e($stat['label']) ?></td>
                         <td><?= (int)$stat['ordre'] ?></td>
                         <td><?= $stat['actif'] ? '<span class="badge badge-ok">Oui</span>' : '<span class="badge badge-no">Non</span>' ?></td>

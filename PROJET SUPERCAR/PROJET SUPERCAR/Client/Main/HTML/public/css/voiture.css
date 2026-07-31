@@ -352,3 +352,11 @@
         font-size: 1.2rem;
     }
 }
+
+/* Bouton grisé quand la voiture est déjà réservée
+   (remplace un style écrit dans la balise) */
+.btn-indisponible {
+    background: #9aa0a6;
+    opacity: .6;
+    cursor: not-allowed;
+}

@@ -171,3 +171,16 @@ body {
 body.loaded {
     opacity: 1;
 }
+
+/* ============================================================
+   CLASSES AJOUTÉES LORS DU PASSAGE EN CSS EXTERNE
+   Elles remplacent des style="..." écrits dans les balises.
+   Placées ici car styles.css est chargé sur TOUTES les pages.
+========================= */
+
+/* Petit titre orange : colonnes du pied de page et intertitres des
+   pages légales. C'était de loin le style en ligne le plus répété. */
+.titre-section { color: var(--primary-orange); }
+
+/* Flèche "Retour à l'accueil" des pages de connexion / inscription */
+.icone-retour { margin-right: 8px; }

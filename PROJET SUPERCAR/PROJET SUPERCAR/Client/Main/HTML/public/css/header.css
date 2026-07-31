@@ -272,3 +272,6 @@ header .dropdown-item-danger:focus {
 /* (L'ancienne règle "a[href=logout.php]" a été retirée : le lien de
    déconnexion est désormais un simple élément du menu déroulant, stylé
    par .dropdown-item-danger ci-dessus. Plus besoin d'un bouton bordé.) */
+
+/* Largeur du menu déroulant "compte" (remplace un style écrit dans la balise) */
+.menu-compte { min-width: 200px; }

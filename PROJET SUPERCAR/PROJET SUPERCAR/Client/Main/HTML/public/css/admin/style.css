@@ -1,14 +1,14 @@
-<?php
-// ============================================================
-//  vues/admin/style.php  —  VUE (partiel) : styles du back-office
-//  Inclus dans le <head> de chaque page admin.
-// ============================================================
-?>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
+/* ============================================================
+   css/admin/style.css  —  STYLES COMMUNS DU BACK-OFFICE
+   Chargé par vues/admin/layout_haut.php sur toutes les pages admin.
+
+   Ce fichier contient les variables, la base, le menu latéral et
+   tous les composants réutilisables (boutons, tableaux, badges,
+   formulaires, fenêtres). Les styles propres à UNE page sont dans
+   le fichier du même nom que sa page (voitures.css, contact.css…),
+   exactement comme pour les scripts dans js/admin/.
+============================================================ */
+
 :root {
     --accent: #ff6b35;
     --accent-dim: rgba(255, 107, 53, 0.08);
@@ -772,4 +772,70 @@ tbody tr.unread td { color: var(--text); font-weight: 500; }
         gap: 8px;
     }
 }
-</style>
+
+/* ============================================================
+   CLASSES AJOUTÉES LORS DU PASSAGE EN CSS EXTERNE
+   ------------------------------------------------------------
+   Elles remplacent des style="..." qui étaient écrits directement
+   dans les balises des vues. Regroupées ici parce qu'elles servent
+   sur AU MOINS DEUX pages ; celles propres à une seule page sont
+   dans le fichier portant le nom de cette page.
+============================================================ */
+
+/* ── Cellules de tableau ── */
+.cell-mono      { font-family: 'DM Mono', monospace; }
+.cell-mono-dim  { font-family: 'DM Mono', monospace; color: var(--text-dim); }
+.cell-mono-prix { font-family: 'DM Mono', monospace; color: var(--accent); }
+.cell-titre     { color: var(--text); font-weight: 500; }
+.cell-sous      { font-size: 11px; color: var(--text-dim); }
+.cell-droite    { text-align: right; }
+.txt-dim        { color: var(--text-dim); }
+
+/* ── Barre d'outils au-dessus d'un tableau ──
+   Filtres à gauche, bouton d'ajout à droite. */
+.page-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+/* Dans la barre, la liste de filtres ne garde pas sa marge du bas */
+.page-toolbar .filtres { margin-bottom: 0; }
+
+/* Variante : uniquement un bouton, aligné à droite */
+.toolbar-droite {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+/* Boutons d'action alignés à droite dans une cellule */
+.actions.actions-droite { justify-content: flex-end; }
+
+/* ── Fenêtres (modales) ── */
+.modal-lg { max-width: 560px; }
+.modal-sm { max-width: 400px; }
+.modal-titre-espace { margin-bottom: 15px; }
+.modal-footer.espace-haut { padding-top: 10px; }
+
+/* ── Espacement d'un champ de formulaire ── */
+.form-group.espace-sm { margin-bottom: 12px; }
+.form-group.espace    { margin-bottom: 16px; }
+.form-label.espace    { margin-bottom: 10px; }
+.form-label.espace-sm { margin-bottom: 8px; }
+
+/* ── Bloc d'information dans une fenêtre de détail ── */
+.info-libelle {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-dim);
+    margin-bottom: 3px;
+}
+.info-valeur { color: var(--text); }
+.info-detail { font-size: 12px; color: var(--text-dim); }
+
+/* ── Aide sous un champ (formats acceptés, consigne…) ── */
+.aide-champ { font-size: 11px; color: var(--text-dim); margin-top: 6px; }

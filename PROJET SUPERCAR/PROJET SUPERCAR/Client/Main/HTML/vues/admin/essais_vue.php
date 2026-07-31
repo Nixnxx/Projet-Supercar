@@ -43,13 +43,13 @@ require __DIR__ . '/layout_haut.php';
     <?php else: ?>
     <?php foreach ($essais as $e): ?>
     <tr>
-        <td style="font-family:'DM Mono',monospace;color:var(--text-dim)"><?= (int)$e['id_demande'] ?></td>
+        <td class="cell-mono-dim"><?= (int)$e['id_demande'] ?></td>
         <td>
-            <div style="color:var(--text);font-weight:500"><?= e($e['nom'].' '.$e['prenom']) ?></div>
-            <div style="font-size:11px;color:var(--text-dim)"><?= e($e['email']) ?></div>
+            <div class="cell-titre"><?= e($e['nom'].' '.$e['prenom']) ?></div>
+            <div class="cell-sous"><?= e($e['email']) ?></div>
         </td>
         <td><?= e($e['model']) ?></td>
-        <td style="font-family:'DM Mono',monospace"><?= $e['date_essai_proposee'] ? date('d/m/Y', strtotime($e['date_essai_proposee'])) : '—' ?></td>
+        <td class="cell-mono"><?= $e['date_essai_proposee'] ? date('d/m/Y', strtotime($e['date_essai_proposee'])) : '—' ?></td>
         <td><span class="badge <?= $statuts_class[$e['statut']] ?>"><?= $statuts_labels[$e['statut']] ?></span></td>
         <td>
             <div class="actions">
@@ -83,15 +83,15 @@ require __DIR__ . '/layout_haut.php';
 
     <div class="form-2col">
         <div>
-            <div class="form-label" style="font-size:10px;text-transform:uppercase;letter-spacing:.6px;color:var(--text-dim);margin-bottom:3px;">Client</div>
-            <div style="color:var(--text)"><?= e($detail['nom'].' '.$detail['prenom']) ?></div>
-            <div style="font-size:12px;color:var(--text-dim)"><?= e($detail['email']) ?></div>
-            <div style="font-size:12px;color:var(--text-dim)"><?= e($detail['telephone']) ?></div>
+            <div class="info-libelle">Client</div>
+            <div class="info-valeur"><?= e($detail['nom'].' '.$detail['prenom']) ?></div>
+            <div class="info-detail"><?= e($detail['email']) ?></div>
+            <div class="info-detail"><?= e($detail['telephone']) ?></div>
         </div>
         <div>
-            <div class="form-label" style="font-size:10px;text-transform:uppercase;letter-spacing:.6px;color:var(--text-dim);margin-bottom:3px;">Voiture</div>
-            <div style="color:var(--text)"><?= e($detail['model']) ?></div>
-            <div style="font-size:12px;color:var(--text-dim)">Date : <?= $detail['date_essai_proposee'] ? date('d/m/Y', strtotime($detail['date_essai_proposee'])) : '—' ?></div>
+            <div class="info-libelle">Voiture</div>
+            <div class="info-valeur"><?= e($detail['model']) ?></div>
+            <div class="info-detail">Date : <?= $detail['date_essai_proposee'] ? date('d/m/Y', strtotime($detail['date_essai_proposee'])) : '—' ?></div>
         </div>
     </div>
 
@@ -101,7 +101,7 @@ require __DIR__ . '/layout_haut.php';
         <?php csrf_champ(); ?>
 
         <input type="hidden" name="id_demande" value="<?= (int)$detail['id_demande'] ?>">
-        <div class="form-group" style="margin-bottom:12px;">
+        <div class="form-group espace-sm">
             <label class="form-label">Statut</label>
             <select class="form-select" name="statut">
                 <option value="0" <?= $detail['statut']==0?'selected':'' ?>>En attente</option>

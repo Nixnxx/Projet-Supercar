@@ -1,0 +1,111 @@
+/* ============================================================
+   css/admin/voitures.css  —  Page "Voitures" du back-office
+   Styles propres à cette page (vues/admin/voitures_vue.php).
+   Ce qui est commun à plusieurs pages est dans style.css.
+============================================================ */
+
+/* ── Bloc "Photos du slider" dans la fenêtre de modification ── */
+.bloc-photos {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+}
+
+/* Galerie des photos déjà enregistrées */
+.galerie-photos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+/* Une vignette + son bouton de suppression en coin */
+.photo-vignette {
+    position: relative;
+    display: inline-block;
+}
+
+.photo-vignette img {
+    width: 80px;
+    height: 55px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+}
+
+/* Petite croix rouge posée sur le coin de la vignette.
+   Le formulaire qui l'entoure est en display:inline (.form-action),
+   il ne perturbe donc pas ce positionnement absolu. */
+.btn-suppr-photo {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: #e53e3e;
+    color: #fff;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 11px;
+    line-height: 18px;
+    text-align: center;
+}
+
+.photos-vide {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 14px;
+}
+
+/* ── Ajout d'une photo : champ + bouton sur la même ligne ── */
+.ligne-upload {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.ligne-upload .form-input {
+    flex: 1;
+    min-width: 180px;
+}
+
+/* Aperçu affiché par js/admin/voitures.js après avoir choisi un fichier.
+   Masqué au départ : le script le rend visible. */
+.apercu-photo {
+    display: none;
+    margin-top: 8px;
+    max-height: 80px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+}
+
+.aide-formats {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 4px;
+}
+
+/* ── Bloc "Photos du slider" dans la fenêtre d'ajout ── */
+.bloc-photos-ajout {
+    margin-bottom: 16px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.aide-photos {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+}
+
+/* Conteneur rempli par le script quand on choisit plusieurs photos */
+.apercus-multiples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}

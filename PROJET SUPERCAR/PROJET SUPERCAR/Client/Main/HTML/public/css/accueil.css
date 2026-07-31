@@ -476,3 +476,31 @@ form button:active {
 .hero-grid-right img {
     height: 202px;
 }
+
+/* ============================================================
+   CLASSES AJOUTÉES LORS DU PASSAGE EN CSS EXTERNE
+   Elles remplacent des style="..." écrits dans les balises.
+========================= */
+
+/* Titre principal rempli par un dégradé orange.
+   Le texte est peint par le fond, puis rendu transparent. */
+.titre-degrade {
+    background: linear-gradient(135deg, var(--primary-orange), #ff8c00);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ── Bande orange des statistiques ──
+   Le fond étant orange vif, tous ces textes passent en blanc. */
+.bande-titre  { color: #fff; }
+.bande-valeur { font-size: 2.2rem; color: #fff; }
+.bande-label  { color: rgba(255, 255, 255, 0.95); font-size: 0.85rem; }
+
+/* Trait vertical de séparation entre deux statistiques */
+.bande-separateur {
+    background-color: rgba(255, 255, 255, 0.35);
+    height: 50px;
+    width: 1.5px;
+    opacity: 1;
+}

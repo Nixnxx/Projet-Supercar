@@ -64,7 +64,7 @@
             <div class="register-link">
                 <p>Déjà inscrit ? Cliquez <a href="connexion.php">ici</a> pour vous connecter</p>
                 <a href="index.php" class="retour-accueil">
-                    <i class="bi bi-arrow-left" style="margin-right: 8px;"></i>Retour à l'accueil
+                    <i class="bi bi-arrow-left icone-retour"></i>Retour à l'accueil
                 </a>
             </div>
 

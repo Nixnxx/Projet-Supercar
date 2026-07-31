@@ -77,12 +77,12 @@ require __DIR__ . '/layout/header.php';
 
 <!-- FENÊTRE DE CONFIRMATION -->
 <?php if ($succes) : ?>
-<div class="modal fade show d-block" tabindex="-1" style="background:rgba(0,0,0,0.6);">
+<div class="modal fade show d-block modal-succes" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-sm">
-        <div class="modal-content border-0 rounded-3" style="background:#111;">
+        <div class="modal-content border-0 rounded-3">
             <div class="modal-body text-center px-4 py-4">
-                <p class="text-white mb-3" style="font-size:0.95rem;">Message bien envoyé.</p>
-                <a href="contact.php" class="btn btn-sm px-4" style="background:#f97316; color:white; border-radius:20px;">OK</a>
+                <p class="text-white mb-3 modal-succes-texte">Message bien envoyé.</p>
+                <a href="contact.php" class="btn btn-sm px-4 btn-modal-ok">OK</a>
             </div>
         </div>
     </div>

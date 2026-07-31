@@ -7,12 +7,12 @@
 //   - dans la page autonome politique.php (politique_vue.php)
 // ============================================================
 ?>
-<h6 class="fw-bold mb-3" style="color: var(--primary-orange);">1. Introduction</h6>
+<h6 class="fw-bold mb-3 titre-section">1. Introduction</h6>
 <p class="mb-4">
   La présente politique de confidentialité a pour objectif d'informer les utilisateurs du site SuperCar sur la collecte et l'utilisation de leurs données personnelles. Le respect de la vie privée des utilisateurs fait partie des priorités du projet.
 </p>
 
-<h6 class="fw-bold mb-3" style="color: var(--primary-orange);">2. Données collectées</h6>
+<h6 class="fw-bold mb-3 titre-section">2. Données collectées</h6>
 <p class="mb-2 fw-semibold">Lors de l'inscription :</p>
 <ul class="mb-3">
   <li>Nom</li>
@@ -31,7 +31,7 @@
   <li>Date d'essai demandée</li>
 </ul>
 
-<h6 class="fw-bold mb-3" style="color: var(--primary-orange);">3. Finalité des données</h6>
+<h6 class="fw-bold mb-3 titre-section">3. Finalité des données</h6>
 <p class="mb-2">Les données collectées sont utilisées uniquement pour :</p>
 <ul class="mb-3">
   <li>Gérer les comptes utilisateurs</li>
@@ -41,7 +41,7 @@
 </ul>
 <p class="mb-4">Les données ne sont ni revendues ni transmises à des tiers.</p>
 
-<h6 class="fw-bold mb-3" style="color: var(--primary-orange);">4. Sécurité des données</h6>
+<h6 class="fw-bold mb-3 titre-section">4. Sécurité des données</h6>
 <p class="mb-2">Le site met en œuvre plusieurs mesures de sécurité :</p>
 <ul class="mb-4">
   <li>Mots de passe hachés avec <code>password_hash</code></li>
@@ -50,12 +50,12 @@
   <li>Contrôle d'accès administrateur</li>
 </ul>
 
-<h6 class="fw-bold mb-3" style="color: var(--primary-orange);">5. Sessions et cookies</h6>
+<h6 class="fw-bold mb-3 titre-section">5. Sessions et cookies</h6>
 <p class="mb-4">
   Le site utilise des sessions PHP (<code>session_start()</code> et <code>$_SESSION</code>) afin de maintenir la connexion des utilisateurs et sécuriser certaines fonctionnalités. Aucun système publicitaire ou outil de suivi externe n'est utilisé.
 </p>
 
-<h6 class="fw-bold mb-3" style="color: var(--primary-orange);">6. Conservation des données</h6>
+<h6 class="fw-bold mb-3 titre-section">6. Conservation des données</h6>
 <p class="mb-2">
   Les données collectées via les formulaires d'inscription et de demande d'essai sont enregistrées dans une base de données MySQL. Ces données sont conservées pendant une durée raisonnable nécessaire :
 </p>
@@ -66,7 +66,7 @@
 </ul>
 <p class="mb-4">L'accès aux données est limité exclusivement à l'administrateur du site.</p>
 
-<h6 class="fw-bold mb-3" style="color: var(--primary-orange);">7. Droits des utilisateurs</h6>
+<h6 class="fw-bold mb-3 titre-section">7. Droits des utilisateurs</h6>
 <p class="mb-2">Les utilisateurs peuvent demander :</p>
 <ul class="mb-3">
   <li>L'accès à leurs données</li>
@@ -77,12 +77,12 @@
   Toute demande peut être envoyée à : <a href="mailto:contact@supercar.mu" class="text-orange">contact@supercar.mu</a>
 </p>
 
-<h6 class="fw-bold mb-3" style="color: var(--primary-orange);">8. Protection des mineurs</h6>
+<h6 class="fw-bold mb-3 titre-section">8. Protection des mineurs</h6>
 <p class="mb-4">
   Le site SuperCar est accessible à tout public. Toutefois, certaines fonctionnalités liées aux essais de véhicules peuvent nécessiter l'intervention d'un adulte disposant d'un permis de conduire valide.
 </p>
 
-<h6 class="fw-bold mb-3" style="color: var(--primary-orange);">9. Modification de la politique</h6>
+<h6 class="fw-bold mb-3 titre-section">9. Modification de la politique</h6>
 <p class="mb-0">
   La présente politique de confidentialité peut être modifiée à tout moment afin d'améliorer le fonctionnement du site ou de respecter les évolutions du projet pédagogique.
 </p>

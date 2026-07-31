@@ -51,7 +51,7 @@
         <div class="register-link">
             <p>Vous êtes nouveau client ? Cliquez <a href="inscription.php">ici</a> pour créer votre compte</p>
             <a href="index.php" class="retour-accueil">
-                <i class="fa-solid fa-arrow-left" style="margin-right: 8px;"></i>Retour à l'accueil
+                <i class="fa-solid fa-arrow-left icone-retour"></i>Retour à l'accueil
             </a>
         </div>
 

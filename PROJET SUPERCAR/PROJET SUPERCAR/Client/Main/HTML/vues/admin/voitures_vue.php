@@ -23,9 +23,9 @@ require __DIR__ . '/layout_haut.php';
 <?php endif; ?>
 
 <!-- ─── Filtres par marque + Bouton Ajouter ─── -->
-<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:20px;">
+<div class="page-toolbar">
 
-    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+    <div class="filtres">
         <a href="admin_voitures.php"
            class="btn <?= $filtre_marque < 0 ? 'btn-primary' : 'btn-ghost' ?>">Toutes</a>
         <?php foreach ($marques as $m): ?>
@@ -60,18 +60,18 @@ require __DIR__ . '/layout_haut.php';
     <?php else: ?>
     <?php foreach ($voitures as $v): ?>
     <tr>
-        <td style="font-family:'DM Mono',monospace;color:var(--text-dim)"><?= (int)$v['id_voiture'] ?></td>
+        <td class="cell-mono-dim"><?= (int)$v['id_voiture'] ?></td>
         <td>
-            <div style="color:var(--text);font-weight:500"><?= e($v['model']) ?></div>
-            <div style="font-size:11px;color:var(--text-dim)">
+            <div class="cell-titre"><?= e($v['model']) ?></div>
+            <div class="cell-sous">
                 <?= $v['specs'] ? e(substr($v['specs'], 0, 55)) . '…' : '—' ?>
             </div>
         </td>
         <td><?= e($v['marque']) ?></td>
-        <td style="font-family:'DM Mono',monospace">
+        <td class="cell-mono">
             <?= $v['annee'] ? date('Y', strtotime($v['annee'])) : '—' ?>
         </td>
-        <td style="font-family:'DM Mono',monospace">
+        <td class="cell-mono">
             <?= $v['km'] ? number_format($v['km'], 0, ',', ' ') . ' km' : '—' ?>
         </td>
         <td>
@@ -84,10 +84,10 @@ require __DIR__ . '/layout_haut.php';
             elseif ($carb)
                 echo '<span class="badge badge-no">⛽ ' . e($carb) . '</span>';
             else
-                echo '<span style="color:var(--text-dim)">—</span>';
+                echo '<span class="txt-dim">—</span>';
             ?>
         </td>
-        <td style="font-family:'DM Mono',monospace;color:var(--accent)">
+        <td class="cell-mono-prix">
             <?= $v['prix'] ? number_format($v['prix'], 0, ',', ' ') . ' Rs' : '—' ?>
         </td>
         <td>
@@ -119,7 +119,7 @@ require __DIR__ . '/layout_haut.php';
 <?php if ($detail): ?>
 <div class="modal-overlay open"
      data-close-href="admin_voitures.php">
-<div class="modal" style="max-width:560px;">
+<div class="modal modal-lg">
 
     <h3>Modifier — <?= e($detail['model']) ?></h3>
 
@@ -183,7 +183,7 @@ require __DIR__ . '/layout_haut.php';
             </div>
         </div>
 
-        <div class="form-group" style="margin-bottom:16px;">
+        <div class="form-group espace">
             <label class="form-label">Description / Specs</label>
             <textarea class="form-textarea" name="specs"><?= e($detail['specs'] ?? '') ?></textarea>
         </div>
@@ -195,18 +195,16 @@ require __DIR__ . '/layout_haut.php';
     </form>
 
     <!-- ─── PHOTOS DU SLIDER ─── -->
-    <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);">
-        <div class="form-label" style="margin-bottom:10px;">
+    <div class="bloc-photos">
+        <div class="form-label espace">
             📸 Photos du slider (<?= count($photos_slider) ?> photo<?= count($photos_slider) > 1 ? 's' : '' ?>)
         </div>
 
         <?php if (!empty($photos_slider)): ?>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
+        <div class="galerie-photos">
             <?php foreach ($photos_slider as $ph): ?>
-            <div style="position:relative;display:inline-block;">
-                <img src="../<?= e($ph['image']) ?>"
-                     style="width:80px;height:55px;object-fit:cover;border-radius:6px;border:1px solid var(--border);"
-                     alt="">
+            <div class="photo-vignette">
+                <img src="../<?= e($ph['image']) ?>" alt="">
                 <!-- Suppression d'une photo : FORMULAIRE POST avec confirmation.
                      Le formulaire est en display:inline (.form-action), il ne
                      perturbe donc pas le positionnement du bouton en absolu. -->
@@ -214,17 +212,14 @@ require __DIR__ . '/layout_haut.php';
                     <?php csrf_champ(); ?>
                     <input type="hidden" name="id_photo_suppr" value="<?= (int)$ph['id'] ?>">
                     <input type="hidden" name="id_voiture_photo_suppr" value="<?= (int)$detail['id_voiture'] ?>">
-                    <button name="supprimer_photo"
-                            data-confirm="Supprimer cette photo ?"
-                            style="position:absolute;top:-6px;right:-6px;background:#e53e3e;color:white;
-                                   border:none;padding:0;cursor:pointer;border-radius:50%;width:18px;height:18px;
-                                   font-size:11px;line-height:18px;text-align:center;">✕</button>
+                    <button class="btn-suppr-photo" name="supprimer_photo"
+                            data-confirm="Supprimer cette photo ?">✕</button>
                 </form>
             </div>
             <?php endforeach; ?>
         </div>
         <?php else: ?>
-        <div style="font-size:12px;color:var(--text-dim);margin-bottom:14px;">Aucune photo pour l'instant.</div>
+        <div class="photos-vide">Aucune photo pour l'instant.</div>
         <?php endif; ?>
 
         <!-- Formulaire upload d'une nouvelle photo -->
@@ -234,15 +229,13 @@ require __DIR__ . '/layout_haut.php';
             <?php csrf_champ(); ?>
 
             <input type="hidden" name="id_voiture_photo" value="<?= (int)$detail['id_voiture'] ?>">
-            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+            <div class="ligne-upload">
                 <input class="form-input" type="file" name="nouvelle_photo" id="inputNouvellePhoto"
-                       accept="image/*" style="flex:1;min-width:180px;">
+                       accept="image/*">
                 <button class="btn btn-primary btn-sm" name="add_photo">+ Ajouter</button>
             </div>
-            <img id="previewNouvellePhoto"
-                 style="display:none;margin-top:8px;max-height:80px;border-radius:6px;border:1px solid var(--border)"
-                 alt="aperçu">
-            <div style="font-size:11px;color:var(--text-dim);margin-top:4px;">
+            <img id="previewNouvellePhoto" class="apercu-photo" alt="aperçu">
+            <div class="aide-formats">
                 Formats acceptés : JPG, PNG, WEBP, GIF.
             </div>
         </form>
@@ -257,7 +250,7 @@ require __DIR__ . '/layout_haut.php';
 <?php if ($action === 'ajouter'): ?>
 <div class="modal-overlay open"
      data-close-href="admin_voitures.php">
-<div class="modal" style="max-width:560px;">
+<div class="modal modal-lg">
 
     <h3>Ajouter un véhicule</h3>
 
@@ -312,25 +305,24 @@ require __DIR__ . '/layout_haut.php';
             </div>
         </div>
 
-        <div class="form-group" style="margin-bottom:12px;">
+        <div class="form-group espace-sm">
             <label class="form-label">Description / Specs</label>
             <textarea class="form-textarea" name="specs"
                       placeholder="Décrivez le moteur, les performances..."></textarea>
         </div>
 
-        <div class="form-group" style="margin-bottom:16px;padding:12px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:8px;">
-            <label class="form-label" style="margin-bottom:8px;">📸 Photos du slider</label>
-            <div style="font-size:11px;color:var(--text-dim);margin-bottom:10px;">
+        <div class="form-group bloc-photos-ajout">
+            <label class="form-label espace-sm">📸 Photos du slider</label>
+            <div class="aide-photos">
                 Sélectionne une ou plusieurs photos. La 1ère sera l'image principale.
             </div>
 
             <input class="form-input" type="file" name="photos_slider[]" id="inputPhotosMultiple"
                    accept="image/*" multiple>
 
-            <div id="previewsContainer"
-                 style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;"></div>
+            <div id="previewsContainer" class="apercus-multiples"></div>
 
-            <div style="font-size:11px;color:var(--text-dim);margin-top:6px;">
+            <div class="aide-champ">
                 Formats acceptés : JPG, PNG, WEBP, GIF.
             </div>
         </div>

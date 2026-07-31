@@ -45,9 +45,7 @@ require __DIR__ . '/layout/header.php';
       <!-- Texte à gauche -->
       <div class="col-lg-6 mb-5 mb-lg-0">
 
-        <h2 class="display-4 fw-bold mb-4"
-            style="background: linear-gradient(135deg, var(--primary-orange), #ff8c00);
-                   -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+        <h2 class="display-4 fw-bold mb-4 titre-degrade">
           <?= e($hero['titre'] ?? '') ?>
         </h2>
 
@@ -94,16 +92,16 @@ require __DIR__ . '/layout/header.php';
 
     <!-- Bloc statistiques : bande orange pleine (met l'accent en valeur) -->
     <div class="bande-orange text-center mt-5 px-4 py-5">
-      <p class="fs-5 mb-4 fw-semibold" style="color:#fff;">Pourquoi choisir SuperCar ?</p>
+      <p class="fs-5 mb-4 fw-semibold bande-titre">Pourquoi choisir SuperCar ?</p>
       <div class="d-flex justify-content-center align-items-center gap-4 flex-wrap">
         <?php foreach ($stats as $index => $stat) : ?>
           <?php if ($index > 0) : ?>
             <!-- Barre de séparation verticale visible sur desktop, masquée sur mobile -->
-            <div class="vr d-none d-md-block" style="background-color: rgba(255, 255, 255, 0.35); height: 50px; width: 1.5px; opacity: 1;"></div>
+            <div class="vr d-none d-md-block bande-separateur"></div>
           <?php endif; ?>
           <div class="px-3">
-            <h5 class="fw-bold mb-1" style="font-size:2.2rem; color:#fff;"><?= e($stat['valeur']) ?></h5>
-            <p class="mb-0 text-uppercase tracking-wider fw-medium" style="color:rgba(255,255,255,0.95); font-size: 0.85rem;"><?= e($stat['label']) ?></p>
+            <h5 class="fw-bold mb-1 bande-valeur"><?= e($stat['valeur']) ?></h5>
+            <p class="mb-0 text-uppercase tracking-wider fw-medium bande-label"><?= e($stat['label']) ?></p>
           </div>
         <?php endforeach; ?>
       </div>

@@ -314,3 +314,8 @@
         font-size: 0.85rem;
     }
 }
+
+
+/* Voiture indisponible dans la liste déroulante : grisée
+   (remplace un style écrit dans la balise) */
+.option-indisponible { color: #9aa0a6; }

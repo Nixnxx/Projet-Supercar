@@ -335,3 +335,20 @@
         max-width: 280px;
     }
 }
+
+
+/* ============================================================
+   FENÊTRE DE CONFIRMATION D'ENVOI
+   Remplace des style="..." écrits dans les balises.
+========================= */
+
+.modal-succes { background: rgba(0, 0, 0, 0.6); }
+.modal-succes .modal-content { background: #111; }
+.modal-succes-texte { font-size: 0.95rem; }
+
+.btn-modal-ok {
+    background: #f97316;
+    color: #fff;
+    border-radius: 20px;
+}
+.btn-modal-ok:hover { color: #fff; }

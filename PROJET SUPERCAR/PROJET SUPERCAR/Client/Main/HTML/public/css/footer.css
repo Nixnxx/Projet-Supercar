@@ -220,3 +220,6 @@ footer .container {
         transform: none;
     }
 }
+
+/* Hauteur minimale du pied de page (remplace un style écrit dans la balise) */
+.footer-min { min-height: 100px; }

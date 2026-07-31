@@ -51,7 +51,7 @@ require __DIR__ . '/layout/header.php';
           <?php $estIndisponible = ((int) $row['disponible'] === 0); ?>
           <option value="<?= (int)$row['id_voiture'] ?>"
             <?= ($row['id_voiture'] == $voitureSelected) ? 'selected' : '' ?>
-            <?= $estIndisponible ? 'disabled style="color:#9aa0a6;"' : '' ?>>
+            <?= $estIndisponible ? 'disabled class="option-indisponible"' : '' ?>>
             <?= e($row['model']) ?><?= $estIndisponible ? ' (indisponible)' : '' ?>
           </option>
         <?php endforeach; ?>

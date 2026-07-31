@@ -12,37 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><?= e($titre_form) ?> | Admin SuperCar</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-  <style>
-    body       { background: #111; color: #ddd; }
-    .formulaire { max-width: 650px; margin: 40px auto; background: #1c1c1c;
-                  border: 1px solid #333; border-radius: 10px; }
-    .entete    { background: #222; padding: 15px 20px; border-radius: 10px 10px 0 0;
-                 font-weight: bold; border-bottom: 1px solid #333; color: #ff6b00; }
-    .form-control, .form-select { background: #111; border: 1px solid #444; color: #ddd; }
-    .form-control:focus { background: #111; color: #fff; border-color: #ff6b00; box-shadow: none; }
-    .btn-orange { background: #ff6b00; color: #fff; border: none; }
-    .btn-orange:hover { background: #cc5500; color: #fff; }
-    label      { color: #aaa; font-size: 0.9rem; }
-    .apercu    { max-height: 130px; border-radius: 6px; margin-top: 8px; border: 1px solid #444; }
-
-    /* ── RESPONSIVE ──
-       Mêmes points de rupture que le reste du site (voir styles.css). */
-
-    /* Petit écran : le cadre ne colle plus aux bords de l'écran */
-    @media (max-width: 767.98px) {
-      .formulaire { margin: 20px 14px; }
-    }
-
-    /* Mobile : on réduit encore les marges et les boutons passent
-       l'un sous l'autre sur toute la largeur (plus faciles à toucher) */
-    @media (max-width: 575.98px) {
-      .formulaire      { margin: 14px 10px; }
-      .entete          { padding: 12px 14px; font-size: 0.95rem; }
-      .formulaire .p-4 { padding: 1rem !important; }
-      .boutons-form    { flex-direction: column; }
-      .boutons-form .btn { width: 100%; }
-    }
-  </style>
+  <link rel="stylesheet" href="../css/admin/accueil-form.css?v=1.2">
 </head>
 <body>
 
@@ -250,7 +220,7 @@
       <?php endif; ?>
 
 
-      <hr style="border-color:#333">
+      <hr class="separateur-form">
       <div class="d-flex gap-3 boutons-form">
         <button type="submit" class="btn btn-orange px-4">
           💾 <?= $id > 0 ? 'Enregistrer les modifications' : 'Ajouter' ?>

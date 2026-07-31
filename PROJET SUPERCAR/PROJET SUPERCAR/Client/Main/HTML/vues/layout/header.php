@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="css/service.css?v=1.2">
     <link rel="stylesheet" href="css/voiture.css?v=1.2">
     <link rel="stylesheet" href="css/essai.css?v=1.2">
+    <link rel="stylesheet" href="css/legal.css?v=1.2">   <!-- mentions + politique -->
     <!-- Note : connexion.css, inscription.css, logout.css et contactclient.css
          ont été retirés : les 2 premiers ne servaient nulle part (les pages
          de connexion utilisent transparent.css) et les 2 autres n'existaient
@@ -93,7 +94,7 @@
             <span>Bienvenue <?= e($nom_affiche) ?></span>
           </button>
 
-          <ul class="dropdown-menu dropdown-menu-end mt-2" style="min-width: 190px;">
+          <ul class="dropdown-menu dropdown-menu-end mt-2 menu-compte">
             <li>
               <!-- "danger" = rouge, pour bien distinguer l'action de déconnexion. -->
               <a class="dropdown-item dropdown-item-danger py-2 d-flex align-items-center gap-2" href="logout.php">
@@ -114,7 +115,7 @@
             <span>Mon compte</span>
           </button>
 
-          <ul class="dropdown-menu dropdown-menu-end mt-2" style="min-width: 200px;">
+          <ul class="dropdown-menu dropdown-menu-end mt-2 menu-compte">
             <li>
               <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="connexion.php">
                 <i class="bi bi-box-arrow-in-right"></i> Se connecter
