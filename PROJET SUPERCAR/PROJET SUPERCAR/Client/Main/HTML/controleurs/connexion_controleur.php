@@ -20,14 +20,16 @@ if (isset($_POST['utilisateur'], $_POST['motdepasse'])) {
     // On vérifie le jeton CSRF avant tout traitement.
     csrf_verifier();
 
-    // Trop d'échecs récents : on refuse sans même regarder le mot de passe.
-    if (connexion_bloquee()) {
+    $utilisateur = trim($_POST['utilisateur']);
+    $password    = $_POST['motdepasse'];
+
+    // Trop d'échecs récents SUR CE COMPTE : on refuse sans même regarder
+    // le mot de passe. Le compteur est en base (voir modeles/auth_modele.php),
+    // donc attaché au compte et non au navigateur de qui essaie.
+    if (connexion_bloquee_client($lienbd, $utilisateur)) {
         header('Location: connexion.php?erreur=4');
         exit();
     }
-
-    $utilisateur = trim($_POST['utilisateur']);
-    $password    = $_POST['motdepasse'];
 
     if ($utilisateur === '' || $password === '') {
         header('Location: connexion.php?erreur=2');
@@ -51,7 +53,7 @@ if (isset($_POST['utilisateur'], $_POST['motdepasse'])) {
         session_regenerate_id(true);
 
         // Connexion réussie : on remet le compteur d'échecs à zéro.
-        reussite_connexion();
+        reussite_connexion_client($lienbd, $utilisateur);
 
         // On retient le client dans la session.
         $_SESSION['connecte']        = 1;
@@ -82,7 +84,7 @@ if (isset($_POST['utilisateur'], $_POST['motdepasse'])) {
     }
 
     // Identifiants incorrects : on compte l'échec.
-    echec_connexion();
+    echec_connexion_client($lienbd, $utilisateur);
 
     header('Location: connexion.php?erreur=1');
     exit();

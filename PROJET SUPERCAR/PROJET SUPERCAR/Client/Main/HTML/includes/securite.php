@@ -6,7 +6,11 @@
 //    - url_sure()     : rend un lien sûr avant de le mettre dans un href
 //    - upload_image() : enregistre une image envoyée par un formulaire
 //    - csrf_*()       : protège les formulaires contre le CSRF
-//    - *_connexion()  : limite les tentatives de connexion (force brute)
+//
+//  La limitation des tentatives de connexion (force brute) est dans
+//  modeles/admin/auth_modele.php : elle interroge la base (colonnes
+//  tentatives_echouees / derniere_tentative de la table login), ce
+//  n'est donc pas à sa place ici.
 // ============================================================
 
 // e() = "échapper". On l'utilise pour afficher toute donnée qui vient
@@ -142,44 +146,4 @@ function csrf_verifier() {
         http_response_code(403);
         die("Erreur de sécurité : formulaire invalide. Merci de recharger la page.");
     }
-}
-
-
-// ============================================================
-//  LIMITATION DES TENTATIVES DE CONNEXION
-//
-//  Sans limite, un programme peut essayer des milliers de mots de
-//  passe par minute. On bloque donc 5 minutes après 5 échecs.
-//
-//  Remarque : le compteur est en session, donc lié au navigateur.
-//  Une protection complète utiliserait une table en base indexée
-//  sur l'adresse IP. C'est une amélioration possible.
-// ============================================================
-
-// Renvoie true si l'utilisateur doit patienter avant de réessayer.
-function connexion_bloquee() {
-    // Aucune tentative enregistrée : rien à bloquer.
-    if (!isset($_SESSION['essais'])) {
-        return false;
-    }
-
-    // Le délai de 5 minutes (300 secondes) est écoulé : on repart à zéro.
-    if (time() - $_SESSION['dernier_essai'] >= 300) {
-        unset($_SESSION['essais'], $_SESSION['dernier_essai']);
-        return false;
-    }
-
-    // Moins de 5 minutes écoulées : on bloque à partir de 5 échecs.
-    return $_SESSION['essais'] >= 5;
-}
-
-// À appeler après un mot de passe incorrect.
-function echec_connexion() {
-    $_SESSION['essais'] = ($_SESSION['essais'] ?? 0) + 1;
-    $_SESSION['dernier_essai'] = time();
-}
-
-// À appeler après une connexion réussie : on efface le compteur.
-function reussite_connexion() {
-    unset($_SESSION['essais'], $_SESSION['dernier_essai']);
 }

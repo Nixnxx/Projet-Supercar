@@ -22,14 +22,16 @@ if (isset($_POST['utilisateur'], $_POST['motdepasse'])) {
     // On vérifie le jeton CSRF avant tout traitement.
     csrf_verifier();
 
-    // Trop d'échecs récents : on refuse sans même regarder le mot de passe.
-    if (connexion_bloquee()) {
+    $admin    = trim($_POST['utilisateur']);
+    $password = $_POST['motdepasse'];
+
+    // Trop d'échecs récents SUR CE COMPTE : on refuse sans même regarder
+    // le mot de passe. Le compteur est en base (voir auth_modele.php),
+    // donc attaché au compte et non au navigateur de qui essaie.
+    if (connexion_bloquee_admin($lienbd, $admin)) {
         header('Location: logina.php?erreur=3');
         exit();
     }
-
-    $admin    = trim($_POST['utilisateur']);
-    $password = $_POST['motdepasse'];
 
     if ($admin === '' || $password === '') {
         header('Location: logina.php?erreur=2');
@@ -48,7 +50,7 @@ if (isset($_POST['utilisateur'], $_POST['motdepasse'])) {
         session_regenerate_id(true);
 
         // Connexion réussie : on remet le compteur d'échecs à zéro.
-        reussite_connexion();
+        reussite_connexion_admin($lienbd, $admin);
 
         $_SESSION['admin_connecte'] = true;
         $_SESSION['niveau']         = 'admin';
@@ -58,7 +60,7 @@ if (isset($_POST['utilisateur'], $_POST['motdepasse'])) {
     }
 
     // Mot de passe incorrect : on compte l'échec.
-    echec_connexion();
+    echec_connexion_admin($lienbd, $admin);
 
     header('Location: logina.php?erreur=1');
     exit();
