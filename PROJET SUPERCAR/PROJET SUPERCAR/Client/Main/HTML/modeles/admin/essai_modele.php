@@ -72,16 +72,21 @@ function get_stats_essais($lienbd) {
 }
 
 // Change le statut et le commentaire d'une demande.
-// Synchronise aussi la colonne voiture.disponible :
-//  - passage à 1 (Confirmé) → la voiture devient indisponible (0)
-//  - passage à 3 (Terminé)  → la voiture redevient disponible  (1)
+// Synchronise aussi la colonne voiture.disponible. Une seule situation
+// immobilise la voiture : l'essai est prévu et va avoir lieu.
+//  - statut 1 (Confirmé) → un essai est prévu : voiture indisponible (0)
+//  - statut 2 (Refusé)   → l'essai n'aura pas lieu : voiture libre (1)
+//  - statut 3 (Terminé)  → l'essai est passé     : voiture libre (1)
+//  - statut 0 (En attente) → la demande n'est pas traitée, on ne touche à rien.
+// Oublier le statut 2 laissait la voiture bloquée pour toujours quand un
+// essai déjà confirmé était finalement refusé.
 function maj_statut_essai($lienbd, $id, $statut, $commentaire) {
     $sql = "UPDATE demandeessai SET statut = ?, commentaire = ? WHERE id_demande = ?";
     $stmt = mysqli_prepare($lienbd, $sql);
     mysqli_stmt_bind_param($stmt, "isi", $statut, $commentaire, $id);
     mysqli_stmt_execute($stmt);
 
-    if ($statut == 1 || $statut == 3) {
+    if ($statut == 1 || $statut == 2 || $statut == 3) {
         $sql = "SELECT id_voiture FROM demandeessai WHERE id_demande = ?";
         $stmt = mysqli_prepare($lienbd, $sql);
         mysqli_stmt_bind_param($stmt, "i", $id);
@@ -89,7 +94,8 @@ function maj_statut_essai($lienbd, $id, $statut, $commentaire) {
         $demande = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
 
         if ($demande) {
-            $disponible = ($statut == 3) ? 1 : 0;
+            // Seul le statut 1 bloque la voiture ; 2 et 3 la libèrent.
+            $disponible = ($statut == 1) ? 0 : 1;
             $sql = "UPDATE voiture SET disponible = ? WHERE id_voiture = ?";
             $stmt = mysqli_prepare($lienbd, $sql);
             mysqli_stmt_bind_param($stmt, "ii", $disponible, $demande['id_voiture']);
