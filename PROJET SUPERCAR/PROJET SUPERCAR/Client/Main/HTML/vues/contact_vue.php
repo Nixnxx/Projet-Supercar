@@ -1,8 +1,10 @@
 <?php
 // ============================================================
 //  vues/contact_vue.php  —  VUE : page de contact
-//  Reçoit : $client (pré-remplissage), $config (infos concession),
-//           $succes (vrai si le message vient d'être envoyé).
+//  Reçoit : $client (fiche du client connecté), $saisie (ce qu’il vient
+//           de taper, réaffiché après une erreur), $config (infos concession),
+//           $succes         (vrai si le message vient d'être envoyé),
+//           $message_erreur (texte d'erreur de saisie, '' s'il n'y en a pas).
 //  Les données de configuration sont échappées avec e().
 // ============================================================
 require __DIR__ . '/layout/header.php';
@@ -28,28 +30,49 @@ require __DIR__ . '/layout/header.php';
             </div>
 
             <!-- FORMULAIRE -->
-<form method="POST">
+            <form method="POST">
 
-    <!-- Jeton anti-CSRF : prouve que le formulaire vient bien de notre site -->
-    <?php csrf_champ(); ?>
+                <!-- Jeton anti-CSRF : prouve que le formulaire vient bien de notre site -->
+                <?php csrf_champ(); ?>
 
-    <input type="text" name="nom"
-       placeholder="Nom"
-       value="<?= e($client['nom'] ?? '') ?>" required>
+                <!-- Message d'erreur de saisie. Il est placé DANS le formulaire,
+                     au-dessus des champs : le visiteur doit voir le problème et
+                     les champs à corriger en même temps. Le contrôleur a déjà lu
+                     l'URL et préparé le texte ; la vue ne fait que l'afficher. -->
+                <?php if ($message_erreur !== '') : ?>
+                    <p class="contact-erreur"><?= e($message_erreur) ?></p>
+                <?php endif; ?>
 
-<input type="text" name="numero"
-       placeholder="Téléphone"
-       value="<?= e($client['telephone'] ?? '') ?>" required>
+                <!-- Les maxlength reprennent les limites vérifiées par le
+                     contrôleur : le visiteur est arrêté tout de suite, sans
+                     aller-retour au serveur. La vraie validation reste celle
+                     du contrôleur, un attribut HTML se contourne. -->
+                <!-- Ordre de priorité pour remplir un champ :
+                     1. $saisie  : ce que le visiteur vient de taper, quand un
+                        contrôle a échoué — il ne doit rien avoir à retaper ;
+                     2. $client  : sa fiche, s'il est connecté ;
+                     3. vide     : premier passage d'un visiteur anonyme. -->
+                <input type="text" name="nom" maxlength="50" required
+                       placeholder="Nom"
+                       value="<?= e($saisie['nom'] ?? $client['nom'] ?? '') ?>">
 
-<input type="email" name="email"
-       placeholder="Email"
-       value="<?= e($client['email'] ?? '') ?>" required>
+                <input type="text" name="numero" maxlength="20" required
+                       placeholder="Téléphone"
+                       value="<?= e($saisie['numero'] ?? $client['telephone'] ?? '') ?>">
 
-    <textarea name="message"
-              placeholder="Votre message" required></textarea>
+                <input type="email" name="email" maxlength="100" required
+                       placeholder="Email"
+                       value="<?= e($saisie['email'] ?? $client['email'] ?? '') ?>">
 
-    <button type="submit">Envoyer</button>
-</form>
+                <!-- Un textarea n'a pas d'attribut value : son contenu s'écrit
+                     ENTRE les balises ouvrante et fermante. Aucun espace ni
+                     retour à la ligne autour de la balise PHP ci-dessous,
+                     sinon ils apparaîtraient dans le champ. -->
+                <textarea name="message" maxlength="800" required
+                          placeholder="Votre message"><?= e($saisie['message'] ?? '') ?></textarea>
+
+                <button type="submit">Envoyer</button>
+            </form>
 
         </div>
     </div>
@@ -88,5 +111,10 @@ require __DIR__ . '/layout/header.php';
     </div>
 </div>
 <?php endif; ?>
+
+<?php /* Pas de fenêtre pour les erreurs de saisie : le message s'affiche
+         directement dans le formulaire (voir plus haut), là où se trouvent
+         les champs à corriger. Une fenêtre obligerait à cliquer "OK" avant
+         de pouvoir modifier quoi que ce soit. */ ?>
 
 <?php require __DIR__ . '/layout/footer.php'; ?>

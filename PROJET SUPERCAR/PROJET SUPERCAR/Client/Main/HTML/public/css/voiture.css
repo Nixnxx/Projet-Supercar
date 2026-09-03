@@ -292,6 +292,14 @@
 
 /* ── Mobile ── */
 @media (max-width: 575.98px) {
+    /* Une seule carte par ligne. On abandonne le minmax : sur un écran
+       de 320px, un minimum de 280px plus les marges finit par déborder
+       et la page part de travers horizontalement. */
+    .cars-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
     #voitures .container {
         padding-left: 12px;
         padding-right: 12px;

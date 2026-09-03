@@ -211,6 +211,54 @@ header .dropdown-item-danger:focus {
 }
 
 /* ── Mobile ── */
+/* Largeur du menu déroulant "compte" (remplace un style écrit dans la balise).
+   Placé avant le responsive : la règle du site veut que les @media soient
+   regroupés à la fin du fichier. */
+.menu-compte { min-width: 200px; }
+
+
+/* ── Petit écran / grand mobile ──
+   C'est la largeur la plus serrée pour l'en-tête : le logo, le titre,
+   les 5 liens du menu et le bouton "compte" ne tiennent plus sur une
+   seule ligne. On donne donc au menu sa propre ligne, sur toute la
+   largeur, en laissant le logo et le bouton compte sur la première. */
+@media (max-width: 767.98px) {
+    header {
+        padding: 0.8rem 0;
+    }
+
+    .logo-link {
+        width: 60px;
+        height: 60px;
+    }
+
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    /* Le menu descend sous la première ligne. L'ordre visuel change,
+       pas l'ordre du HTML : le lecteur d'écran garde la bonne suite. */
+    nav.d-flex {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 4px 14px !important;
+        margin-top: 10px;
+    }
+
+    nav.d-flex a {
+        font-size: 0.82rem;
+        padding: 3px 4px;
+    }
+
+    .btn-compte {
+        padding: 6px 12px;
+        font-size: 0.82rem;
+    }
+}
+
+/* ── Mobile ── */
 @media (max-width: 575.98px) {
     header {
         padding: 0.6rem 0;
@@ -272,6 +320,3 @@ header .dropdown-item-danger:focus {
 /* (L'ancienne règle "a[href=logout.php]" a été retirée : le lien de
    déconnexion est désormais un simple élément du menu déroulant, stylé
    par .dropdown-item-danger ci-dessus. Plus besoin d'un bouton bordé.) */
-
-/* Largeur du menu déroulant "compte" (remplace un style écrit dans la balise) */
-.menu-compte { min-width: 200px; }

@@ -100,6 +100,18 @@
     margin: 0;
 }
 
+/* Bandeau d'erreur de saisie, affiché en haut du formulaire. */
+.contact-erreur {
+    background: #fdeaea;
+    color: #b91c1c;
+    border: 1px solid #f3c4c4;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
 .contact-form-title {
     font-size: 0.78rem;
     font-weight: 700;

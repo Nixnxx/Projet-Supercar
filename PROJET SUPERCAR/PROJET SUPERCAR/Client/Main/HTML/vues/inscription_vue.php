@@ -49,6 +49,10 @@
                 <input type="password" name="motdepasse" placeholder="Mot de passe (8 caractères min.)" required>
             </div>
 
+            <div class="input-box">
+                <input type="password" name="motdepasse_confirmation" placeholder="Confirmer le mot de passe" required>
+            </div>
+
             <!-- Case obligatoire : le client confirme avoir lu la politique.
                  "required" empêche l'envoi si la case n'est pas cochée. -->
             <div class="checkbox-box">
