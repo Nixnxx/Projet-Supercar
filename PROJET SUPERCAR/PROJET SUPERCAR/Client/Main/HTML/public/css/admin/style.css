@@ -484,6 +484,15 @@ tbody tr.unread td { color: var(--text); font-weight: 500; }
     z-index: 200;
     align-items: center;
     justify-content: center;
+
+    /* Marge autour de la fenêtre : elle ne colle jamais aux bords de
+       l'écran, quelle que soit la taille de celui-ci. */
+    padding: 24px;
+
+    /* Si la fenêtre est plus haute que l'écran malgré tout, c'est le
+       fond qui défile. Sans ça, le bas de la fenêtre était hors écran
+       et inatteignable. */
+    overflow-y: auto;
 }
 .modal-overlay.open { display: flex; }
 
@@ -494,6 +503,18 @@ tbody tr.unread td { color: var(--text); font-weight: 500; }
     width: 100%;
     max-width: 480px;
     padding: 28px;
+
+    /* La fenêtre ne dépasse jamais la hauteur de l'écran (on retire les
+       24px de marge du dessus et du dessous). Au-delà, son contenu défile
+       à l'intérieur : les boutons "Enregistrer" / "Fermer" du bas restent
+       donc toujours accessibles. C'était le problème sur les formulaires
+       longs comme l'ajout et la modification d'une voiture. */
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+
+    /* La fenêtre ne se comprime pas quand le fond défile. */
+    flex-shrink: 0;
+    margin: auto;
 }
 .modal h3 { font-size: 16px; font-weight: 600; margin-bottom: 16px; }
 .modal-footer { display: flex; gap: 10px; margin-top: 20px; justify-content: flex-end; }
@@ -669,18 +690,17 @@ tbody tr.unread td { color: var(--text); font-weight: 500; }
         padding: 10px 16px;
     }
 
-    /* Fenêtres (modales) : elles ne doivent pas toucher les bords,
-       et doivent pouvoir défiler si elles sont plus hautes que l'écran. */
+    /* Fenêtres (modales) : marge réduite sur les écrans étroits, mais on
+       garde le principe posé plus haut — la fenêtre reste dans l'écran et
+       c'est SON contenu qui défile, pas la page derrière. On ajuste donc
+       la hauteur maximale au nouveau padding (16px en haut + 16px en bas). */
     .modal-overlay {
         padding: 16px;
-        overflow-y: auto;
-        align-items: flex-start;
     }
 
     .modal {
         padding: 20px;
-        margin: auto;
-        max-height: none;
+        max-height: calc(100vh - 32px);
     }
 
     .modal-footer {

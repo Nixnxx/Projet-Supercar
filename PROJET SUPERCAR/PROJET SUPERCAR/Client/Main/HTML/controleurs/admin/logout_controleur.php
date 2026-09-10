@@ -14,5 +14,11 @@ unset(
     $_SESSION['id_login']
 );
 
+// On change l'identifiant de session au moment où l'on PERD des droits,
+// comme on le fait déjà à la connexion quand on en gagne. L'ancien
+// identifiant devient inutilisable : même si quelqu'un l'avait intercepté,
+// il ne pourra plus s'en servir.
+session_regenerate_id(true);
+
 header('Location: logina.php');
 exit();
