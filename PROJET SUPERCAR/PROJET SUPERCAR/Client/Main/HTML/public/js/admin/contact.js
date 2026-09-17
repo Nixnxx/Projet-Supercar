@@ -13,7 +13,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const lng = parseFloat(divCarte.dataset.lng);
 
         var map = L.map('map').setView([lat, lng], 13);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            referrerPolicy: 'no-referrer-when-downgrade',
+            maxZoom: 19
+        }).addTo(map);
         var marker = L.marker([lat, lng], {draggable: true}).addTo(map);
 
         marker.on('dragend', function(e) {
