@@ -1,0 +1,34 @@
+/* ============================================================
+   css/legal.css  —  Pages "Mentions légales" et "Politique de
+   confidentialité". Ces deux pages ont exactement la même mise en
+   page : un cadre blanc centré, avec un liseré orange en haut.
+   Les intertitres orange utilisent .titre-section (styles.css).
+============================================================ */
+
+/* Le texte reste lisible : on limite la largeur de la colonne */
+.page-legale { max-width: 900px; }
+
+.carte-legale {
+    background: #fff;
+    border: 1px solid var(--accent-grey);
+    border-top: 4px solid var(--primary-orange);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 6px 22px rgba(20, 30, 50, 0.06);
+}
+
+.carte-legale h1 { color: var(--text-dark); }
+
+/* ============================================================
+   RESPONSIVE
+   Points de rupture standards du site (voir styles.css) :
+   991.98px = tablette | 767.98px = petit écran | 575.98px = mobile
+============================================================ */
+
+@media (max-width: 767.98px) {
+    .carte-legale { padding: 26px 20px; }
+}
+
+@media (max-width: 575.98px) {
+    .carte-legale { padding: 20px 16px; border-radius: 12px; }
+}

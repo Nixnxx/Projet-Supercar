@@ -1,0 +1,52 @@
+/* ============================================================
+   css/admin/accueil.css  —  Page "Page Accueil" du back-office
+   Styles propres à cette page (vues/admin/accueil_list_vue.php).
+   Le formulaire d'un élément est une page autonome, avec sa propre
+   feuille : accueil-form.css.
+============================================================ */
+
+/* Vignette d'image dans les tableaux (carrousel, images hero) */
+.vignette {
+    width: 70px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* Nom de fichier tronqué s'il est trop long */
+.cell-fichier {
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Valeur d'une statistique, mise en avant en orange */
+.valeur-stat { color: var(--accent); }
+
+/* ── Aperçu du texte "hero" (pas un tableau, une simple fiche) ── */
+.apercu-hero {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.hero-champ {
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+/* Petit intitulé au-dessus de chaque valeur (Titre, Sous-titre…) */
+.hero-libelle {
+    color: var(--text-dim);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+/* Lien du bouton, affiché en style "code" */
+.hero-lien {
+    color: var(--text-dim);
+    font-size: 12px;
+}

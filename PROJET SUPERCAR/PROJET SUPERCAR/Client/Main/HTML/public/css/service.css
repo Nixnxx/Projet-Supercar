@@ -1,0 +1,248 @@
+/* =========================
+   SERVICES  (thème clair)
+========================= */
+#services {
+    background: var(--page-bg);
+    padding-bottom: 80px;
+}
+
+/* ── Hero ── */
+.services-hero {
+    padding: 90px 20px 60px;
+    text-align: center;
+    background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(255, 90, 31, 0.08) 0%, transparent 70%);
+}
+
+.hero-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--primary-orange);
+    border: 1px solid rgba(255, 90, 31, 0.35);
+    padding: 5px 16px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+    background: rgba(255, 90, 31, 0.08);
+}
+
+.hero-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: var(--text-dark);
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+}
+
+.hero-title .highlight {
+    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-sub {
+    font-size: 1rem;
+    color: var(--text-grey);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* ── Grille ── */
+.services-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 28px;
+}
+
+/* ── Carte ── */
+.service-card {
+    background: var(--light-grey);
+    border: 1px solid var(--accent-grey);
+    border-top: 4px solid var(--primary-orange); /* liseré orange permanent */
+    border-radius: 18px;
+    padding: 28px 24px 24px;
+    box-shadow: 0 6px 22px rgba(15, 23, 42, 0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 90, 31, 0.45);
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.06);
+}
+
+/* ── Icône ── */
+.card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(255, 90, 31, 0.08);
+    border: 1px solid rgba(255, 90, 31, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: var(--primary-orange);
+    margin-bottom: 16px;
+    transition: background 0.3s;
+}
+
+.service-card:hover .card-icon {
+    background: rgba(255, 90, 31, 0.15);
+}
+
+/* ── Numéro ── */
+.card-number {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--secondary-orange);
+    font-weight: 700;
+    margin-bottom: 6px;
+    font-family: monospace;
+}
+
+/* ── Titre ── */
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 14px;
+    transition: color 0.3s;
+}
+
+.service-card:hover .card-title {
+    color: var(--primary-orange);
+}
+
+/* ── Image ── */
+.card-image-wrap {
+    border-radius: 10px;
+    overflow: hidden;
+    height: 150px;
+    margin-bottom: 16px;
+    border: 1px solid var(--accent-grey);
+}
+
+.card-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.service-card:hover .card-image-wrap img {
+    transform: scale(1.05);
+}
+
+/* ── Description ── */
+.card-desc {
+    font-size: 0.88rem;
+    color: var(--text-grey);
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+/* ── Tag ── */
+.card-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--primary-orange);
+    background: rgba(255, 90, 31, 0.06);
+    border: 1px solid rgba(255, 90, 31, 0.2);
+    border-radius: 50px;
+    padding: 4px 12px;
+}
+
+/* ── CTA ── */
+.services-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    max-width: 680px;
+    margin: 52px auto 0;
+    padding: 32px 36px;
+    background: var(--light-grey);
+    border: 1px solid var(--accent-grey);
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 6px 22px rgba(15, 23, 42, 0.03);
+}
+
+.services-cta p {
+    color: var(--text-grey);
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.cta-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(255, 90, 31, 0.25);
+}
+
+.cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(255, 90, 31, 0.4);
+    color: #fff;
+}
+
+/* ============================================================
+   RESPONSIVE SERVICES
+   Points de rupture standards du site (voir styles.css) :
+   991.98px = tablette | 767.98px = petit écran | 575.98px = mobile
+============================================================ */
+
+/* ── Petit écran / grand mobile ── */
+@media (max-width: 767.98px) {
+    .services-wrapper {
+        grid-template-columns: 1fr;
+        padding: 0 16px;
+    }
+    .services-hero {
+        padding: 60px 16px 40px;
+    }
+    .services-cta {
+        margin: 36px 16px 0;
+        flex-direction: column;
+        gap: 14px;
+    }
+}
+
+/* ── Mobile ── */
+@media (max-width: 575.98px) {
+    .services-wrapper {
+        padding: 0 12px;
+        gap: 16px;
+    }
+
+    .services-hero {
+        padding: 44px 12px 30px;
+    }
+
+    /* Les fortes marges intérieures des cartes mangent la largeur utile
+       sur un écran étroit : on les réduit pour garder le texte lisible. */
+    .service-card {
+        padding: 22px 18px 20px;
+    }
+
+    .services-cta {
+        margin: 28px 12px 0;
+        padding: 24px 18px;
+    }
+}

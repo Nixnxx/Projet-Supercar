@@ -1,0 +1,506 @@
+/* =========================
+   ACCUEIL
+========================= */
+
+section {
+    padding: 80px 0;
+    position: relative;
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--accent-grey), transparent);
+}
+
+section:nth-child(even) {
+    background: var(--dark-grey);
+}
+
+section:nth-child(odd) {
+    background: var(--medium-grey);
+}
+
+section h2 {
+    font-size: 2.5rem;
+    color: var(--text-dark);
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(to right, var(--primary-orange), var(--secondary-orange));
+}
+
+section p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: var(--text-grey);
+    line-height: 1.8;
+}
+
+#accueil {
+    background: linear-gradient(135deg, var(--dark-grey) 0%, var(--medium-grey) 50%, var(--light-grey) 100%);
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+#accueil::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -100px;
+    transform: translateY(-50%);
+    width: 400px;
+    height: 400px;
+    background: url('Images-Index/LOGO\ CHOISI.png') no-repeat center;
+    background-size: contain;
+    opacity: 0.05;
+}
+
+#accueil {
+    /* Voile clair par-dessus l'image : la section devient lumineuse. */
+    background: linear-gradient(rgba(255,255,255,0.85), rgba(241,243,246,0.92)), url('Images-Index/accueil/hero-bg.jpg') center/cover no-repeat;
+}
+
+#accueil h2 {
+    font-size: 3rem;
+}
+.photo img {
+    width: 85%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid var(--accent-grey);
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.photo img:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--primary-orange);
+    box-shadow: 0 8px 30px rgba(255, 107, 53, 0.3);
+}
+
+.service, .essai {
+    background: var(--light-grey);
+    padding: 30px;
+    margin: 20px 0;
+    border-radius: 16px;
+    border: 1px solid var(--accent-grey);
+    border-left: 4px solid var(--primary-orange);
+    transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 8px 30px rgba(15, 23, 42, 0.03);
+}
+
+.service:hover, .essai:hover {
+    transform: translateY(-4px) translateX(4px);
+    border-left-width: 6px;
+    box-shadow: 0 16px 35px rgba(255, 90, 31, 0.08);
+}
+
+.service h3, .essai h3 {
+    color: var(--primary-orange);
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+form {
+    background: var(--light-grey);
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 600px;
+    margin: 30px auto;
+    box-shadow: 0 10px 40px rgba(15, 23, 42, 0.04);
+    border: 1px solid var(--accent-grey);
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    border: 1.5px solid var(--accent-grey);
+    border-radius: 10px;
+    background: var(--medium-grey);
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    transition: all 0.25s ease;
+}
+
+form input:focus,
+form textarea:focus {
+    outline: none;
+    border-color: var(--primary-orange);
+    background: var(--white);
+    box-shadow: 0 0 0 4px rgba(255, 90, 31, 0.08);
+}
+
+form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+form button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 15px rgba(255, 90, 31, 0.25);
+}
+
+form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255, 90, 31, 0.4);
+}
+
+form button:active {
+    transform: translateY(0);
+}
+
+/* CAROUSEL */
+
+.carousel-item img {
+    height: 400px;
+    object-fit: cover;
+}
+
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.45);
+    padding: 20px;
+    border-radius: 10px;
+    bottom: 20%;
+    opacity: 0;
+    transform: translateY(25px);
+    transition: all 0.8s ease;
+}
+
+.carousel-item.active .carousel-caption {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.carousel-caption h5 {
+    font-size: 28px;
+    font-weight: bold;
+    transition-delay: 0.2s;
+}
+
+.carousel-caption p {
+    font-size: 16px;
+    transition-delay: 0.4s;
+}
+
+.carousel-caption a {
+    transition-delay: 0.6s;
+}
+
+.bi-check-circle-fill {
+    font-size: 1.5rem;
+}
+
+/* (Les anciens boutons jaunes .btn-warning ont été remplacés par
+   .btn-orange, défini dans styles.css.) */
+
+.anime {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+    cursor: pointer;
+    filter: grayscale(1);
+    transition: 0.5s;
+    animation: animeImg 3s ease-out;
+}
+
+.anime:hover {
+    filter: grayscale(0);
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* ============================================================
+   RESPONSIVE ACCUEIL
+   Points de rupture standards du site (voir styles.css) :
+   991.98px = tablette | 767.98px = petit écran | 575.98px = mobile
+============================================================ */
+
+/* ── Tablette ── */
+@media (max-width: 991.98px) {
+
+    #accueil {
+        padding: 60px 0;
+    }
+
+    #accueil h2 {
+        font-size: 2.2rem;
+        text-align: center;
+    }
+
+    .carousel-item img {
+        height: 280px;
+    }
+
+    .carousel-caption h5 {
+        font-size: 20px;
+    }
+
+    .carousel-caption p {
+        font-size: 13px;
+    }
+
+    /* Stats : réduction du gap */
+    .d-flex.justify-content-center.gap-5 {
+        gap: 25px !important;
+    }
+}
+
+/* ── Petit écran / grand mobile ── */
+@media (max-width: 767.98px) {
+
+    section {
+        padding: 60px 0;
+    }
+
+    section h2 {
+        font-size: 1.8rem;
+    }
+
+    #accueil {
+        padding: 40px 0;
+    }
+
+    #accueil h2 {
+        font-size: 1.8rem;
+    }
+
+    #accueil::before {
+        display: none;
+    }
+
+    .carousel-item img {
+        height: 280px;
+        object-fit: cover;
+    }
+
+    /* Caption visible et adaptée sur mobile */
+    .carousel-caption {
+        display: block !important;
+        opacity: 1 !important;
+        background: rgba(15, 23, 42, 0.75) !important;
+        backdrop-filter: blur(8px) !important;
+        -webkit-backdrop-filter: blur(8px) !important;
+        padding: 12px 16px !important;
+        bottom: 5% !important;
+        left: 5% !important;
+        right: 5% !important;
+        border-radius: 14px !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        transform: none !important;
+    }
+
+    .carousel-caption h5 {
+        font-size: 16px !important;
+        margin-bottom: 4px !important;
+    }
+
+    .carousel-caption p {
+        font-size: 11px !important;
+        margin-bottom: 8px !important;
+        line-height: 1.4 !important;
+    }
+
+    .carousel-caption .btn {
+        padding: 6px 14px !important;
+        font-size: 11px !important;
+        border-radius: 20px !important;
+    }
+
+    .photo {
+        grid-template-columns: 1fr;
+    }
+
+    .photo img {
+        width: 100%;
+        height: 250px;
+    }
+
+    form {
+        padding: 25px 15px;
+    }
+
+    /* Stats en colonne sur mobile */
+    .d-flex.justify-content-center.gap-5,
+    .d-flex.justify-content-center.gap-4 {
+        gap: 15px !important;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Cache les barres de séparation verticales sur mobile */
+    .bande-orange .vr {
+        display: none !important;
+    }
+
+    .bande-orange h5 {
+        font-size: 1.6rem !important;
+    }
+
+    .bande-orange p.fs-5 {
+        font-size: 1rem !important;
+    }
+
+    .bi-check-circle-fill {
+        font-size: 1.2rem;
+    }
+
+    /* Grille de photos du haut : les images passent les unes sous les autres */
+    .hero-grid {
+        flex-direction: column;
+    }
+
+    .hero-grid-left img,
+    .hero-grid-right img {
+        height: 220px;
+    }
+}
+
+/* ── Mobile ── */
+@media (max-width: 575.98px) {
+
+    section {
+        padding: 40px 0;
+    }
+
+    section h2 {
+        font-size: 1.5rem;
+    }
+
+    #accueil h2 {
+        font-size: 1.4rem;
+    }
+
+    .carousel-item img {
+        height: 240px;
+        object-fit: cover;
+    }
+
+    .service, .essai {
+        padding: 15px;
+    }
+
+    form {
+        padding: 20px 12px;
+    }
+
+    form button {
+        font-size: 1rem;
+        padding: 12px;
+    }
+}
+
+/* ============================================================
+   GRILLE DE PHOTOS ASYMÉTRIQUE HAUT DE GAMME (Magazine layout)
+============================================================ */
+.hero-grid {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+}
+
+.hero-grid-left {
+    flex: 7;
+}
+
+.hero-grid-right {
+    flex: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.hero-grid img {
+    width: 100%;
+    border-radius: 16px;
+    object-fit: cover;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.4s ease, 
+                border-color 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-grid img:hover {
+    transform: scale(1.02) translateY(-4px);
+    box-shadow: 0 15px 30px rgba(255, 90, 31, 0.25);
+    border-color: var(--primary-orange);
+}
+
+/* Hauteurs par défaut (ordinateur). Sur petit écran, ces hauteurs sont
+   remplacées dans le bloc responsive plus haut (@media 767.98px). */
+.hero-grid-left img {
+    height: 420px;
+}
+
+.hero-grid-right img {
+    height: 202px;
+}
+
+/* ============================================================
+   CLASSES AJOUTÉES LORS DU PASSAGE EN CSS EXTERNE
+   Elles remplacent des style="..." écrits dans les balises.
+========================= */
+
+/* Titre principal rempli par un dégradé orange.
+   Le texte est peint par le fond, puis rendu transparent. */
+.titre-degrade {
+    background: linear-gradient(135deg, var(--primary-orange), #ff8c00);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ── Bande orange des statistiques ──
+   Le fond étant orange vif, tous ces textes passent en blanc. */
+.bande-titre  { color: #fff; }
+.bande-valeur { font-size: 2.2rem; color: #fff; }
+.bande-label  { color: rgba(255, 255, 255, 0.95); font-size: 0.85rem; }
+
+/* Trait vertical de séparation entre deux statistiques */
+.bande-separateur {
+    background-color: rgba(255, 255, 255, 0.35);
+    height: 50px;
+    width: 1.5px;
+    opacity: 1;
+}

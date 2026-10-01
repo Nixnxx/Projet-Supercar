@@ -1,0 +1,11 @@
+/* ============================================================
+   css/admin/essais.css  —  Page "Demandes d'essai" du back-office
+   Styles propres à cette page (vues/admin/essais_vue.php).
+
+   Cette page réutilise presque uniquement les classes communes de
+   style.css (.cell-mono, .cell-titre, .info-libelle…). Le fichier
+   existe quand même pour garder la même structure que les autres
+   pages — un fichier CSS par page, comme un fichier JS par page.
+============================================================ */
+
+/* Rien de spécifique à cette page pour le moment. */

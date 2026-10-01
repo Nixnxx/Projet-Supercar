@@ -1,0 +1,366 @@
+/* =========================
+   CONTACT CONTAINER
+========================= */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 48px;
+    align-items: start;
+}
+
+
+/* =========================
+   MINI MAP
+========================= */
+.mini-map-wrapper {
+    background: var(--light-grey);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--accent-grey);
+    box-shadow: 0 6px 22px rgba(20, 30, 50, 0.06);
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                border-color 0.25s ease,
+                box-shadow 0.35s ease;
+}
+
+.mini-map-wrapper:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-orange);
+    box-shadow: 0 12px 40px rgba(255, 90, 31, 0.1);
+}
+
+.map-header {
+    padding: 20px 24px;
+    background: var(--medium-grey);
+    border-bottom: 1.5px solid var(--primary-orange);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.map-header h3 {
+    color: var(--text-dark);
+    font-size: 0.78rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0;
+    font-weight: 700;
+}
+
+.map-header p {
+    font-size: 0.78rem;
+    color: #777;
+    margin: 0;
+    letter-spacing: 0.3px;
+}
+
+.mini-map {
+    height: 455px;
+}
+
+.mini-map iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+.map-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 15px;
+    background: var(--primary-orange);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: background 0.2s ease;
+}
+
+.map-link:hover {
+    background: var(--secondary-orange);
+}
+
+
+/* =========================
+   FORMULAIRE CONTACT
+========================= */
+.contact-container form {
+    background: var(--light-grey);
+    padding: 36px;
+    border-radius: 20px;
+    border: 1px solid var(--accent-grey);
+    border-top: 4px solid var(--primary-orange); /* liseré orange permanent */
+    box-shadow: 0 6px 22px rgba(20, 30, 50, 0.06);
+    margin: 0;
+}
+
+/* Bandeau d'erreur de saisie, affiché en haut du formulaire. */
+.contact-erreur {
+    background: #fdeaea;
+    color: #b91c1c;
+    border: 1px solid #f3c4c4;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.contact-form-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--primary-orange);
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--accent-grey);
+}
+
+.contact-container label {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #777;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.contact-container input,
+.contact-container textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1.5px solid var(--accent-grey);
+    background: var(--medium-grey);
+    color: var(--text-dark);
+    font-size: 0.88rem;
+    outline: none;
+    transition: all 0.25s ease;
+    box-sizing: border-box;
+    line-height: 1.5;
+}
+
+.contact-container input::placeholder,
+.contact-container textarea::placeholder {
+    color: #8a9099;
+    font-size: 0.85rem;
+}
+
+.contact-container input:focus,
+.contact-container textarea:focus {
+    border-color: var(--primary-orange);
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(255, 90, 31, 0.08);
+}
+
+.contact-container textarea {
+    min-height: 155px;
+    resize: vertical;
+}
+
+.contact-container button {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+    border: none;
+    border-radius: 10px;
+    color: var(--white);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 15px rgba(255, 90, 31, 0.25);
+}
+
+.contact-container button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255, 90, 31, 0.4);
+}
+
+.contact-container button:active {
+    transform: translateY(0);
+}
+
+
+/* =========================
+   BULLES INFO
+========================= */
+.contact-info-bubbles {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: 56px 0;
+    flex-wrap: wrap;
+}
+
+.info-bubble {
+    background: var(--light-grey);
+    border: 1px solid var(--accent-grey);
+    border-top: 4px solid var(--primary-orange); /* liseré orange permanent */
+    border-radius: 20px;
+    padding: 28px 22px;
+    width: 196px;
+    text-align: center;
+    color: var(--text-dark);
+    box-shadow: 0 6px 22px rgba(20, 30, 50, 0.06);
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                border-color 0.25s ease,
+                box-shadow 0.35s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.info-bubble::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--primary-orange);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.info-bubble:hover {
+    transform: translateY(-7px);
+    border-color: var(--primary-orange);
+    box-shadow: 0 16px 35px rgba(255, 90, 31, 0.12);
+}
+
+.info-bubble:hover::before {
+    transform: scaleX(1);
+}
+
+.bubble-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(255, 90, 31, 0.08);
+    border: 1px solid rgba(255, 90, 31, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 17px;
+    transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.info-bubble:hover .bubble-icon {
+    background: rgba(255, 90, 31, 0.15);
+    border-color: rgba(255, 90, 31, 0.3);
+}
+
+.info-bubble h4 {
+    color: var(--primary-orange);
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.info-bubble p {
+    font-size: 0.86rem;
+    color: #6b727b;
+    line-height: 1.6;
+    margin: 0;
+}
+
+
+/* ============================================================
+   RESPONSIVE CONTACT
+   Points de rupture standards du site (voir styles.css) :
+   991.98px = tablette | 767.98px = petit écran | 575.98px = mobile
+============================================================ */
+
+/* ── Tablette ── */
+@media (max-width: 991.98px) {
+    .contact-container {
+        gap: 18px;
+    }
+
+    .contact-info-bubbles {
+        gap: 12px;
+    }
+
+    .info-bubble {
+        width: 172px;
+        padding: 22px 16px;
+    }
+}
+
+/* ── Petit écran / grand mobile ── */
+@media (max-width: 767.98px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .mini-map {
+        height: 240px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-container form {
+        padding: 24px;
+    }
+
+    .contact-info-bubbles {
+        margin: 40px 0;
+    }
+}
+
+/* ── Mobile ── */
+@media (max-width: 575.98px) {
+    .contact-info-bubbles {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .info-bubble {
+        width: 100%;
+        max-width: 280px;
+    }
+}
+
+
+/* ============================================================
+   FENÊTRE DE CONFIRMATION D'ENVOI
+   Remplace des style="..." écrits dans les balises.
+========================= */
+
+.modal-succes { background: rgba(0, 0, 0, 0.6); }
+.modal-succes .modal-content { background: #111; }
+.modal-succes-texte { font-size: 0.95rem; }
+
+.btn-modal-ok {
+    background: #f97316;
+    color: #fff;
+    border-radius: 20px;
+}
+.btn-modal-ok:hover { color: #fff; }
