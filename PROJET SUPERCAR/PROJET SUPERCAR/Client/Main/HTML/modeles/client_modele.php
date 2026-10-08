@@ -7,7 +7,8 @@
 // ============================================================
 
 // Vérifie si un email est déjà utilisé (renvoie true ou false).
-function email_existe($lienbd, $email) {
+function email_existe($lienbd, $email)
+{
     $sql = "SELECT id_client FROM client WHERE email = ?";
     $stmt = mysqli_prepare($lienbd, $sql);
     mysqli_stmt_bind_param($stmt, "s", $email);
@@ -17,7 +18,8 @@ function email_existe($lienbd, $email) {
 }
 
 // Crée un nouveau client et renvoie son id (ou false si erreur).
-function creer_client($lienbd, $nom, $prenom, $email, $telephone, $adresse) {
+function creer_client($lienbd, $nom, $prenom, $email, $telephone, $adresse)
+{
     $sql = "INSERT INTO client (nom, prenom, email, telephone, adresse, date_inscription)
             VALUES (?, ?, ?, ?, ?, NOW())";
     $stmt = mysqli_prepare($lienbd, $sql);
@@ -30,7 +32,8 @@ function creer_client($lienbd, $nom, $prenom, $email, $telephone, $adresse) {
 
 // Crée le compte de connexion lié à un client.
 // Le niveau est toujours 'client' : on ne crée jamais d'admin ici.
-function creer_login($lienbd, $login, $mdp_hash, $id_client) {
+function creer_login($lienbd, $login, $mdp_hash, $id_client)
+{
     $niveau = "client";
     $sql = "INSERT INTO login (login, mot_de_passe, niveau, id_client) VALUES (?, ?, ?, ?)";
     $stmt = mysqli_prepare($lienbd, $sql);
@@ -39,7 +42,8 @@ function creer_login($lienbd, $login, $mdp_hash, $id_client) {
 }
 
 // Renvoie les infos d'un client à partir de son id.
-function get_client($lienbd, $id_client) {
+function get_client($lienbd, $id_client)
+{
     $sql = "SELECT * FROM client WHERE id_client = ?";
     $stmt = mysqli_prepare($lienbd, $sql);
     mysqli_stmt_bind_param($stmt, "i", $id_client);
