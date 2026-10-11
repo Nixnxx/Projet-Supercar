@@ -17,7 +17,8 @@
 // de la base ou de l'utilisateur. htmlspecialchars transforme les
 // caractères dangereux (< > " ') en texte, ce qui empêche l'injection
 // de code HTML/JavaScript dans la page (faille XSS).
-function e($valeur) {
+function e($valeur)
+{
     return htmlspecialchars($valeur, ENT_QUOTES);
 }
 
@@ -26,7 +27,8 @@ function e($valeur) {
 // mais elle laisse passer un lien du type "javascript:..." car il n'y a ni
 // chevron ni guillemet à échapper. Ce lien s'exécuterait au clic.
 // On n'autorise donc que les liens internes et les liens http / https.
-function url_sure($url) {
+function url_sure($url)
+{
     $url = trim($url);
 
     // Lien vide : on renvoie une ancre neutre.
@@ -52,7 +54,8 @@ function url_sure($url) {
 //   $fichier = la case de $_FILES (exemple : $_FILES['image'])
 //   $dossier = où ranger l'image (exemple : 'Images-Index/')
 // Renvoie le chemin à stocker en base, ou null si ce n'est pas une image.
-function upload_image($fichier, $dossier) {
+function upload_image($fichier, $dossier)
+{
     // Aucun fichier envoyé
     if (empty($fichier['name'])) {
         return null;
@@ -92,7 +95,7 @@ function upload_image($fichier, $dossier) {
     // le dossier voulu (ex : public/Images-Index/).
     // Le chemin RENVOYÉ, lui, reste "Images-Index/xxx.jpg" : c'est celui
     // du <img src="...">, relatif aux pages qui sont dans public/.
-    $chemin = __DIR__ . '/../public/' . $dossier . $nom;
+    $chemin = __DIR__ . '/../supercar/' . $dossier . $nom;
 
     // On déplace le fichier temporaire vers sa destination finale.
     move_uploaded_file($fichier['tmp_name'], $chemin);
@@ -117,7 +120,8 @@ function upload_image($fichier, $dossier) {
 
 // Renvoie le jeton de la session. Il est créé au premier appel,
 // puis réutilisé pendant toute la durée de la session.
-function csrf_jeton() {
+function csrf_jeton()
+{
     if (!isset($_SESSION['csrf'])) {
         // random_bytes() tire 32 octets vraiment imprévisibles,
         // bin2hex() les transforme en texte lisible.
@@ -128,14 +132,16 @@ function csrf_jeton() {
 
 // Affiche le champ caché à placer dans CHAQUE formulaire.
 // Dans une vue, on l'appelle juste après la balise <form>.
-function csrf_champ() {
+function csrf_champ()
+{
     echo '<input type="hidden" name="csrf" value="' . e(csrf_jeton()) . '">';
 }
 
 // Vérifie le jeton reçu. À appeler dans le contrôleur AVANT
 // d'enregistrer quoi que ce soit. Si le jeton est absent ou faux,
 // on arrête tout de suite le script.
-function csrf_verifier() {
+function csrf_verifier()
+{
     // Le jeton arrive par POST (formulaire) ou par GET (lien de suppression).
     $recu = $_POST['csrf'] ?? $_GET['csrf'] ?? '';
 

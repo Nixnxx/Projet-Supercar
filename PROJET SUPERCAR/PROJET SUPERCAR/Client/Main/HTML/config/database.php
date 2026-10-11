@@ -20,3 +20,4 @@ if (!$lienbd) {
 
 // On force l'encodage UTF-8 pour bien afficher les accents.
 mysqli_set_charset($lienbd, 'utf8mb4');
+?>

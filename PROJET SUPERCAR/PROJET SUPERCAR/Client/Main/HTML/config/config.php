@@ -15,3 +15,4 @@ define('MDP_LONGUEUR_MIN', 8);
 // espaces (celui qu'attend un lien wa.me). 230 = indicatif de Maurice.
 // Défini ici une seule fois, puis réutilisé (footer + demande d'essai).
 define('WHATSAPP_NUMERO', '23057456170');
+?>
