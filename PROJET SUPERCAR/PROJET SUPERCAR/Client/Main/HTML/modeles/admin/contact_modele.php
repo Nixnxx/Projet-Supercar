@@ -62,9 +62,27 @@ function supprimer_message($lienbd, $id) {
 }
 
 // Met à jour la configuration de contact.
-function maj_config_contact($lienbd, $adresse, $email, $telephone, $map_embed) {
-    $sql = "UPDATE contact_config SET adresse = ?, email = ?, telephone = ?, map_embed = ? WHERE id_config = 1";
+
+function maj_config_contact($lienbd, $adresse, $email, $telephone, $map_embed,
+                            $personne_nom, $personne_email, $personne_telephone) {
+    $sql = "UPDATE contact_config
+            SET adresse = ?, email = ?, telephone = ?, map_embed = ?,
+                personne_nom = ?, personne_email = ?, personne_telephone = ?
+            WHERE id_config = 1";
+
     $stmt = mysqli_prepare($lienbd, $sql);
-    mysqli_stmt_bind_param($stmt, "ssss", $adresse, $email, $telephone, $map_embed);
-    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_param(
+        $stmt,
+        "sssssss",
+        $adresse,
+        $email,
+        $telephone,
+        $map_embed,
+        $personne_nom,
+        $personne_email,
+        $personne_telephone
+    );
+
+    return mysqli_stmt_execute($stmt);
 }
+

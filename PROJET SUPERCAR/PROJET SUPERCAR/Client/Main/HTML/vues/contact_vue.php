@@ -96,6 +96,13 @@ require __DIR__ . '/layout/header.php';
         <p><?= e($config['telephone'] ?? '') ?></p>
     </div>
 
+    <div class="info-bubble">
+        <h4>Personne à contacter</h4>
+        <p><?= e($config['personne_nom'] ?? '') ?></p>
+        <p><?= e($config['personne_email'] ?? '') ?></p>
+        <p><?= e($config['personne_telephone'] ?? '') ?></p>
+    </div>
+
 </div>
 
 <!-- FENÊTRE DE CONFIRMATION -->
