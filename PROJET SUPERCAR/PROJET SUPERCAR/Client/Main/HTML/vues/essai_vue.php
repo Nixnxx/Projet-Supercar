@@ -14,11 +14,11 @@ require __DIR__ . '/layout/header.php';
       <p>Réservez votre expérience</p>
     </div>
 
-    <?php if ($message != "") : ?>
+    <?php if ($message != ""): ?>
       <p class="success"><?= e($message) ?></p>
     <?php endif; ?>
 
-    <?php if ($reservation_ok) : ?>
+    <?php if ($reservation_ok): ?>
       <!-- Demande enregistrée : on ouvre WhatsApp dans un nouvel onglet.
            Un bouton manuel est proposé au cas où le navigateur bloque
            l'ouverture automatique (blocage des pop-ups). -->
@@ -32,8 +32,8 @@ require __DIR__ . '/layout/header.php';
 
     <form method="POST" class="essai-form">
 
-        <!-- Jeton anti-CSRF : prouve que le formulaire vient bien de notre site -->
-        <?php csrf_champ(); ?>
+      <!-- Jeton anti-CSRF : prouve que le formulaire vient bien de notre site -->
+      <?php csrf_champ(); ?>
 
 
       <label>Nom</label>
@@ -47,18 +47,30 @@ require __DIR__ . '/layout/header.php';
 
       <label>Choisir une voiture</label>
       <select name="voiture" required>
-        <?php foreach ($voitures as $row) : ?>
+        <?php foreach ($voitures as $row): ?>
           <?php $estIndisponible = ((int) $row['disponible'] === 0); ?>
-          <option value="<?= (int)$row['id_voiture'] ?>"
-            <?= ($row['id_voiture'] == $voitureSelected) ? 'selected' : '' ?>
+          <option value="<?= (int) $row['id_voiture'] ?>" <?= ($row['id_voiture'] == $voitureSelected) ? 'selected' : '' ?>
             <?= $estIndisponible ? 'disabled class="option-indisponible"' : '' ?>>
-            <?= e($row['model']) ?><?= $estIndisponible ? ' (indisponible)' : '' ?>
+            <?= e($row['model']) ?>   <?= $estIndisponible ? ' (indisponible)' : '' ?>
           </option>
         <?php endforeach; ?>
       </select>
 
       <label>Date souhaitée</label>
       <input type="date" name="date_essai" required>
+
+      <label>Heure souhaitée</label>
+      <select name="heure_essai" required>
+        <option value="09:00">09:00</option>
+        <option value="10:00">10:00</option>
+        <option value="11:00">11:00</option>
+        <option value="12:00">12:00</option>
+        <option value="13:00">13:00</option>
+        <option value="14:00">14:00</option>
+        <option value="15:00">15:00</option>
+        <option value="16:00">16:00</option>
+        <option value="17:00">17:00</option>
+      </select>
 
       <button type="submit" name="reserver">
         Réserver un essai
