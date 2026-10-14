@@ -53,7 +53,7 @@ if (isset($_POST['reserver'])) {
     } elseif (!voiture_disponible($lienbd, $voiture)) {
         $message = "Cette voiture est actuellement indisponible (déjà réservée).";
     } else {
-        $dateDemande = date("Y-m-d H:i:s");
+        $dateDemande = date("Y-m-d");
         $heure_essai = $_POST['heure_essai'] ?? '';
         $idClient = (int) $_SESSION['id_client'];
 

@@ -10,7 +10,7 @@ require_once __DIR__ . '/menu_controleur.php';   // compteurs des pastilles du m
 require_once __DIR__ . '/../../modeles/admin/essai_modele.php';
 
 $action = $_GET['action'] ?? '';
-$id     = intval($_GET['id'] ?? 0);
+$id = intval($_GET['id'] ?? 0);
 $succes = $_GET['succes'] ?? '';
 
 // Toutes les actions qui MODIFIENT la base passent par POST (changement de
@@ -23,14 +23,14 @@ if (!empty($_POST)) {
 // Pour afficher le statut en toutes lettres et avec la bonne couleur.
 // Statut 1 (Confirmé) = voiture réservée → indisponible côté client.
 // Statut 3 (Terminé)  = essai réalisé   → la voiture redevient disponible.
-$statuts_labels = ['0' => 'En attente', '1' => 'Confirmé', '2' => 'Refusé', '3' => 'Terminé'];
-$statuts_class  = ['0' => 'badge-wait', '1' => 'badge-ok',  '2' => 'badge-no', '3' => 'badge-done'];
+$statuts_labels = ['en_attente' => 'En attente', 'confirme' => 'Confirmé', 'refuse' => 'Refusé', 'termine' => 'Terminé'];
+$statuts_class = ['en_attente' => 'badge-wait', 'confirme' => 'badge-ok', 'refuse' => 'badge-no', 'termine' => 'badge-done'];
 
 // ---- Changement de statut (formulaire envoyé) ----
 if (isset($_POST['set_statut'])) {
-    $nid  = intval($_POST['id_demande']);
+    $nid = intval($_POST['id_demande']);
     $stat = intval($_POST['statut']);
-    $com  = trim($_POST['commentaire']);
+    $com = trim($_POST['commentaire']);
     maj_statut_essai($lienbd, $nid, $stat, $com);
     header('Location: admin_essais.php?succes=update');
     exit();
