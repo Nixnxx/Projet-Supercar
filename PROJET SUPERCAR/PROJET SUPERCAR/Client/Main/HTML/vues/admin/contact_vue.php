@@ -117,6 +117,27 @@ require __DIR__ . '/layout_haut.php';
                 <label class="form-label">Téléphone</label>
                 <input class="form-input" type="text" name="telephone" value="<?= e($config['telephone'] ?? '') ?>">
             </div>
+            
+<!-- bulle personne a contacter -->
+
+<div class="form-group full">
+    <label class="form-label">Nom de la personne à contacter</label>
+    <input class="form-input" type="text" name="personne_nom"
+           value="<?= e($config['personne_nom'] ?? '') ?>">
+</div>
+
+<div class="form-group">
+    <label class="form-label">Email de la personne</label>
+    <input class="form-input" type="email" name="personne_email"
+           value="<?= e($config['personne_email'] ?? '') ?>">
+</div>
+
+<div class="form-group">
+    <label class="form-label">Téléphone de la personne</label>
+    <input class="form-input" type="text" name="personne_telephone"
+           value="<?= e($config['personne_telephone'] ?? '') ?>">
+</div>
+
             <div class="form-group">
                 <label class="form-label">Latitude</label>
                 <input class="form-input" type="text" id="lat" name="lat" value="<?= e($lat) ?>">

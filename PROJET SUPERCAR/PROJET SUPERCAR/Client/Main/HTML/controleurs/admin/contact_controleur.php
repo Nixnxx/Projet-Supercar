@@ -28,10 +28,23 @@ if (isset($_POST['save_config'])) {
     $adr = trim($_POST['adresse']);
     $em  = trim($_POST['email_config']);
     $tel = trim($_POST['telephone']);
+    $personne_nom = trim($_POST['personne_nom'] ?? '');
+    $personne_email = trim($_POST['personne_email'] ?? '');
+    $personne_telephone = trim($_POST['personne_telephone'] ?? '');
     $lat = floatval($_POST['lat']);
     $lng = floatval($_POST['lng']);
     $map = "https://maps.google.com/maps?q={$lat},{$lng}&z=15&output=embed";
-    maj_config_contact($lienbd, $adr, $em, $tel, $map);
+
+    maj_config_contact(
+    $lienbd,
+    $adr,
+    $em,
+    $tel,
+    $map,
+    $personne_nom,
+    $personne_email,
+    $personne_telephone
+);
     header('Location: admin_contact.php?tab=config&succes=config');
     exit();
 }
